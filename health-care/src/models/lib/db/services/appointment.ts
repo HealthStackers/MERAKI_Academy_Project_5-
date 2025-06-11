@@ -34,6 +34,15 @@ export const bookAppointment = async (appointment: Appointment) => {
       appointment.Disease_id,
     ]
   );
-  
+
+  return result.rows;
+};
+
+export const getAppointmentByDoctorId = async (id: number) => {
+  const result = await pool.query(
+    `SELECT * FROM Appointments WHERE user_id = $1`,
+    [id]
+  );
+
   return result.rows;
 };
