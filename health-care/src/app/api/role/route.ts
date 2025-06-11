@@ -7,7 +7,7 @@ export const POST = async(request: Request) =>{
    try {
      const body= await request.json() 
     const result= await addRole(body)
-    console.log("body: ", body);
+   
     
     return NextResponse.json({Data:result, message: "Role has been added successfully"}, {status:201})
    } catch (error) {
