@@ -23,3 +23,8 @@ export const getBMIResultByUserId = async (id: number) => {
   return result.rows;
 };
 
+export const getBMIs = async () => {
+  const result = await pool.query(`SELECT * from bmi`);
+
+  return result.rows;
+};
