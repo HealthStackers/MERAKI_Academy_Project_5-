@@ -3,9 +3,8 @@ import { NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 
 export const POST = async (request: Request) => {
-    const { email, password } = await request.json();
+  const { email, password } = await request.json();
   try {
-    
     const result = await Login(email, password);
     return NextResponse.json(result, {
       status: 201,
