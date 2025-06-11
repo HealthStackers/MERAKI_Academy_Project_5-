@@ -1,11 +1,11 @@
-import { Login } from "@/models/lib/db/services/users";
-import { NextApiResponse } from "next";
+import { bookAppointment } from "@/models/lib/db/services/appointment";
 import { NextResponse } from "next/server";
 
 export const POST = async (request: Request) => {
-  const { email, password } = await request.json();
   try {
-    const result = await Login(email, password);
+    const body = await request.json();
+
+    const result = await bookAppointment(body);
     return NextResponse.json(result, {
       status: 201,
     });
