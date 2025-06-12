@@ -36,11 +36,8 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         const { email, password } = credentials!;
-        const result = await Login({
-          email,
-          password,
-        });
-console.log(result)
+        const result = await Login(email,
+          password,);
         return result;
       },
     }),
