@@ -38,10 +38,11 @@ export const bookAppointment = async (appointment: Appointment) => {
   return result.rows;
 };
 
-export const getAppointmentByDoctorId = async (id: number) => {
+export const getAppointmentByDoctor = async (name: string) => {
   const result = await pool.query(
-    `SELECT * FROM Appointments WHERE user_id = $1`,
-    [id]
+    `SELECT * FROM Appointments FULL OUTER JOIN users ON users.id = Appointments.user_id 
+    FULL OUTER JOIN role ON role.id = users.role_id WHERE role.role_name = $1`,
+    [name]
   );
 
   return result.rows;
