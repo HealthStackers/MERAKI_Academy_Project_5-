@@ -26,30 +26,3 @@ export const GET = async (
     );
   }
 };
-
-
-export const GET = async (
-  request: Request,
-
-  params: {
-    params: Promise<{ id: string }>;
-  }
-) => {
-  try {
-    console.log(params);
-    const { id } = await params.params;
-
-    const result = await getAppointmentsByPatientId("patient", +id);
-    return NextResponse.json(result, {
-      status: 201,
-    });
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    return NextResponse.json(
-      { msg: `Failed ${error.message}` },
-      {
-        status: 404,
-      }
-    );
-  }
-};
