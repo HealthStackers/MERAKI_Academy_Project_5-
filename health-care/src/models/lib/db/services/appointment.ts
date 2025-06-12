@@ -103,19 +103,6 @@ export const getAppointmentsByUserId = async (role: string, id: number) => {
     );
   }
 
-  return result.rows;
+  return result?.rows;
 };
 
-export const getAppointmentsByPatientId = async (role: string, id: number) => {
-  const result = await pool.query(
-    `SELECT  DateAppointment , BloodType  , MedicalHistory , TimeAppointment , DurationTime , 
-     AppointmentType , description , Gender , user_id , diseases.name , diseases.effectedBodyPart ,
-     diseases.symptoms , diseases.symptoms, users.firstName , users.lastName , users.age , users.country , users.email  FROM Appointments FULL OUTER JOIN users ON users.id = Appointments.user_id 
-    FULL OUTER JOIN role ON role.id = users.role_id 
-    FULL OUTER JOIN diseases ON diseases.id = Appointments.disease_id
-    WHERE role.role_name = $1 AND  users.id = $2 `,
-    [role, id]
-  );
-
-  return result.rows;
-};
