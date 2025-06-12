@@ -5,12 +5,11 @@ export const GET = async (request: Request) => {
   try {
     const url = new URL(request.url);
     const name = url.searchParams.get("name")?.toLocaleLowerCase();
-    //console.log(name)
     if (name) {
       const result = await getAppointmentByRoleName(name);
       if (result.length === 0) {
         return NextResponse.json(
-          { message: `Error there is no any Doctors Users` },
+          { message: `Error there is no any Patients Users` },
           {
             status: 404,
           }
