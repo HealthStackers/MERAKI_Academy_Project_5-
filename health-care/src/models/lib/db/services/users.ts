@@ -132,8 +132,9 @@ export const UpdateUser = async (id: number, UpdatedUser: UpdateUser) => {
 };
 
 export const DeleteUser = async (id: number) => {
-  const result = await pool.query(`DELETE FROM USERS WHERE id = $1 RETURNING *`, [id]);
+  const result = await pool.query(
+    `DELETE FROM USERS WHERE id = $1 RETURNING *`,
+    [id]
+  );
   return result.rows;
 };
-
-
