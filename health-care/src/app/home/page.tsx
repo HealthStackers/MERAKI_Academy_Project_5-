@@ -1,0 +1,16 @@
+"use client";
+import React, { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+const home = () => {
+  const { data: session } = useSession();
+  useEffect(() => {
+    if (session) {
+      localStorage.setItem("roleId", session.user.role_id.toString());
+      localStorage.setItem("email", session.user.email);
+    }
+  }, [session]);
+
+  return <div>home</div>;
+};
+
+export default home;

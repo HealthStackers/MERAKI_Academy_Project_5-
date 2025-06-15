@@ -1,6 +1,7 @@
-import { NextAuthOptions } from "next-auth";
+import { NextAuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
  import { Login } from "./db/services/users";
+import { userInfo } from "os";
 
 //! This used to override the next-auth default types
 declare module "next-auth" {
@@ -9,36 +10,44 @@ declare module "next-auth" {
   }
 
   interface User {
-    name: string;
-    id: number;
+    firstName: string;
+    id: number |string;
     email: string;
-    accessToken: string;
+    token: string;
+    role_id:number
+    
   }
 }
 
 declare module "next-auth/jwt" {
   interface JWT {
-    name: string;
+    firstName: string;
     id: number | string;
-    accessToken: string;
+    token: string;
     email: string;
     serverProperty: string;
+    role_id:number
   }
 }
+
 
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "email" },
+        email: { label: "Email", type: "email" } ,
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        console.log("result from auth : ");
         const { email, password } = credentials!;
-        const result = await Login(email,
+        const result:any = await Login(email,
           password,);
-        return result;
+         // console.log("result from auth result result : ",result)
+          console.log("result.email: ",result.email,result.password,result.role_id );
+          
+        return (result);
       },
     }),
   ],
@@ -47,37 +56,34 @@ export const authOptions: NextAuthOptions = {
     
     async jwt({ token, user , account }) {
       if (user) {
+        console.log("from  if (user): ", user);
+        
         token.id = user.id;
-        token.name = user.name;
+        token.role_id = user.role_id;
         token.email = user.email;
-        token.accessToken = user.accessToken;
+        token.token = user.token;
         token.serverProperty = "Server";
+        token.firstName= token.firstName
+       
         
       }
        if (account) {
         token.accessToken = account.access_token as string;
       }
-
+    console.log("token from auth : ",token);
       return token;
     },
-    // async jwt({ token, user, account, profile }) {
-    //   if (user) {
-    //     token.id = user.id;
-    //   }
-    //   if (account) {
-    //     token. = account.access_token;
-    //   }
-    //   return token;
-    // },
+  
     async session({ session, token }) {
       //! session: will contains the data that returned either via getServerSession() or via useSession()
       session.user = {
         id: +token.id,
-        name: token.name,
+        firstName: token.firstName,
         email: token.email,
-        accessToken: token.accessToken,
+        token: token.token,
+        role_id:token.role_id
       };
-
+console.log("session from auth : ",session);
       return session;
     },
   },

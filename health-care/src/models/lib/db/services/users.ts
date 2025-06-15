@@ -87,7 +87,7 @@ export const Login = async (email: string, password: string) => {
     const isMatch = await comparePassword(password, hashedPassword);
     const user = result.rows[0];
     const token = jwt.sign(
-      { userId: user.id, email: user.email },
+      { userId: user.id, email: user.email,roleId: user.role_id },
       process.env.NEXTAUTH_SECRET,
       {
         expiresIn: "1d",
