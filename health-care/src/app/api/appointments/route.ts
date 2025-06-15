@@ -26,12 +26,12 @@ export const POST = async (request: Request) => {
 export const GET = async (request: Request) => {
   try {
     const url = new URL(request.url);
-    const name = url.searchParams.get("name")?.toLocaleLowerCase();
+    const role = url.searchParams.get("role")?.toLocaleLowerCase();
     const id = url.searchParams.get("id");
 
-    if (name && id) {
-      const result = await getAppointmentsByUserId(name, +id);
-      if (result.length === 0) {
+    if (role && id) {
+      const result = await getAppointmentsByUserId(role, +id);
+      if (result?.length === 0) {
         return NextResponse.json(
           { message: `Error there is no any appointments for ${id}` },
           {
