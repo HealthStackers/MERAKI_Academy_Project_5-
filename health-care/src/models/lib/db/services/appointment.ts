@@ -43,6 +43,21 @@ export type Appointment = {
   user_id: number;
   Disease_id: number;
 };
+
+export type UpdateAppointment = {
+  DateAppointment: Date;
+  BloodType: string;
+  MedicalHistory: string;
+  TimeAppointment: DateTime;
+  clockSystem: clockSystem;
+  DurationTime: DurationMap[AppointmentType];
+  AppointmentType: AppointmentType;
+  description: string;
+  Gender: string;
+  DoctorName: string;
+  Specializing: string;
+  user_id: number;
+};
 export const bookAppointment = async (appointment: Appointment) => {
   const result = await pool.query<Appointment>(
     `INSERT INTO Appointments (DateAppointment, BloodType, MedicalHistory, TimeAppointment,  clockSystem,DurationTime, AppointmentType, description, Gender, DoctorName, Specializing, user_id, Disease_id) 
@@ -50,7 +65,7 @@ SELECT $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 , $13
 WHERE NOT EXISTS (
     SELECT 1
     FROM Appointments 
-    WHERE user_id = $12
+    WHERE DateAppointment = $1 AND user_id = $12
   AND DoctorName = $10::VARCHAR
   AND (
       (TimeAppointment, TimeAppointment + 
@@ -83,10 +98,9 @@ WHERE NOT EXISTS (
       appointment.Specializing,
       appointment.user_id,
       appointment.Disease_id,
-      
     ]
   );
- 
+
   return result.rows;
 };
 
@@ -149,4 +163,55 @@ export const getAppointmentsByUserId = async (role: string, id: number) => {
   }
 
   return result?.rows;
+};
+
+export const UpdateAppointment = async (
+  updateAppointment: UpdateAppointment,
+  id: number
+) => {
+  const result = await pool.query<UpdateAppointment>(
+    `UPDATE Appointments SET DateAppointment = COALESCE($1,DateAppointment) , 
+   BloodType = COALESCE($2,BloodType) , MedicalHistory = COALESCE($3,MedicalHistory) , TimeAppointment = COALESCE($4,TimeAppointment) , clockSystem = COALESCE($5,clockSystem) , 
+     DurationTime = COALESCE($6,DurationTime) , AppointmentType = COALESCE($7,AppointmentType) , 
+     description = COALESCE($8,description) , Gender = COALESCE($9,Gender) , 
+     DoctorName = COALESCE($10,DoctorName) , Specializing = COALESCE($11,Specializing)  , user_id = COALESCE($12,user_id)
+      WHERE id = $13 AND NOT EXISTS (
+    SELECT 1
+    FROM Appointments 
+    WHERE DateAppointment = $1 AND user_id = $12
+  AND DoctorName = $10::VARCHAR
+  AND (
+      (TimeAppointment, TimeAppointment + 
+       CASE
+           WHEN AppointmentType = 'Check-ups' THEN INTERVAL '20 minutes'
+           WHEN AppointmentType = 'Evaluations' THEN INTERVAL '30 minutes'
+           WHEN AppointmentType = 'Follow-up' THEN INTERVAL '15 minutes'
+           ELSE INTERVAL '0 minutes'
+       END) OVERLAPS
+      ($4::time, $4::time + 
+       CASE
+           WHEN AppointmentType = 'Check-ups' THEN INTERVAL '20 minutes'
+           WHEN AppointmentType = 'Evaluations' THEN INTERVAL '30 minutes'
+           WHEN AppointmentType = 'Follow-up' THEN INTERVAL '15 minutes'
+           ELSE INTERVAL '0 minutes'
+       END)
+  ))RETURNING *`,
+    [
+      updateAppointment.DateAppointment,
+      updateAppointment.BloodType,
+      updateAppointment.MedicalHistory,
+      updateAppointment.TimeAppointment,
+      updateAppointment.clockSystem,
+      (updateAppointment.DurationTime =
+        durationMap[updateAppointment.AppointmentType]),
+      updateAppointment.AppointmentType,
+      updateAppointment.description,
+      updateAppointment.Gender,
+      updateAppointment.DoctorName,
+      updateAppointment.Specializing,
+      updateAppointment.user_id,
+      id,
+    ]
+  );
+  return result.rows;
 };
