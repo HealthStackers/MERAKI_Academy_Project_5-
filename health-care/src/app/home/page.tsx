@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+
 const home = () => {
   const { data: session } = useSession();
   useEffect(() => {
@@ -8,16 +9,14 @@ const home = () => {
       localStorage.setItem("roleId", session.user.role_id.toString());
       localStorage.setItem("email", session.user.email);
       localStorage.setItem("userId", session.user.id.toString());
-      console.log(session.user.role_id);
-      console.log(session.user.email);
-      
     }
   }, [session]);
 
-  
-  
 
-  return <div>home</div>;
+  return <div>home
+    
+  </div>;
+  
 };
 
 export default home;
