@@ -2,26 +2,40 @@
 import { signIn } from "next-auth/react";
 import React from "react";
 import { useState } from "react";
-import { getServerSession } from "next-auth";
-import authOptions from "@/models/lib/authOptions";
+import { useRouter } from "next/navigation";
 
 function login() {
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showErrorMessage, seteshowErrorMessage] = useState(false);
+  const router = useRouter();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await signIn("credentials", {
+    const result = await signIn("credentials", {
+      redirect: false,
       password: form.password,
       email: form.email,
       callbackUrl: "/home",
     });
-   
+    if (result?.ok) {
+      router.push("/home");
+    } else {
+      seteshowErrorMessage(true);
+      if (result?.error) {
+        setErrorMessage(result.error);
+        setTimeout(() => {
+          seteshowErrorMessage(false);
+        }, 2000);
+      }
+    }
   };
 
   return (
@@ -45,7 +59,9 @@ function login() {
           required
         ></input>
 
-        <button type="submit">Login</button>
+        <button type="submit"> Login</button>
+
+        <div>{showErrorMessage && <div>{errorMessage}</div>}</div>
       </form>
     </div>
   );

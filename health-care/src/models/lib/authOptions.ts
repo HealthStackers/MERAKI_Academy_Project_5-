@@ -2,6 +2,7 @@ import { NextAuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
  import { Login } from "./db/services/users";
 import { userInfo } from "os";
+import { error } from "console";
 
 //! This used to override the next-auth default types
 declare module "next-auth" {
@@ -40,14 +41,16 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        console.log("result from auth : ");
         const { email, password } = credentials!;
         const result:any = await Login(email,
-          password,);
-         // console.log("result from auth result result : ",result)
-          console.log("result.email: ",result.email,result.password,result.role_id );
-          
-        return (result);
+          password,);      
+          console.log("result: ",result);
+          if (result) {
+            return (result);
+          }else {
+            return null
+          }
+        
       },
     }),
   ],
@@ -55,8 +58,9 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     
     async jwt({ token, user , account }) {
+      
       if (user) {
-        console.log("from  if (user): ", user);
+        console.log("from  if (user) : ", user);
         
         token.id = user.id;
         token.role_id = user.role_id;
@@ -66,11 +70,16 @@ export const authOptions: NextAuthOptions = {
         token.firstName= token.firstName
        
         
+      }else{
+         console.log("account:  account: account:Ssssssssssss ",user);
+          throw new Error("Invalid password");
       }
        if (account) {
+      //  console.log("account:  account: account: ");
+        
         token.accessToken = account.access_token as string;
       }
-    console.log("token from auth : ",token);
+   // console.log("token from auth : ",token);
       return token;
     },
   
@@ -83,12 +92,14 @@ export const authOptions: NextAuthOptions = {
         token: token.token,
         role_id:token.role_id
       };
-console.log("session from auth : ",session);
+//console.log("session from auth : ",session);
       return session;
     },
   },
   pages: {
     signIn: "/login",
+   
+    signOut: "home"
   },
    secret: process.env.NEXTAUTH_SECRET,
 };

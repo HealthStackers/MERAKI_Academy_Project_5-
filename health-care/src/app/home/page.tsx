@@ -7,6 +7,7 @@ const home = () => {
     if (session) {
       localStorage.setItem("roleId", session.user.role_id.toString());
       localStorage.setItem("email", session.user.email);
+      localStorage.setItem("userId", session.user.id.toString());
     }
   }, [session]);
 
