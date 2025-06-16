@@ -8,7 +8,7 @@ import pool from "../index"
 export const addRole= async (
     newRole: POSTAddrole
 )=>{
-    const result = await pool.query<POSTAddrole>("INSERT INTO ROLE (role_name) values($1) returning * ",[newRole.role_name] )
+    const result = await pool.query<POSTAddrole>("INSERT INTO ROLE (role_name) values($1) returning * ",[newRole.role_name.toLocaleLowerCase()] )
 
 return result.rows
 }

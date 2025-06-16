@@ -86,12 +86,15 @@ export const Login = async (email: string, password: string) => {
     email.toLocaleLowerCase(),
   ]);
 
+  if(result.rows.length===0){
+    throw new Error("Invalid email or password");
+  }
   if (result) {
     const hashedPassword = result.rows[0].password;
     const isMatch = await comparePassword(password, hashedPassword);
     const user = result.rows[0];
     const token = jwt.sign(
-      { userId: user.id, email: user.email },
+      { userId: user.id, email: user.email,roleId: user.role_id },
       process.env.NEXTAUTH_SECRET,
       {
         expiresIn: "1d",
