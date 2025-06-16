@@ -70,9 +70,6 @@ export const authOptions: NextAuthOptions = {
         token.firstName= token.firstName
        
         
-      }else{
-         console.log("account:  account: account:Ssssssssssss ",user);
-          throw new Error("Invalid password");
       }
        if (account) {
       //  console.log("account:  account: account: ");
@@ -92,7 +89,7 @@ export const authOptions: NextAuthOptions = {
         token: token.token,
         role_id:token.role_id
       };
-//console.log("session from auth : ",session);
+console.log("session from auth : ",session);
       return session;
     },
   },
