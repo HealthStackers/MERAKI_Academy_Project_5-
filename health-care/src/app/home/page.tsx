@@ -8,8 +8,14 @@ const home = () => {
       localStorage.setItem("roleId", session.user.role_id.toString());
       localStorage.setItem("email", session.user.email);
       localStorage.setItem("userId", session.user.id.toString());
+      console.log(session.user.role_id);
+      console.log(session.user.email);
+      
     }
   }, [session]);
+
+  
+  
 
   return <div>home</div>;
 };
