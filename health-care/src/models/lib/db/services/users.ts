@@ -9,6 +9,7 @@ export type RegisterUser = {
   lastName: string;
   age: number;
   country: string;
+  phoneNumber: string;
   email: string;
   password: string;
   role_id: number;
@@ -20,8 +21,10 @@ export type UpdateUser = {
   lastName: string;
   age: number;
   country: string;
+  phoneNumber: string;
   email: string;
   password: string;
+  role_id: number;
   is_deleted: 0;
 };
 
@@ -41,15 +44,16 @@ const comparePassword = async (password: string, hashedPassword: string) => {
 
 export const Register = async (newUser: RegisterUser) => {
   const result = await pool.query<RegisterUser>(
-    `INSERT INTO users (firstName , lastName, age, country,email , password,role_id) VALUES ($1 , $2 , $3 , $4 , $5 , $6 , $7) RETURNING *`,
+    `INSERT INTO users (firstName , lastName, age, country, phoneNumber ,email , password , role_id) VALUES ($1 , $2 , $3 , $4 , $5 , $6 , $7 , $8) RETURNING *`,
     [
       newUser.firstName.toLocaleLowerCase(),
       newUser.lastName,
       newUser.age,
       newUser.country.toLocaleLowerCase(),
+      newUser.phoneNumber,
       newUser.email.toLocaleLowerCase(),
       await hashPassword(newUser.password),
-      newUser.role_id,
+      2,
     ]
   );
 
@@ -100,6 +104,7 @@ export const Login = async (email: string, password: string) => {
         lastName: user.lastName,
         age: user.age,
         country: user.country,
+        phoneNumber: user.phoneNumber,
         email: user.email,
         password: user.password,
         role_id: user.role_id,
@@ -116,14 +121,16 @@ export const Login = async (email: string, password: string) => {
 
 export const UpdateUser = async (id: number, UpdatedUser: UpdateUser) => {
   const result = await pool.query<UpdateUser>(
-    `UPDATE users SET firstName = COALESCE($1,firstName) , lastName = COALESCE($2,lastName), age = COALESCE($3 , age), country = COALESCE($4 , country),email =COALESCE($5 , email) , password = COALESCE($6,password ), is_deleted = COALESCE($7, is_deleted) WHERE id = $8 RETURNING *`,
+    `UPDATE users SET firstName = COALESCE($1,firstName) , lastName = COALESCE($2,lastName), age = COALESCE($3 , age), country = COALESCE($4 , country),phoneNumber =  COALESCE($5,phoneNumber )  , email =COALESCE($6 , email) , password = COALESCE($7,password ), role_id = COALESCE($8, role_id) ,is_deleted = COALESCE($9, is_deleted) WHERE id = $9 RETURNING *`,
     [
       UpdatedUser.firstName,
       UpdatedUser.lastName,
       UpdatedUser.age,
       UpdatedUser.country,
+      UpdatedUser.phoneNumber,
       UpdatedUser.email,
       UpdatedUser.password,
+      UpdatedUser.role_id,
       UpdatedUser.is_deleted,
       id,
     ]
@@ -132,8 +139,9 @@ export const UpdateUser = async (id: number, UpdatedUser: UpdateUser) => {
 };
 
 export const DeleteUser = async (id: number) => {
-  const result = await pool.query(`DELETE FROM USERS WHERE id = $1 RETURNING *`, [id]);
+  const result = await pool.query(
+    `DELETE FROM USERS WHERE id = $1 RETURNING *`,
+    [id]
+  );
   return result.rows;
 };
-
-
