@@ -3,13 +3,14 @@ import { signIn } from "next-auth/react";
 import React from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import "./login.css";
 
-function login() {
+const login = () => {
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const [showErrorMessage, seteshowErrorMessage] = useState(false);
   const router = useRouter();
 
@@ -39,31 +40,43 @@ function login() {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input
-          name="email"
-          type="email"
-          placeholder="Email"
-          value={form.email}
-          onChange={handleChange}
-          required
-        ></input>
+    <>
+      <div className="container">
+        <div className="title">Login</div>
+        <div className="content">
+          <form onSubmit={onSubmit}>
+            <div className="user-details">
+              <div className="input-box">
+                <span className="details">Email</span>
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="Enter your email"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="input-box">
+                <span className="details">Password</span>
+                <input
+                  name="password"
+                  type="password"
+                  placeholder="Enter your password"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
 
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={form.password}
-          onChange={handleChange}
-          required
-        ></input>
+            <div className="button">
+              <input type="submit" value="Login" />
+            </div>
 
-        <button type="submit"> Login</button>
-
-        <div>{showErrorMessage && <div>{errorMessage}</div>}</div>
-      </form>
-    </div>
+            <div>{showErrorMessage && <div>{errorMessage}</div>}</div>
+          </form>
+        </div>
+      </div>
+    </>
   );
 }
 

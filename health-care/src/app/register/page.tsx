@@ -62,9 +62,6 @@ const Register = () => {
     setSuccess(false);
   };
 
-  //  useEffect(() => {
-
-  // }, []);
 
   return (
     <div className="container">
