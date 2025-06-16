@@ -20,7 +20,9 @@ export const DELETE = async (
     params: Promise<{ id: string }>;
   }
 ) => {
+  
   const { id } = params.params;
   const result = await DeleteUser(id);
   return NextResponse.json(result, { status: 200 });
 };
+

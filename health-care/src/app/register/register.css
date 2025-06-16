@@ -6,7 +6,6 @@
   font-family: 'Poppins', sans-serif;
 }
 body {
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,7 +13,8 @@ body {
   background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
 .container {
-  max-width: 700px;
+  margin-top: 10px;
+  max-width: 800px;
   width: 100%;
   background-color: #fff;
   padding: 25px 30px;
@@ -24,6 +24,7 @@ body {
 .container .title {
   font-size: 25px;
   font-weight: 500;
+  letter-spacing: 2.5px;
   position: relative;
 }
 .container .title::before {
@@ -46,6 +47,17 @@ form .user-details .input-box {
   margin-bottom: 15px;
   width: calc(100% / 2 - 20px);
 }
+
+.failed{
+  color: red;
+  text-transform: capitalize;
+}
+
+.success{
+   color:  green;
+     text-transform: capitalize;
+}
+
 form .input-box span.details {
   display: block;
   font-weight: 500;
@@ -91,8 +103,7 @@ form .category label .dot {
   transition: all 0.3s ease;
 }
 #dot-1:checked~.category label .one,
-#dot-2:checked~.category label .two,
-#dot-3:checked~.category label .three {
+#dot-2:checked~.category label .two{
   background: #9b59b6;
   border-color: #d9d9d9;
 }
@@ -113,6 +124,7 @@ form .button input {
   font-weight: 500;
   letter-spacing: 1px;
   cursor: pointer;
+  letter-spacing: 2.5px;
   transition: all 0.3s ease;
   background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
