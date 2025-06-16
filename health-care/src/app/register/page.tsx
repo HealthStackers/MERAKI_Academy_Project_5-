@@ -44,7 +44,8 @@ const Register = () => {
         const token_decoded = JSON.parse(
           atob(response.data.token.split(".")[1])
         );
-        localStorage.setItem("UID", token_decoded.userID);
+        console.log(token_decoded)
+        localStorage.setItem("UID", token_decoded.userId);
         localStorage.setItem("role", token_decoded.role);
         setToken(response.data.token);
         setUID(token_decoded.userId);
