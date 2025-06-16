@@ -12,7 +12,7 @@ export const POST = async (request: Request) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return NextResponse.json(
-      { msg: `Failed ${error.message}` },
+      { msg: ` ${error.message}` },
       {
         status: 404,
       }
