@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import "./login.css";
 
-const login = () => {
+const Login = () => {
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -80,4 +80,4 @@ const login = () => {
   );
 }
 
-export default login;
+export default Login;

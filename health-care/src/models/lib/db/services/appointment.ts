@@ -2,6 +2,7 @@ import pool from "@/models/lib/db";
 import { Timestamp } from "next/dist/server/lib/cache-handlers/types";
 import moment from "moment";
 import { DateTime } from "next-auth/providers/kakao";
+import { NextResponse } from "next/server";
 
 export const AppointmentType = {
   "Check-ups": "Check-ups",
@@ -28,6 +29,7 @@ export const durationMap = {
 export type DurationMap = typeof durationMap;
 
 export type Appointment = {
+  id?: number;
   DateAppointment: Date;
   BloodType: string;
   MedicalHistory: string;
@@ -57,6 +59,7 @@ export type UpdateAppointment = {
   DoctorName: string;
   Specializing: string;
   user_id: number;
+  Disease_id: number;
 };
 export const bookAppointment = async (appointment: Appointment) => {
   const result = await pool.query<Appointment>(
@@ -86,16 +89,16 @@ WHERE NOT EXISTS (
  RETURNING *`,
     [
       appointment.DateAppointment,
-      appointment.BloodType,
-      appointment.MedicalHistory,
+      appointment.BloodType.trim(),
+      appointment.MedicalHistory.trim(),
       appointment.TimeAppointment,
       appointment.clockSystem,
       (appointment.DurationTime = durationMap[appointment.AppointmentType]),
       appointment.AppointmentType,
-      appointment.description,
-      appointment.Gender,
-      appointment.DoctorName,
-      appointment.Specializing,
+      appointment.description.trim(),
+      appointment.Gender.trim(),
+      appointment.DoctorName.trim(),
+      appointment.Specializing.trim(),
       appointment.user_id,
       appointment.Disease_id,
     ]
@@ -174,8 +177,8 @@ export const UpdateAppointment = async (
    BloodType = COALESCE($2,BloodType) , MedicalHistory = COALESCE($3,MedicalHistory) , TimeAppointment = COALESCE($4,TimeAppointment) , clockSystem = COALESCE($5,clockSystem) , 
      DurationTime = COALESCE($6,DurationTime) , AppointmentType = COALESCE($7,AppointmentType) , 
      description = COALESCE($8,description) , Gender = COALESCE($9,Gender) , 
-     DoctorName = COALESCE($10,DoctorName) , Specializing = COALESCE($11,Specializing)  , user_id = COALESCE($12,user_id)
-      WHERE id = $13 AND NOT EXISTS (
+     DoctorName = COALESCE($10,DoctorName) , Specializing = COALESCE($11,Specializing)  , user_id = COALESCE($12,user_id) , Disease_id = COALESCE($13,Disease_id)
+      WHERE id = $14 AND NOT EXISTS (
     SELECT 1
     FROM Appointments 
     WHERE DateAppointment = $1 AND user_id = $12
@@ -210,8 +213,41 @@ export const UpdateAppointment = async (
       updateAppointment.DoctorName,
       updateAppointment.Specializing,
       updateAppointment.user_id,
+      updateAppointment.Disease_id,
       id,
     ]
   );
   return result.rows;
+};
+
+export const getAllAppointments = async () => {
+  const result = await pool.query(`SELECT Appointments.id AS appointment_id,
+    Appointments.DateAppointment,
+    Appointments.TimeAppointment,
+    Appointments.BloodType,
+    Appointments.MedicalHistory,
+    Appointments.AppointmentType,
+    Appointments.description,
+    Appointments.disease_id,
+    Appointments.DoctorName,
+    Appointments.DurationTime,
+    Appointments.is_deleted,
+    Appointments.user_id,
+    users.id AS user_id,
+    users.firstName,
+    users.lastName,
+    users.email AS user_email,
+    users.Age,
+    role.id AS role_id,
+    role.role_name AS role_name,
+    diseases.id AS disease_id,
+    diseases.Name AS disease_name FROM Appointments 
+    FULL OUTER JOIN users ON users.id = Appointments.user_id 
+    FULL OUTER JOIN role ON role.id = users.role_id
+    FULL OUTER JOIN diseases ON diseases.id = Appointments.disease_id`);
+  if (!result) {
+    return NextResponse.json({ msg: "Error" });
+  } else {
+    return result.rows;
+  }
 };
