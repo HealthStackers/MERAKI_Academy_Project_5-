@@ -41,11 +41,11 @@ const Login = () => {
 
   return (
     <>
-      <div className="container">
-        <div className="title">Login</div>
+      <div className="containerInLogin">
+        <div className="titleInLogin">Login</div>
         <div className="content">
           <form onSubmit={onSubmit}>
-            <div className="user-details">
+            <div className="user-detailsInLogin">
               <div className="input-box">
                 <span className="details">Email</span>
                 <input
