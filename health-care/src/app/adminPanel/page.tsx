@@ -48,14 +48,14 @@ const AdminPanel = () => {
         setTimeout(() => {
           setMsg("");
         }, 3000);
-         Swal.fire({
-                  title: "the appointment Deleted!",
-                  text: "Your appointment has been deleted successfully.",
-                  icon: "success",
-                  confirmButtonText: "Okay",
-                }).then(() => {
-                  location.reload()
-                });
+        Swal.fire({
+          title: "the appointment Deleted!",
+          text: "Your appointment has been deleted successfully.",
+          icon: "success",
+          confirmButtonText: "Okay",
+        }).then(() => {
+          location.reload();
+        });
       })
       .catch((err) => {
         setMsg("There is an error please check");
@@ -88,7 +88,13 @@ const AdminPanel = () => {
             Add a disease
           </button>
           <button
-           onClick={() => toggleVisibility(0)}
+            onClick={() => toggleVisibility(0)}
+            type="button"
+            className="btn btn-outline-primary"
+          >
+            Delete a appointment
+          </button>
+           <button
             type="button"
             className="btn btn-outline-primary"
           >
@@ -124,54 +130,56 @@ const AdminPanel = () => {
           </button>
         </div>
       </div>
-{activeIndex === 0 &&
-      <div className="deletePostDiv">
-        <p className="introDelete">
-          Select an appointment that you want to delete it.
-        </p>
-        <select
-          className="form-select"
-          multiple
-          aria-label="multiple select example"
-          style={{
-            backgroundColor: "#ffffff", // White background
-            color: "#000000", // Black text color
-            border: "1px solid #ccc", // Light gray border
-          }}
-        >
-          {appointments.map((ele) => (
-            <option
-              key={ele.id}
-              onClick={() => {
-                {
-                  console.log(ele);
-                }
-               
-                setAppointmentID(ele.appointment_id);
-              }}
-              value={ele.description}
-              style={{
-                backgroundColor: "#ffffff", // White background
-                color: "#000000", // Black text color
-              }}
-            >
-              {ele.firstname} {ele.lastname} {ele.phonenumber}{" "}
-              {ele.appointmenttype} {ele.timeappointment}
-            </option>
-          ))}
-        </select>
+      {activeIndex === 0 && (
+        <div className="deletePostDiv">
+          <p className="introDelete">
+            Select an appointment that you want to delete it.
+          </p>
+          <select
+            className="form-select"
+            multiple
+            aria-label="multiple select example"
+          >
+            {appointments.map((ele) => (
+              <option
+                key={ele.id}
+                onClick={() => {
+                  {
+                    console.log(ele);
+                  }
 
-        <button
-          className="btnDelete"
-          type="button"
-          class="btn btn-light btn-md"
-          onClick={(e) => {
-            deleteAppointment();
-          }}
-        >
-          Delete an appointment
-        </button>
-      </div>}
+                  setAppointmentID(ele.appointment_id);
+                }}
+                value={ele.description}
+                style={{
+                  backgroundColor: "#ffffff", // White background
+                  color: "#000000", // Black text color
+                }}
+              >
+                {ele.firstname} {ele.lastname} {ele.phonenumber}{" "}
+                {ele.appointmenttype} {ele.timeappointment}
+              </option>
+            ))}
+          </select>
+
+          <button
+            className="btnDelete"
+            type="button"
+            class="btn btn-light btn-md"
+            onClick={(e) => {
+              deleteAppointment();
+            }}
+          >
+            Delete an appointment
+          </button>
+          {msg && (
+            <div>
+              {" "}
+              <p className="msgDeleted">{msg}</p>
+            </div>
+          )}
+        </div>
+      )}
 
       <div>
         {/* Buttons to toggle visibility

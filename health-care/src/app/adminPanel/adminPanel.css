@@ -68,6 +68,8 @@ letter-spacing: 2.5px;
    margin-left: 60px;
 }
 
+
+
 .form-select option {
     color: black;
 }
@@ -77,7 +79,13 @@ letter-spacing: 2.5px;
     color: black;
 } */
 
-.introDelete , .introPost{
+.msgDeleted{  
+    font-size: 14px;
+font-weight: 600;
+text-transform: capitalize;
+letter-spacing: 2.5px;}
+
+.introDelete , .introPost {
   font-size: 16px;
 font-weight: 500;
 text-transform: uppercase;
