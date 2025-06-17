@@ -64,11 +64,11 @@ const Register = () => {
 
 
   return (
-    <div className="container">
-      <div className="title">Registration</div>
+    <div className="containerInRegister">
+      <div className="titleInRegister">Registration</div>
       <div className="content">
         <form onSubmit={onSubmit}>
-          <div className="user-details">
+          <div className="user-detailsInRegister">
             <div className="input-box">
               <span className="details">First Name</span>
               <input
