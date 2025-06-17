@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
-const home = () => {
+const Home = () => {
   const { data: session } = useSession();
   useEffect(() => {
     if (session) {
@@ -19,4 +19,4 @@ const home = () => {
   
 };
 
-export default home;
+export default Home;
