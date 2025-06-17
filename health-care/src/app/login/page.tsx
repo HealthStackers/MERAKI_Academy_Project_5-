@@ -40,7 +40,7 @@ const Login = () => {
   };
 
   return (
-    <>
+    <section className="loginPage">
       <div className="containerInLogin">
         <div className="titleInLogin">Login</div>
         <div className="content">
@@ -76,7 +76,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-    </>
+    </section>
   );
 }
 
