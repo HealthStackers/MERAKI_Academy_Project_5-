@@ -5,7 +5,14 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+/*
 body {
+  height: 100vh;
+  padding: 10px;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}*/
+
+.loginPage{
   height: 100vh;
   padding: 10px;
   background: linear-gradient(135deg, #71b7e6, #9b59b6);
