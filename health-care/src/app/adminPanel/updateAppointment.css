@@ -1,0 +1,66 @@
+
+
+input
+{
+  font: 15px/24px  Lora, serif;
+  color: #333; 
+  width: 100%;
+  box-sizing: border-box;
+  letter-spacing: 2px;
+  padding-left: 5px;
+}
+
+
+.input-group {
+  font: 15px/24px  Lora, serif;
+  color: #333; 
+  width: 100%;
+  box-sizing: border-box;
+  letter-spacing: 2px;
+}
+
+.timeAppointment{
+font-size: 16px;
+font-weight: 500;
+text-transform: uppercase;
+letter-spacing: 2.5px;
+}
+
+.introAppointment{
+  font-size: 16px;
+font-weight: 500;
+text-transform: uppercase;
+letter-spacing: 2.5px;
+}
+
+.appointmentInfoDiv{
+  margin-top: 10px;
+  margin-left:  80px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 600px;
+  
+}
+
+.dateAppointment{
+font-size: 16px;
+font-weight: 500;
+text-transform: uppercase;
+letter-spacing: 2.5px;
+}
+
+
+.AppointmentSection{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+.UpdateDiv{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-left: 40px;
+}
