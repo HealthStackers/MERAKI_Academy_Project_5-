@@ -2,6 +2,7 @@ import pool from "@/models/lib/db";
 import { request } from "http";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { Secret } from "jsonwebtoken";
 
 export type RegisterUser = {
   id?: number;
@@ -60,7 +61,7 @@ export const Register = async (newUser: RegisterUser) => {
   const user = result.rows[0];
   const token = jwt.sign(
     { userId: user.id, email: user.email, role: user.role_id },
-    process.env.NEXTAUTH_SECRET,
+    process.env.NEXTAUTH_SECRET as Secret,
     {
       expiresIn: "1h",
     }
@@ -86,7 +87,7 @@ export const Login = async (email: string, password: string) => {
     email.toLocaleLowerCase(),
   ]);
 
-  if(result.rows.length===0){
+  if (result.rows.length === 0) {
     throw new Error("Invalid email or password");
   }
   if (result) {
@@ -94,8 +95,8 @@ export const Login = async (email: string, password: string) => {
     const isMatch = await comparePassword(password, hashedPassword);
     const user = result.rows[0];
     const token = jwt.sign(
-      { userId: user.id, email: user.email,roleId: user.role_id },
-      process.env.NEXTAUTH_SECRET,
+      { userId: user.id, email: user.email, roleId: user.role_id },
+      process.env.NEXTAUTH_SECRET as Secret,
       {
         expiresIn: "1d",
       }
@@ -145,6 +146,27 @@ export const DeleteUser = async (id: number) => {
   const result = await pool.query(
     `DELETE FROM USERS WHERE id = $1 RETURNING *`,
     [id]
+  );
+  return result.rows;
+};
+
+export const GetAllDoctors = async () => {
+  const result = await pool.query(
+    `SELECT * FROM users FULL OUTER JOIN services ON users.id = services.doctor_id 
+       FULL OUTER JOIN blogs ON users.id = blogs.doctor_id
+    FULL OUTER JOIN join_request ON users.id = join_request.doctor_id 
+      FULL OUTER JOIN role ON role.id = users.role_id 
+    WHERE role.role_name = 'doctor'`
+  );
+  return result.rows;
+};
+
+export const GetAllPatients = async () => {
+  const result = await pool.query(
+    `SELECT * FROM users FULL OUTER JOIN  Appointments ON users.id = Appointments.user_id 
+       FULL OUTER JOIN diseases ON users.id = diseases.user_id
+      FULL OUTER JOIN role ON role.id = users.role_id 
+    WHERE role.role_name = 'patient'`
   );
   return result.rows;
 };

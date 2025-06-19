@@ -1,0 +1,24 @@
+.card-title{
+    font-family: Lora, serif;
+  letter-spacing: 2.5px;
+
+  font-weight: 500;
+ text-transform: uppercase;
+}
+
+.appointmentCard{
+      cursor: pointer;
+    margin-left: 60px;
+    margin-right: 20px;
+}
+
+.card-text{
+  font-family: Lora, serif;
+}
+
+.des{
+     font-family: Lora, serif;
+  letter-spacing: 2.5px;
+  font-weight: 800;
+ text-transform: uppercase;
+}
