@@ -28,7 +28,7 @@ const Login = () => {
       callbackUrl: "/home",
     });
     if (result?.ok) {
-      router.push("/home");
+      router.push("/");
     } else {
       seteshowErrorMessage(true);
       if (result?.error) {
@@ -73,7 +73,7 @@ const Login = () => {
               <input type="submit" value="Login" />
             </div>
 <div className="signup-link">
-              Not a member? <a href="#">Signup now</a>
+              Not a member? <a href="register">Register</a>
             </div>
             <button className="google_singIn">
               <svg
