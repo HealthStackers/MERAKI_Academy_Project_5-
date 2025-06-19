@@ -41,12 +41,12 @@ const Login = () => {
   };
 
   return (
-    <>
-      <div className="container">
-        <div className="title">Login</div>
+    <section className="loginPage">
+      <div className="containerInLogin">
+        <div className="titleInLogin">Login</div>
         <div className="content">
           <form onSubmit={onSubmit}>
-            <div className="user-details">
+            <div className="user-detailsInLogin">
               <div className="input-box">
                 <span className="details">Email</span>
                 <input
@@ -105,7 +105,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

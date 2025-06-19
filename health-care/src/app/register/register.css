@@ -5,12 +5,14 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-body {
+
+
+.registerPage {
   height: 150vh;
   padding: 10px;
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+ background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
-.container {
+.containerInRegister {
    display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,13 +27,13 @@ body {
   position: relative;
   top: 100px;
 }
-.container .title {
+.containerInRegister .titleInRegister {
   font-size: 25px;
   font-weight: 500;
   letter-spacing: 2.5px;
   position: relative;
 }
-.container .title::before {
+.containerInRegister .titleInRegister::before {
   content: "";
   position: absolute;
   left: 0;
@@ -41,13 +43,13 @@ body {
   border-radius: 5px;
   background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
-.content form .user-details {
+.content form .user-detailsInRegister {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 20px 0 12px 0;
 }
-form .user-details .input-box {
+form .user-detailsInRegister .input-box {
   margin-bottom: 15px;
     width: calc(100% / 2 - 20px);
 
@@ -68,7 +70,7 @@ form .input-box span.details {
   font-weight: 500;
   margin-bottom: 5px;
 }
-.user-details .input-box input {
+.user-detailsInRegister .input-box input {
   height: 45px;
   width: 100%;
   outline: none;
@@ -79,8 +81,8 @@ form .input-box span.details {
   border-bottom-width: 2px;
   transition: all 0.3s ease;
 }
-.user-details .input-box input:focus,
-.user-details .input-box input:valid {
+.user-detailsInRegister .input-box input:focus,
+.user-detailsInRegister .input-box input:valid {
   border-color: #9b59b6;
 }
 form .gender-details .gender-title {
@@ -138,27 +140,27 @@ form .button input:hover {
 }
 /* Responsive media query code for mobile devices */
 @media(max-width: 584px) {
-  .container {
+  .containerInRegister {
     max-width: 100%;
   }
-  form .user-details .input-box {
+  form .user-detailsInRegister .input-box {
     margin-bottom: 15px;
     width: 100%;
   }
   form .category {
     width: 100%;
   }
-  .content form .user-details {
+  .content form .user-detailsInRegister {
     max-height: 300px;
     overflow-y: scroll;
   }
-  .user-details::-webkit-scrollbar {
+  .user-detailsInRegister::-webkit-scrollbar {
     width: 5px;
   }
 }
 /* Responsive media query code for mobile devices */
 @media(max-width: 459px) {
-  .container .content .category {
+  .containerInRegister .content .category {
     flex-direction: column;
   }
 }

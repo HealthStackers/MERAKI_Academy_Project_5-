@@ -44,9 +44,9 @@ const Register = () => {
         const token_decoded = JSON.parse(
           atob(response.data.token.split(".")[1])
         );
-        console.log(token_decoded)
-        localStorage.setItem("UID", token_decoded.userId);
-        localStorage.setItem("role", token_decoded.role);
+        console.log(token_decoded);
+        localStorage.setItem("userId", token_decoded.userId);
+        localStorage.setItem("roleId", token_decoded.role);
         setToken(response.data.token);
         setUID(token_decoded.userId);
         setRole(token_decoded.role.role);
@@ -62,114 +62,122 @@ const Register = () => {
     setSuccess(false);
   };
 
-
   return (
-    <div className="container">
-      <div className="title">Registration</div>
-      <div className="content">
-        <form onSubmit={onSubmit}>
-          <div className="user-details">
-            <div className="input-box">
-              <span className="details">First Name</span>
-              <input
-                name="firstName"
-                type="text"
-                placeholder="Enter your First Name"
-                onChange={handleChange}
-                required
-              />
+    <section className="registerPage">
+      <div className="containerInRegister">
+        <div className="titleInRegister">Registration</div>
+        <div className="content">
+          <form onSubmit={onSubmit}>
+            <div className="user-detailsInRegister">
+              <div className="input-box">
+                <span className="details">First Name</span>
+                <input
+                  className="inputInRegister"
+                  name="firstName"
+                  type="text"
+                  placeholder="Enter your First Name"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="input-box">
+                <span className="details">Last Name</span>
+                <input
+                className="inputInRegister"
+                  name="lastName"
+                  type="text"
+                  placeholder="Enter your Last Name"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="input-box">
+                <span className="details">Age</span>
+                <input
+                className="inputInRegister"
+                  name="age"
+                  type="text"
+                  placeholder="Enter your Age"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="input-box">
+                <span className="details">Country</span>
+                <input
+                className="inputInRegister"
+                  name="country"
+                  type="text"
+                  placeholder="Enter your Country"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="input-box">
+                <span className="details">Phone Number</span>
+                <input
+                className="inputInRegister"
+                  name="phoneNumber"
+                  type="text"
+                  placeholder="Enter your number"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="input-box">
+                <span className="details">Email</span>
+                <input
+                className="inputInRegister"
+                  name="email"
+                  type="email"
+                  placeholder="Enter your email"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="input-box">
+                <span className="details">Password</span>
+                <input
+                className="inputInRegister"
+                  name="password"
+                  type="password"
+                  placeholder="Enter your password"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
             </div>
-            <div className="input-box">
-              <span className="details">Last Name</span>
-              <input
-                name="lastName"
-                type="text"
-                placeholder="Enter your Last Name"
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="input-box">
-              <span className="details">Age</span>
-              <input
-                name="age"
-                type="text"
-                placeholder="Enter your Age"
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="input-box">
-              <span className="details">Country</span>
-              <input
-                name="country"
-                type="text"
-                placeholder="Enter your Country"
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="input-box">
-              <span className="details">Phone Number</span>
-              <input
-                name="phoneNumber"
-                type="text"
-                placeholder="Enter your number"
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="input-box">
-              <span className="details">Email</span>
-              <input
-                name="email"
-                type="email"
-                placeholder="Enter your email"
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="input-box">
-              <span className="details">Password</span>
-              <input
-                name="password"
-                type="password"
-                placeholder="Enter your password"
-                onChange={handleChange}
-                required
-              />
-            </div>
-          </div>
-          <div className="gender-details">
-            <input type="radio" name="gender" id="dot-1" />
-            <input type="radio" name="gender" id="dot-2" />
-            <span className="gender-title">Gender</span>
-            <div className="category">
-              <label htmlFor="dot-1">
-                <span className="dot one"></span>
-                <span className="gender">Male</span>
-              </label>
+            <div className="gender-details">
+              <input type="radio" name="gender" id="dot-1" />
+              <input type="radio" name="gender" id="dot-2" />
+              <span className="gender-title">Gender</span>
+              <div className="category">
+                <label htmlFor="dot-1">
+                  <span className="dot one"></span>
+                  <span className="gender">Male</span>
+                </label>
 
-              <label htmlFor="dot-2">
-                <span className="dot two"></span>
-                <span className="gender">Female</span>
-              </label>
+                <label htmlFor="dot-2">
+                  <span className="dot two"></span>
+                  <span className="gender">Female</span>
+                </label>
+              </div>
             </div>
-          </div>
 
-          <div className="button">
-            <input type="submit" value="Register" />
-          </div>
-
-          {msg && (
-            <div className={success ? "success" : "failed"}>
-              {" "}
-              <p className="msg">{msg}</p>
+            <div className="button">
+              <input type="submit" value="Register" />
             </div>
-          )}
-        </form>
+
+            {msg && (
+              <div className={success ? "success" : "failed"}>
+                {" "}
+                <p className="msg">{msg}</p>
+              </div>
+            )}
+          </form>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

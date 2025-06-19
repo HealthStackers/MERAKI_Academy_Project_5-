@@ -1,0 +1,98 @@
+.headSections {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  color: white;
+  font-weight: bold;
+  /*  box-shadow: 5px 5px 10px  black*/
+  /* position: fixed;*/
+  width: 100vw;
+}
+
+.allSpan {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 7vw;
+  margin-right: 1vw;
+  font-size: large;
+}
+
+.bmiCalculator:hover,
+.symptomChecker:hover,
+.loginSpan:hover,
+.registerSpan:hover,
+.adminPanel:hover {
+  transform: translateY(-5px);
+  transition: 0.7s;
+  cursor: pointer;
+}
+
+.bmiCalculator,
+.symptomChecker,
+.loginSpan,
+.registerSpan,
+.adminPanel {
+  color: white;
+  font-weight: bold;
+}
+
+.titleInHeader {
+  margin-left: 10px;
+  font-size: x-large;
+}
+
+.searchSection {
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 30px;
+  background: black;  /* Just for testing */
+  width: 100vw;
+}
+
+.textInsearchSection {
+  font-size: x-large;
+  color: white;
+}
+
+.searchInput {
+  width: 20vw;
+  height: 5vh;
+}
+
+.searchButton {
+  
+  height: 5.2vh;
+  
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  color: white;
+  font-size: large;
+  font-weight: bold;
+}
+
+.iconInSearch {
+  width: 40px;
+  height: 40px;
+}
+
+.searchIcon {
+    width: 16px;
+    height: 21px;
+    position: relative;
+    bottom: 2px;
+    right: 2px;
+    gap: 7px;
+}   
+
+.text2InsearchSection{
+    font-size: x-large;
+  color: white;
+  margin-top: 5px;
+}
