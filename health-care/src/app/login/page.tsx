@@ -1,10 +1,11 @@
 "use client";
 import { signIn } from "next-auth/react";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import "./login.css";
 import { Button } from "react-bootstrap";
+import { useSession } from "next-auth/react";
 
 const Login = () => {
   const [form, setForm] = useState({
@@ -14,6 +15,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [showErrorMessage, seteshowErrorMessage] = useState(false);
   const router = useRouter();
+  const { data: session } = useSession();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -27,8 +29,14 @@ const Login = () => {
       email: form.email,
       callbackUrl: "/home",
     });
+    
+
     if (result?.ok) {
-      router.push("/");
+     console.log("result: ",result);
+     
+      setTimeout(() => {
+        router.push("/home");
+      }, 3000);
     } else {
       seteshowErrorMessage(true);
       if (result?.error) {
@@ -72,7 +80,7 @@ const Login = () => {
             <div className="button">
               <input type="submit" value="Login" />
             </div>
-<div className="signup-link">
+            <div className="signup-link">
               Not a member? <a href="register">Register</a>
             </div>
             <button className="google_singIn">
@@ -100,8 +108,12 @@ const Login = () => {
               </svg>
               Continue with Google
             </button>
-            
-            <div>{showErrorMessage && <div>{errorMessage}</div>}</div>
+
+            <div>
+              {showErrorMessage && (
+                <div className="errorMessage">{errorMessage}</div>
+              )}
+            </div>
           </form>
         </div>
       </div>

@@ -2,13 +2,14 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import "./home.css";
 
 const Home = () => {
   const { data: session } = useSession();
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [showLoginAndRegister, setShowLoginAndRegister] = useState(false);
-
+  const router = useRouter();
   useEffect(() => {
     if (session) {
       localStorage.setItem("roleId", session.user.role_id.toString());
@@ -16,7 +17,7 @@ const Home = () => {
       localStorage.setItem("userId", session.user.id.toString());
       localStorage.setItem("token", session.user.token);
     }
-  }, [session]);
+  }, []);
 
   useEffect(() => {
     const roleId = localStorage.getItem("roleId");
@@ -33,33 +34,14 @@ const Home = () => {
 
   return (
     <div>
-      <section className="headSections">
-        <div className="titleInHeader">HealPoint</div>
-        <span className="allSpan">
-          <Link href="/bmiCalculator" className="bmiCalculator">
-            BMI Calculator
-          </Link>
-          <Link href="/symptomChecker" className="symptomChecker">
-            Symptom Checker
-          </Link>
-          {!showLoginAndRegister && (
-            <Link href="/login" className="loginSpan">
-              Login
-            </Link>
-          )}
-          {!showLoginAndRegister && (
-            <Link href="/register" className="registerSpan">
-              Register
-            </Link>
-          )}
-          {showAdminPanel && (
-            <Link href="/adminPanel" className="adminPanel">
-              Admin Panel
-            </Link>
-          )}
-        </span>
-      </section>
-
+    
+<div className="massHead">
+  <p className="headTextInMassHead"> Your health, our priority trusted care solutions</p>
+  <p className="bodyTextInMassHead">Empowering healthcare with innovative, user-friendly designs for medical professionals and institutions.</p>
+  <button className="BlogsbuttonInMassHead" onClick={()=>{
+router.push("/symptomChecker");
+  }}>Blogs</button>
+</div>
       <div className="searchSection">
         <p className="textInsearchSection">Find Doctors Near You </p>
         <span className="searchBarAndButton">
