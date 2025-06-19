@@ -53,12 +53,6 @@ input[type="text"]
   gap: 10px;
 }
 
-.jobDetails ,.companyInfo{
-font-size: 16px;
-font-weight: 500;
-text-transform: uppercase;
-letter-spacing: 2.5px;
-}
 
 
 .deletePostDiv{

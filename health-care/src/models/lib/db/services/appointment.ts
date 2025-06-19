@@ -29,7 +29,7 @@ export const durationMap = {
 export type DurationMap = typeof durationMap;
 
 export type Appointment = {
-  id?: number;
+  id ?:number
   DateAppointment: Date;
   BloodType: string;
   MedicalHistory: string;
@@ -144,7 +144,7 @@ export const getAppointmentsByUserId = async (role: string, id: number) => {
      diseases.symptoms , diseases.symptoms, users.id ,users.firstName , users.lastName , users.age , users.country , users.email  FROM Appointments FULL OUTER JOIN users ON users.id = Appointments.user_id 
     FULL OUTER JOIN role ON role.id = users.role_id 
     FULL OUTER JOIN diseases ON diseases.id = Appointments.disease_id
-    WHERE role.role_name = $1 AND  users.id = $2 `,
+    WHERE role.role_name = $1 AND  users.id = $2 AND appointment_date >= CURRENT_DATE`,
       [role, id]
     );
   } else if (role_name === "patient") {
@@ -160,7 +160,7 @@ export const getAppointmentsByUserId = async (role: string, id: number) => {
       AppointmentType  FROM Appointments FULL OUTER JOIN users ON users.id = Appointments.user_id 
     FULL OUTER JOIN role ON role.id = users.role_id 
     FULL OUTER JOIN diseases ON diseases.id = Appointments.disease_id
-    WHERE role.role_name = $1 AND  users.id = $2 `,
+    WHERE role.role_name = $1 AND  users.id = $2 AND appointment_date >= CURRENT_DATE `,
       [role, id]
     );
   }
@@ -251,3 +251,5 @@ export const getAllAppointments = async () => {
     return result.rows;
   }
 };
+
+
