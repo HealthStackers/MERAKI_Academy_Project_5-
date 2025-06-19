@@ -1,12 +1,54 @@
-.logo{
-    letter-spacing: 2.5px;
-    font-size: 40px;
-    font-family: Verdana, sans-serif;
-    text-transform: uppercase;
-    margin-left: 60px;
-     font-weight : bold;
+.logo {
+  letter-spacing: 2.5px;
+  font-size: 40px;
+  font-family: Verdana, sans-serif;
+  text-transform: uppercase;
+  margin-left: 60px;
+  font-weight: bold;
 }
 
-#letter{
-    color:#9b59b6 ;
+#letter {
+  color: #9b59b6;
+}
+
+.loginAndRegister {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: end;
+}
+
+.partOneInNavBar {
+  display: flex;
+  flex-direction: row;
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+  gap: 30vw;
+}
+
+.loginAndRegister {
+  display: flex;
+  flex-direction: row;
+  gap: 3vw;
+}
+
+#registerButtonInNavBar {
+  background-color: #9b59b6;
+  border: #9b59b6;
+  font-size: large;
+  color: white;
+  width: 5vw;
+}
+
+#loginButtonInNavBar {
+  background-color: #71b7e6;
+  color: white;
+  font-size: large;
+  border: #71b7e6;
+  width: 5vw;
 }
