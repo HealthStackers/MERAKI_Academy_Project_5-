@@ -1,12 +1,33 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
 import Link from "next/link";
 import { AuthContext } from "../context/AuthContext";
+import { useSession } from "next-auth/react";
 
 const Navigation = () => {
-  const { token, setToken } = useContext(AuthContext);
+  const { data: session } = useSession();
+  const { roleId, setRoleId, userId, setUserId } = useContext(AuthContext);
+
+  const [showAdminPanel, setShowAdminPanel] = useState(false);
+  console.log("roleId: ",roleId);
+ 
+  const token= localStorage.getItem("token")
+   console.log("token:",token);
+
+ // const [token, settoken] = useState(localStorage.getItem("token") || "null" );
+
+  useEffect(() => {
+    const roleId = localStorage.getItem("roleId");
+    if (roleId !== null) {
+      if (+roleId === 1) {
+        setShowAdminPanel(true);
+      } else if (+roleId === 2 || +roleId === 3) {
+        setShowAdminPanel(false);
+      }
+    }
+  }, []);
 
   return (
     <>
@@ -21,7 +42,7 @@ const Navigation = () => {
             ☰
           </button>
 
-          <a className="navbar-brand logo" href="#">
+          <a className="navbar-brand logo" href="/home">
             <span id="letter">M</span>ed<span id="letter">i</span>vo
           </a>
 
@@ -75,30 +96,39 @@ const Navigation = () => {
                     </li>
                   </ul>
                 </li>
+                {showAdminPanel && (
+                  <li class="nav-item">
+                    <a class="nav-link" href="adminPanel">
+                      Admin Panel
+                    </a>
+                  </li>
+                )}
+
                 <li class="nav-item">
                   <a class="nav-link" href="#">
                     Contact
                   </a>
                 </li>
               </div>
-              <div className="partTwoInNavBar">
-                <li className="loginAndRegister">
-                  <li class="nav-item">
-                    {" "}
-                    <a href="login" class="nav-link" >
-                      <button id="loginButtonInNavBar">Login</button>
-                    </a>
+              {!token && (
+                <div className="partTwoInNavBar">
+                  <li className="loginAndRegister">
+                    <li class="nav-item">
+                      {" "}
+                      <a href="login" class="nav-link">
+                        <button id="loginButtonInNavBar">Login</button>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="register" class="nav-link">
+                        <button id="registerButtonInNavBar">Register</button>
+                      </a>
+                    </li>
                   </li>
-                  <li class="nav-item">
-                    <a href="register" class="nav-link" >
-                      <button id="registerButtonInNavBar">Register</button>
-                    </a>
-                  </li>
-                </li>
-              </div>
+                </div>
+              )}
             </ul>
           </div>
-          
         </div>
       </nav>
 

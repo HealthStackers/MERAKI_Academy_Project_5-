@@ -40,7 +40,7 @@ export default function RootLayout({
         {" "}
         <AuthProvider>
           <Providers>
-            <Navigation />
+            <Navigation/>
             {children}
           </Providers>
         </AuthProvider>
