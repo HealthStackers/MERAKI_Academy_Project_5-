@@ -43,7 +43,7 @@ const Login = () => {
   return (
     <section className="loginPage">
       <div className="containerInLogin">
-        <div className="titleInLogin">Login</div>
+        <div className="titleLogin">Login</div>
         <div className="content">
           <form onSubmit={onSubmit}>
             <div className="user-detailsInLogin">
