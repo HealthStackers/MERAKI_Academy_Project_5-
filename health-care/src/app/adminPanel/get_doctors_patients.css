@@ -1,0 +1,20 @@
+.container{
+    margin-bottom: 50px;
+}
+
+.title{
+   text-transform: capitalize;
+}
+
+.country{
+    text-transform: capitalize;
+}
+
+.name{
+     text-transform: capitalize;
+     color: black;
+}
+
+.img{
+    max-width: 300px ;
+}

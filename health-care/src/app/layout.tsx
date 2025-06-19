@@ -1,9 +1,12 @@
+/* eslint-disable @next/next/no-sync-scripts */
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Imprima } from "next/font/google";
 import "./globals.css";
 import Providers from "./components/providers";
-import 'bootstrap/dist/css/bootstrap.min.css'; 
+import "bootstrap/dist/css/bootstrap.min.css";
 import Navigation from "./components/Navigation";
+import { AuthProvider } from "./context/AuthContext";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,10 +33,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Providers>
-          
-          {children}
-        </Providers>
+         <Script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        strategy="afterInteractive"
+      />
+        {" "}
+        <AuthProvider>
+          <Providers>
+            <Navigation />
+            {children}
+          </Providers>
+        </AuthProvider>
       </body>
     </html>
   );

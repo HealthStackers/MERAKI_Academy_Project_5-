@@ -1,0 +1,12 @@
+.logo{
+    letter-spacing: 2.5px;
+    font-size: 40px;
+    font-family: Verdana, sans-serif;
+    text-transform: uppercase;
+    margin-left: 60px;
+     font-weight : bold;
+}
+
+#letter{
+    color:#9b59b6 ;
+}

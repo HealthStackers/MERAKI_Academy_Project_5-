@@ -5,19 +5,12 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-/*
 body {
   height: 100vh;
   padding: 10px;
   background: linear-gradient(135deg, #71b7e6, #9b59b6);
-}*/
-
-.loginPage{
-  height: 100vh;
-  padding: 10px;
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
-.containerInLogin {
+.container {
    display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,14 +21,16 @@ body {
   padding: 25px 30px;
   border-radius: 5px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  position: relative;
+   top: 100px;
 }
-.containerInLogin .titleInLogin {
+.container .title {
   font-size: 25px;
   font-weight: 500;
   letter-spacing: 2.5px;
   position: relative;
 }
-.containerInLogin .titleInLogin::before {
+.container .title::before {
   content: "";
   position: absolute;
   left: 0;
@@ -45,14 +40,14 @@ body {
   border-radius: 5px;
   background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
-.content form .user-detailsInLogin {
+.content form .user-details {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: space-between;
   margin: 20px 0 12px 0;
 }
-form .user-detailsInLogin .input-box {
+form .user-details .input-box {
   margin-bottom: 15px;
 
 }
@@ -72,7 +67,7 @@ form .input-box span.details {
   font-weight: 500;
   margin-bottom: 5px;
 }
-.user-detailsInLogin .input-box input {
+.user-details .input-box input {
   height: 45px;
   width: 100%;
   outline: none;
@@ -83,8 +78,8 @@ form .input-box span.details {
   border-bottom-width: 2px;
   transition: all 0.3s ease;
 }
-.user-detailsInLogin .input-box input:focus,
-.user-detailsInLogin .input-box input:valid {
+.user-details .input-box input:focus,
+.user-details .input-box input:valid {
   border-color: #9b59b6;
 }
 form .gender-details .gender-title {
@@ -121,7 +116,7 @@ form input[type="radio"] {
 }
 form .button {
   height: 45px;
-  margin: 35px 0
+  margin: 20px 0
 }
 form .button input {
   height: 100%;
@@ -142,27 +137,60 @@ form .button input:hover {
 }
 /* Responsive media query code for mobile devices */
 @media(max-width: 584px) {
-  .containerInLogin {
+  .container {
     max-width: 100%;
   }
-  form .user-detailsInLogin .input-box {
+  form .user-details .input-box {
     margin-bottom: 15px;
     width: 100%;
   }
-  form .category {
-    width: 100%;
-  }
-  .content form .user-detailsInLogin {
+ 
+  .content form .user-details {
     max-height: 300px;
     overflow-y: scroll;
   }
-  .user-detailsInLogin::-webkit-scrollbar {
+  .user-details::-webkit-scrollbar {
     width: 5px;
   }
 }
+
+.google_singIn {
+ 
+   height: 100%;
+  width: 100%;
+  padding: 0.5rem 1.4rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  gap: 0.75rem;
+  color: rgb(65, 63, 63);
+  background-color: #fff;
+  cursor: pointer;
+  transition: all .6s ease;
+}
+
+.google_singIn svg {
+  height: 24px;
+  margin-right: 10px;
+}
+
+.google_singIn:hover {
+  transform: scale(1.02);
+}
+
+
+.signup-link{
+  margin-top: 20px;
+  margin-bottom: 35px;
+}
 /* Responsive media query code for mobile devices */
 @media(max-width: 459px) {
-  .containerInLogin .content .category {
+  .container .content .category {
     flex-direction: column;
   }
 }
