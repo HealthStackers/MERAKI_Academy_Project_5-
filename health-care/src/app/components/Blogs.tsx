@@ -1,0 +1,88 @@
+"use client";
+
+import { Blog } from "@/models/lib/db/services/blogs";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
+import axios from "axios";
+import "./blog.css";
+
+
+const Blogs = () => {
+  const { token, setToken, roleId, setRoleId, userId, setUserId } =
+    useContext(AuthContext);
+
+  const [blogs, SetBlogs] = useState<Blog>({
+    Title: "",
+    body: "",
+    doctor_id: Number(userId),
+  });
+  const [success, setSuccess] = useState<boolean>(false);
+  useContext(AuthContext);
+  const [msg, setMsg] = useState<string>("");
+
+  const AddBlog = async () => {
+    axios
+      .post("http://localhost:3000/api/blogs", blogs)
+      .then((res) => {
+        setMsg("The blog has been added");
+        setSuccess(true);
+        setTimeout(() => {
+          setMsg("");
+        }, 3000);
+      })
+      .catch((err) => {
+        setSuccess(false);
+        setMsg("The blog has not been added");
+        setTimeout(() => {
+          setMsg("");
+        }, 3000);
+      });
+  };
+  return (
+    <>
+      <div className="BlogsDiv">
+        <div className="BlogSection">
+          <input
+            name="title"
+            type="text"
+            placeholder="Title"
+            onChange={(e) => {
+              SetBlogs({
+                ...blogs,
+                Title: e.target.value,
+              });
+            }}
+          />
+          <textarea
+            name="Body"
+            className="form-control"
+            aria-label="With textarea"
+            placeholder="Body"
+            onChange={(e) => {
+              SetBlogs({
+                ...blogs,
+                body: e.target.value,
+              });
+            }}
+          />
+
+        </div>
+        <button
+          type="button"
+          className="btn btn-light btn-md addBlog"
+          onClick={AddBlog}
+        >
+          Add Blog
+        </button>
+        {msg && (
+          <div>
+            {" "}
+            <p className={success ? "success" : "failed"}>{msg}</p>
+          </div>
+        )}{" "}
+      </div>
+    </>
+  );
+};
+
+export default Blogs;

@@ -35,7 +35,7 @@ input[type="text"]
 }*/
 
 
-.input-group ,.DivLocationWork {
+input  {
   font: 15px/24px  Lora, serif;
   color: #333; 
   width: 100%;
@@ -43,27 +43,12 @@ input[type="text"]
   letter-spacing: 2px;
 }
 
-
-.salary , .experiencesOfYears {
-
-  font: 15px/24px  Lora, serif;
+textarea {
+   font: 15px/24px  Lora, serif;
   color: #333; 
   width: 100%;
   box-sizing: border-box;
   letter-spacing: 2px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-}
-
-
-
-.deletePostDiv{
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-   margin-left: 60px;
 }
 
 
