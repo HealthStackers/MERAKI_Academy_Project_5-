@@ -1,0 +1,32 @@
+.DiseaseDiv{
+   margin-left: 60px;
+   width: 600px;
+}
+
+.DiseaseSection{
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+
+.addDisease{
+    width: 100%;
+}
+
+.success{
+ margin-top: 10px;
+ font-size: 14px;
+font-weight: 600;
+text-transform: capitalize;
+letter-spacing: 2.5px;
+color: green;
+}
+
+.failed{
+margin-top: 10px;
+ font-size: 14px;
+font-weight: 600;
+color: red;
+text-transform: capitalize;
+letter-spacing: 2.5px;
+}

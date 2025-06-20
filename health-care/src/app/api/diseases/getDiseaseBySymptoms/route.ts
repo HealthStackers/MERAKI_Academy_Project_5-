@@ -1,4 +1,4 @@
-import { GETDiseaseBySymptoms } from "@/models/lib/db/services/Diseases";
+import { DiseaseBySymptoms } from "@/models/lib/db/services/Diseases";
 import { request } from "http";
 import { NextResponse } from "next/server";
 
@@ -8,7 +8,7 @@ export const GET = async (request: Request) => {
     const body = url.searchParams.get("symptoms");
 
     if (body) {
-      const result = await GETDiseaseBySymptoms(body);
+      const result = await DiseaseBySymptoms(body);
       if (result.length === 0) {
         console.log(body);
 

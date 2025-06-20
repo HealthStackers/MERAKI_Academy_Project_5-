@@ -18,6 +18,7 @@ import {
   durationMap,
 } from "@/models/lib/db/services/appointment";
 import { clockSystem } from "@/models/lib/db/services/appointment";
+import Disease from "../components/Disease";
 
 const AdminPanel = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -158,7 +159,7 @@ const AdminPanel = () => {
             Add a service
           </button>
           <button
-            onClick={(e) => {}}
+             onClick={() => toggleVisibility(1)}
             type="button"
             className="btn btn-outline-primary"
           >
@@ -436,6 +437,9 @@ const AdminPanel = () => {
           )}
         </div>
       )}
+
+ {activeIndex === 1 && <Disease/>}
+
 
       {activeIndex === 7 &&
         doctors?.map((ele) => {

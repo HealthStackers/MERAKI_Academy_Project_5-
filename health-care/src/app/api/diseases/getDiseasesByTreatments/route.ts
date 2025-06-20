@@ -1,4 +1,4 @@
-import { GETDiseaseByTreatments } from "@/models/lib/db/services/Diseases";
+import { DiseaseByTreatments } from "@/models/lib/db/services/Diseases";
 import { NextResponse } from "next/server";
 export const GET = async (request: Request) => {
   try {
@@ -6,7 +6,7 @@ export const GET = async (request: Request) => {
     const body = url.searchParams.get("treatments");
 
     if (body) {
-      const result = await GETDiseaseByTreatments(body);
+      const result = await DiseaseByTreatments(body);
       if (result.length === 0) {
         return NextResponse.json(
           { data: result, message: "No disease with this treatment" },

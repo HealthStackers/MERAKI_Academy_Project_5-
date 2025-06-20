@@ -1,4 +1,4 @@
-import { GETDiseaseByEffectedBodyPart } from "@/models/lib/db/services/Diseases";
+import { DiseaseByEffectedBodyPart } from "@/models/lib/db/services/Diseases";
 import { request } from "http";
 import { NextResponse } from "next/server";
 
@@ -8,7 +8,7 @@ export const GET = async (request: Request) => {
     const body = url.searchParams.get("effectedBodyPart");
 
     if (body) {
-      const result = await GETDiseaseByEffectedBodyPart(body);
+      const result = await DiseaseByEffectedBodyPart(body);
       if (result.length === 0) {
         return NextResponse.json(
           { data: result, message: "No disease with this body part" },
@@ -22,7 +22,7 @@ export const GET = async (request: Request) => {
       }
     }
   } catch (error) {
-    console.log("error in hhh: ", error);
+    console.log("error: ", error);
 
     return NextResponse.json(
       { data: error, message: "Error in getting the Diseases" },

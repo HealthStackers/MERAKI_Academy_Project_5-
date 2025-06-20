@@ -24,12 +24,14 @@ body {
   position: relative;
    top: 100px;
 }
+
 .containerInLogin .titleLogin {
   font-size: 25px;
   font-weight: 500;
   letter-spacing: 2.5px;
   position: relative;
 }
+
 .containerInLogin .titleLogin::before {
   content: "";
   position: absolute;
@@ -40,6 +42,7 @@ body {
   border-radius: 5px;
   background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
+
 .content form .user-detailsInLogin {
   display: flex;
   flex-wrap: wrap;
@@ -78,14 +81,17 @@ form .input-box span.details {
   border-bottom-width: 2px;
   transition: all 0.3s ease;
 }
+
 .user-detailsInLogin .input-box input:focus,
 .user-detailsInLogin .input-box input:valid {
   border-color: #9b59b6;
 }
+
 form .gender-details .gender-title {
   font-size: 20px;
   font-weight: 500;
 }
+
 form .category {
   display: flex;
   width: 80%;

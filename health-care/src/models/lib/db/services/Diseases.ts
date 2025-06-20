@@ -1,39 +1,37 @@
 import pool from "../index";
 
-type Disease = {
-  id: number;
+export type Disease = {
+  id ?:number
   name: string;
-  effectedBodyPart: string;
+  effectedBodyPart: [];
   symptoms: [];
   treatments: [];
-  user_id: number;
 };
 
-export const POSTAddDisease = async (newDisease: Disease) => {
+export const AddDisease = async (newDisease: Disease) => {
   const result = await pool.query(
-    "insert into diseases (name, effectedBodyPart, symptoms, treatments, user_id) values ($1,$2,$3,$4,$5)",
+    "INSERT INTO diseases (name, effectedBodyPart, symptoms, treatments) VALUES ($1,$2,$3,$4) RETURNING *",
     [
       newDisease.name.toLowerCase(),
-      newDisease.effectedBodyPart.toLowerCase(),
+      newDisease.effectedBodyPart,
       newDisease.symptoms,
       newDisease.treatments,
-      newDisease.user_id,
     ]
   );
 
   return result.rows;
 };
 
-export const GETDiseaseByTreatments = async (treatments: string) => {
+export const DiseaseByTreatments = async (treatments: string) => {
   const result = await pool.query(
-    "select * from diseases where treatments @> ARRAY[$1]",
+    "SELECT * FROM diseases WHERE treatments @> ARRAY[$1]",
     [treatments]
   );
 
   return result.rows;
 };
 
-export const GETDiseaseBySymptoms = async (symptoms: string) => {
+export const DiseaseBySymptoms = async (symptoms: string) => {
   const result = await pool.query(
     "SELECT * FROM diseases WHERE symptoms @> ARRAY[$1]",
     [symptoms]
@@ -42,11 +40,9 @@ export const GETDiseaseBySymptoms = async (symptoms: string) => {
   return result.rows;
 };
 
-export const GETDiseaseByEffectedBodyPart = async (
-  effectedBodyPart: string
-) => {
+export const DiseaseByEffectedBodyPart = async (effectedBodyPart: string) => {
   const result = await pool.query(
-    "select * from diseases where effectedBodyPart = ($1)",
+    "SELECT * FROM diseases WHERE effectedBodyPart = ($1)",
     [effectedBodyPart]
   );
 
