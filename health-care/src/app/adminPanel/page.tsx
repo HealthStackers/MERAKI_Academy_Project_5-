@@ -19,6 +19,7 @@ import {
 } from "@/models/lib/db/services/appointment";
 import { clockSystem } from "@/models/lib/db/services/appointment";
 import Disease from "../components/Disease";
+import Blogs from "../components/Blogs";
 
 const AdminPanel = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -159,7 +160,7 @@ const AdminPanel = () => {
             Add a service
           </button>
           <button
-             onClick={() => toggleVisibility(1)}
+            onClick={() => toggleVisibility(1)}
             type="button"
             className="btn btn-outline-primary"
           >
@@ -204,7 +205,7 @@ const AdminPanel = () => {
             Get All Doctors
           </button>
           <button
-            onClick={(e) => {}}
+            onClick={() => toggleVisibility(8)}
             type="button"
             className="btn btn-outline-primary"
           >
@@ -438,8 +439,7 @@ const AdminPanel = () => {
         </div>
       )}
 
- {activeIndex === 1 && <Disease/>}
-
+      {activeIndex === 1 && <Disease />}
 
       {activeIndex === 7 &&
         doctors?.map((ele) => {
@@ -559,17 +559,17 @@ const AdminPanel = () => {
                       </p>
                     </div>
                     <div className="border-top pt-2">
-                        <div className="row text-center">
-                          <div className="col border-start">
-                            <h6>Appointments</h6>
-                            <strong>142</strong>
-                          </div>
-                          <div className="col border-start">
-                            <h6>View Blogs</h6>
-                            <strong>289</strong>
-                          </div>
+                      <div className="row text-center">
+                        <div className="col border-start">
+                          <h6>Appointments</h6>
+                          <strong>142</strong>
+                        </div>
+                        <div className="col border-start">
+                          <h6>View Blogs</h6>
+                          <strong>289</strong>
                         </div>
                       </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -614,6 +614,7 @@ const AdminPanel = () => {
           );
         })}
 
+      {activeIndex === 8 && <Blogs/>}
       <div>
         {/* Buttons to toggle visibility
         <button onClick={() => toggleVisibility(0)}>Toggle Content 1</button>

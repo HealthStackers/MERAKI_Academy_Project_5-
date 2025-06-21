@@ -164,7 +164,8 @@ export const GetAllDoctors = async () => {
 export const GetAllPatients = async () => {
   const result = await pool.query(
     `SELECT * FROM users FULL OUTER JOIN  Appointments ON users.id = Appointments.user_id 
-       FULL OUTER JOIN diseases ON users.id = diseases.user_id
+    FULL OUTER JOIN user_diseases ON users.id = user_diseases.user_id
+       FULL OUTER JOIN diseases ON diseases.id = user_diseases.disease_id
       FULL OUTER JOIN role ON role.id = users.role_id 
     WHERE role.role_name = 'patient'`
   );

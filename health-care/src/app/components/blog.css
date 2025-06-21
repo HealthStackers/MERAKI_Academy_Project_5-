@@ -1,20 +1,17 @@
-.DiseaseDiv{
-   margin-left: 60px;
-   width: 600px;
+.BlogsDiv{
+    width: 800px;
+    margin-left: 60px;
 }
 
-.DiseaseSection{
-   display: flex;
-   flex-direction: column;
-   gap: 10px;
+.BlogSection{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-
-
-.addDisease{
-    margin-top: 20px;
-    width: 100%;
-    margin-bottom: 10px;
+.addBlog{
+margin-top: 20px;
+width: 100%;
 }
 
 .success{
