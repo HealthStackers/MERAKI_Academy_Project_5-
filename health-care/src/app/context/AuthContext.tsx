@@ -38,7 +38,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const rId =
       typeof window !== "undefined" ? localStorage.getItem("roleId") : null;
     setRoleId(rId);
-  });
+  },[]);
 
   return (
     <AuthContext.Provider value={{ token, setToken,roleId, setRoleId,userId, setUserId }}>
