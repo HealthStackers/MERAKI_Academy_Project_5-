@@ -1,0 +1,47 @@
+.joinRequestPage {
+  position: relative;
+  top: 120px;
+}
+
+.joinRequestPageParts {
+  margin-left: 50px;
+}
+
+.textInJoinRequestPage {
+  font-size: large;
+  position: relative;
+  left: 3px;
+}
+
+.nameInputSection {
+  display: flex;
+  flex-direction: row;
+  gap: 7vw;
+}
+
+.InputInJoinRequest {
+  border-radius: 5px;
+  border: solid black 1.5px;
+  width: 17vw;
+  height: 5vh;
+  margin-bottom: 10px;
+}
+
+.textInInputInJoinRequest {
+  position: relative;
+  left: 0.5vw;
+}
+
+.submitButtonInJoinRequest {
+  display: flex;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  color: white;
+  font-size: larger;
+  font-weight: bold;
+  width: 80px;
+  height: 5vh;
+  justify-content: center;
+  position: relative;
+  top: 3vh;
+  left: 260px
+}
