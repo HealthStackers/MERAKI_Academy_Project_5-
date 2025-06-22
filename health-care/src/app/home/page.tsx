@@ -3,43 +3,58 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Navigation from "@/app/components/Navigation"
 import "./home.css";
 
 const Home = () => {
   const { data: session } = useSession();
-  const [showAdminPanel, setShowAdminPanel] = useState(false);
-  const [showLoginAndRegister, setShowLoginAndRegister] = useState(false);
+  // const [showAdminPanel, setShowAdminPanel] = useState(false);
+  // const [showLoginAndRegister, setShowLoginAndRegister] = useState(false);
   const router = useRouter();
   useEffect(() => {
+    const isReload = sessionStorage.getItem('isReload')
     if (session) {
       localStorage.setItem("roleId", session.user.role_id.toString());
       localStorage.setItem("email", session.user.email);
       localStorage.setItem("userId", session.user.id.toString());
       localStorage.setItem("token", session.user.token);
     }
+    if(!isReload){
+
+      sessionStorage.setItem('isReload' , 'true')
+      window.location.reload()
+
+    }
+  
   }, []);
 
-  useEffect(() => {
-    const roleId = localStorage.getItem("roleId");
-    if (roleId !== null) {
-      if (+roleId === 1) {
-        setShowAdminPanel(true);
-        setShowLoginAndRegister(true);
-      } else if (+roleId === 2 || +roleId === 3) {
-        setShowLoginAndRegister(true);
-        setShowAdminPanel(false);
-      }
-    }
-  }, []);
+  const [token, settoken] = useState(localStorage.getItem("token") || null);
+  console.log(token);
+  
+  // useEffect(() => {
+  //   const roleId = localStorage.getItem("roleId");
+  //   if (roleId !== null) {
+  //     if (+roleId === 1) {
+  //       setShowAdminPanel(true);
+  //       setShowLoginAndRegister(true);
+  //     } else if (+roleId === 2 || +roleId === 3) {
+  //       setShowLoginAndRegister(true);
+  //       setShowAdminPanel(false);
+  //     }
+  //   }
+  // }, []);
+
+  
 
   return (
     <div>
-    
+    <Navigation/>
 <div className="massHead">
   <p className="headTextInMassHead"> Your health, our priority trusted care solutions</p>
   <p className="bodyTextInMassHead">Empowering healthcare with innovative, user-friendly designs for medical professionals and institutions.</p>
   <button className="BlogsbuttonInMassHead" onClick={()=>{
-router.push("/symptomChecker");
+router.push("/showBlogs");
   }}>Blogs</button>
 </div>
       <div className="searchSection">
@@ -80,6 +95,53 @@ router.push("/symptomChecker");
         </span>
         <p className="text2InsearchSection"> Access doctors’ profiles and qualifications.</p>
       </div>
+
+      <div className="howToUseSection">
+
+        <div className="searchDectionSection">
+       <div className="textAndHeadInSearchSection">
+         <h5 className="headInserchDectionSection">1- Search for a Doctor by Location and Specialization</h5>
+        <p className="textInserchDectionSection" >Our platform’s intuitive search tool allows patients to quickly find the right healthcare professional based on their geographical preference and medical needs.</p></div>
+        <Image
+        className="imageInSearchSection"
+  src="/images/imageinsearchforadoctorsector.PNG"   
+  alt="Doctor Image"
+  width={500}
+  height={300}
+/>
+      </div>
+
+      <div className="searchDectionSection">
+        <Image
+        className="imageInSearchSection"
+  src="/images/becomeADoctor.PNG"   
+  alt="become A Doctor Image"
+  width={600}
+  height={300}
+/>
+       <div className="textAndHeadInSearchSection">
+         <h5 className="headInserchDectionSection">2- Become a Doctor and Share Blogs</h5>
+        <p className="textInserchDectionSection" >Our “Become a Doctor” portal invites licensed practitioners to join our community and build their online presence. After completing a straightforward registration process—verifying credentials and setting up a professional profile—doctors gain access to a suite of content-creation tools. They can publish insightful blog posts on topics ranging from preventative care to the latest research breakthroughs, positioning themselves as thought leaders.</p></div>
+        
+      </div>
+
+        <div className="searchDectionSection">
+       <div className="textAndHeadInSearchSection">
+         <h5 className="headInserchDectionSection">3- Book an Appointment with a Doctor</h5>
+        <p className="textInserchDectionSection" >Once a suitable physician is identified, patients can seamlessly schedule consultations through our appointment-booking module. The system displays each doctor’s real-time availability calendar, offering slots for in-person visits, telemedicine calls, or home visits where applicable. With just a few clicks, users select their preferred date and time, confirm their personal details, and book an appointment. </p></div>
+        <Image
+        className="imageInSearchSection"
+  src="/images/bookAnApointment.PNG"   
+  alt="book An Apointment Image"
+  width={500}
+  height={300}
+/>
+      </div>
+      </div>
+
+      
+      
+
     </div>
   );
 };
