@@ -3,6 +3,7 @@ import axios from "axios";
 import React from "react";
 import { useEffect, useState,useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import Image from "next/image";
 import "./joinRequest.css";
 function joinRequest() {
   const [token, settoken] = useState(localStorage.getItem("token") || null);
@@ -71,7 +72,7 @@ console.log(result);
   return (
     <div className="joinRequestPage">
       <div className="joinRequestPageParts">
-        <h3 className="headInJoinRequestPage">*Join MEDIVO Community.</h3>
+        <h3 className="headInJoinRequestPage" >*Join MEDIVO Community.</h3>
         <p className="textInJoinRequestPage">
           {" "}
           Join our platform and start helping patients while growing your
@@ -166,6 +167,13 @@ console.log(result);
           Submit{" "}
         </button>
       </div>
+            <Image
+              className="imageInJoinRequestPage"
+        src="/images/imageInJoinRequestPage.JPEG"   
+        alt="book An Apointment Image"
+        width={600}
+        height={400}
+      />
     </div>
   );
 }
