@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import React from "react";
-import { useEffect, useState,useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import Image from "next/image";
 import "./joinRequest.css";
@@ -15,8 +15,10 @@ function joinRequest() {
   const [specialization, setSpecialization] = useState<string>("");
   const [cvUrl, setCvUrl] = useState<string>("");
   const [file, setFile] = useState(null);
-  const [showAlertMessage, setShowAlertMessage] = useState<boolean>(false)
-  const [alertMessage, setAlertMessage] = useState<string>("")
+  const [image, setImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState<string>("");
+  const [showAlertMessage, setShowAlertMessage] = useState<boolean>(false);
+  const [alertMessage, setAlertMessage] = useState<string>("");
   const { roleId, setRoleId, userId, setUserId } = useContext(AuthContext);
 
   const newRequest = () => {
@@ -32,37 +34,48 @@ function joinRequest() {
       .then((res) => res.json())
       .then((json) => {
         setCvUrl(json.secure_url);
-        axios
-          .post(
-            "http://localhost:3000/api/joinRequest",
-            {
-              firstName: firstName,
-              lastName: lastName,
-              email: email,
-              city: city,
-              clinicName: clinicName,
-              specialization: specialization,
-              cvUrl:json.secure_url,
-              profilePicture:"sagkgsk",
-              doctorId:userId
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          )
-          .then((result) => {
-            console.log("json.secure_url: ",json.secure_url);
-            
-            console.log("cvUrl: ",cvUrl);
-            
-console.log(result);
+        const cvSecureUrl = json.secure_url;
+        const data = new FormData();
+        if (image) data.append("file", image);
+        data.append("upload_preset", "uploadCv");
+        data.append("resource_type", "image");
+        fetch("https://api.cloudinary.com/v1_1/dcq4kfehy/image/upload", {
+          method: "POST",
+          body: data,
+        })
+          .then((res) => res.json())
+          .then((json) => {
+            setImageUrl(json.secure_url);
+            axios
+              .post(
+                "http://localhost:3000/api/joinRequest",
+                {
+                  firstName: firstName,
+                  lastName: lastName,
+                  email: email,
+                  city: city,
+                  clinicName: clinicName,
+                  specialization: specialization,
+                  cvUrl: cvSecureUrl,
+                  profilePicture: json.secure_url,
+                  doctorId: userId,
+                },
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+                }
+              )
+              .then((result) => {
+                console.log("json.secure_url: ", json.secure_url);
 
-          })
-          .catch((error) => {
-            console.log(error);
-            
+                console.log("cvUrl: ", cvUrl);
+
+                console.log(result);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
           });
       })
       .catch((error) => {
@@ -72,7 +85,7 @@ console.log(result);
   return (
     <div className="joinRequestPage">
       <div className="joinRequestPageParts">
-        <h3 className="headInJoinRequestPage" >*Join MEDIVO Community.</h3>
+        <h3 className="headInJoinRequestPage">*Join MEDIVO Community.</h3>
         <p className="textInJoinRequestPage">
           {" "}
           Join our platform and start helping patients while growing your
@@ -101,18 +114,33 @@ console.log(result);
             ></input>
           </div>
         </div>
+        <div className="emailAndPictureInputSection">
+          <div className="emailSection">
+            <div className="textInInputInJoinRequest">Email</div>
+            <input
+              placeholder="Email"
+              className="InputInJoinRequest"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            ></input>
+          </div>
 
-        <div className="emailSection">
-          <div className="textInInputInJoinRequest">Email</div>
-          <input
-            placeholder="Email"
-            className="InputInJoinRequest"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          ></input>
+          <div className="profilePictureSection">
+            <div className=" uploadProfilePictureText">
+              {" "}
+              Upload Profile Picture
+            </div>
+            <input
+              type="file"
+              accept="image/*"
+              className="uploadCv"
+              onChange={(e) => {
+               setImage(e.target.files[0]);
+              }}
+            ></input>
+          </div>
         </div>
-
         <div className="citySection">
           <div className="textInInputInJoinRequest">City</div>
           <input
@@ -157,6 +185,7 @@ console.log(result);
             }}
           ></input>
         </div>
+
         <button
           className="submitButtonInJoinRequest"
           onClick={() => {
@@ -167,9 +196,9 @@ console.log(result);
           Submit{" "}
         </button>
       </div>
-            <Image
-              className="imageInJoinRequestPage"
-        src="/images/imageInJoinRequestPage.JPEG"   
+      <Image
+        className="imageInJoinRequestPage"
+        src="/images/imageInJoinRequestPage.JPEG"
         alt="book An Apointment Image"
         width={600}
         height={400}
