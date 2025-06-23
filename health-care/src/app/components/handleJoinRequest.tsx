@@ -19,7 +19,7 @@ function HandleJoinRequest() {
   }
   const [token, settoken] = useState(localStorage.getItem("token") || null);
   const [allRequests, setAllRequests] = useState<allRequestsType[]>([]);
-  const [requestId, setRequestId] = useState<number>(0);
+  // const [requestId, setRequestId] = useState<number>(0);
   const [requestStatus, setRequestStatus] = useState<string>("");
 
   useEffect(() => {
@@ -43,12 +43,10 @@ function HandleJoinRequest() {
 
   console.log("allRequests: ", allRequests);
 
-  const handleEditStatus = (newStatus:string) => {
-   
-    console.log("requestId: ",requestId);
-    
-    console.log("newStatus: ",newStatus);
-    
+  const handleEditStatus = (requestId: number, newStatus: string) => {
+    console.log("requestId: ", requestId);
+    console.log("newStatus: ", newStatus);
+
     axios
       .put(
         "http://localhost:3000/api/joinRequest",
@@ -86,21 +84,30 @@ function HandleJoinRequest() {
               <div>Email: {ele.email} </div>
               <a href={ele.cvurl}>CV</a>
               <img
-                      className="imageInSearchSectionss"
-                src={ele.profilepictureurl} 
+                className="imageInSearchSectionss"
+                src={ele.profilepictureurl}
                 alt="Image"
                 width={200}
                 height={120}
               />
               <div className="buttonsInHandleJoinRequest">
-                <button className="" onClick={(e)=>{
-                    setRequestId(ele.id)
-                    handleEditStatus("approved")
-                }}> Approved </button>
-                <button onClick={(e)=>{
-                    setRequestId(ele.id)
-                    handleEditStatus("rejected")
-                }}> Rejected</button>
+                <button
+                  className=""
+                  onClick={(e) => {
+                    handleEditStatus(ele.id, "approved");
+                  }}
+                >
+                  {" "}
+                  Approved{" "}
+                </button>
+                <button
+                  onClick={(e) => {
+                    handleEditStatus(ele.id, "rejected");
+                  }}
+                >
+                  {" "}
+                  Rejected
+                </button>
               </div>
             </div>
           );
