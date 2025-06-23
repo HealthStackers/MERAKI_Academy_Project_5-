@@ -4,7 +4,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
-
+import './service.css'
 
 const Service = () => {
   const { token, setToken, roleId, setRoleId, userId, setUserId } =
@@ -72,8 +72,8 @@ const Service = () => {
 
   return (
     <>
-      <div className="DiseaseDiv">
-        <div className="DiseaseSection">
+      <div className="ServiceDiv">
+        <div className="ServiceSection">
           <input
             name="title"
             type="text"
@@ -137,7 +137,7 @@ const Service = () => {
         </div>
         <button
           type="button"
-          className="btn btn-light btn-md addDisease"
+          className="btn btn-light btn-md addService"
           onClick={(e) => {
             AddService();
             uploadImage();

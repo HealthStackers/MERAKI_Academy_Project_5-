@@ -58,6 +58,8 @@ const Blogs = () => {
     <>
       <div className="BlogsDiv">
         <div className="BlogSection">
+          <span className="selectService">Select a Service :</span>
+
           <select
             className="form-select"
             multiple
