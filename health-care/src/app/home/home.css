@@ -16,6 +16,7 @@
 .searchInput {
   width: 20vw;
   height: 5vh;
+  
 }
 
 .searchButton {
@@ -25,6 +26,8 @@
   color: white;
   font-size: large;
   font-weight: bold;
+  border: none;
+  margin-left: 2px;
 }
 
 .iconInSearch {

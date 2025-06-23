@@ -31,21 +31,6 @@ const Home = () => {
 
   const [token, settoken] = useState(localStorage.getItem("token") || null);
   console.log(token);
-  
-  // useEffect(() => {
-  //   const roleId = localStorage.getItem("roleId");
-  //   if (roleId !== null) {
-  //     if (+roleId === 1) {
-  //       setShowAdminPanel(true);
-  //       setShowLoginAndRegister(true);
-  //     } else if (+roleId === 2 || +roleId === 3) {
-  //       setShowLoginAndRegister(true);
-  //       setShowAdminPanel(false);
-  //     }
-  //   }
-  // }, []);
-
-  
 
   return (
     <div>
