@@ -28,13 +28,13 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: start;
-  gap: 30vw;
+  gap: 30px;
 }
 
 .loginAndRegister {
   display: flex;
   flex-direction: row;
-  gap: 3vw;
+  gap: 3px
 }
 
 #registerButtonInNavBar {

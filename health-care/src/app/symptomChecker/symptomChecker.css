@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+.SymptomCheckerDiv {
+  position: relative;
+  top: 150px;
+  margin-left: 60px;
+  display: flex;
+  margin-right: 30px;
+  flex-direction: column;
+}
+
+.navbar-container {
+  background-color: #eaecef;
+}
+
+.navbarChecker {
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  gap: 125px;
+  justify-content: center;
+  font-family: Source Sans Pro, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 0.86;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  height: 30px;
+  width: 900px;
+}
+
+.navbar-container .navbarChecker li {
+  float: left;
+}
+
+li a {
+        background: transparent;
+    color: #47466e;
+    cursor: pointer;
+    display: block;
+    height: 35px;
+    line-height: 35px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+}
+
+
+.menuChecker {
+  background: transparent;
+  color: hsla(0, 0%, 40%, 0.62);
+  cursor: pointer;
+  font-weight: 400;
+}
+
+a:focus {
+  text-decoration: underline;
+}

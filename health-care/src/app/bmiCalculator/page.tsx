@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-function bmiCalculator() {
-  return (
-    <div>BMI Calculator</div>
-  )
-}
+const BmiCalculator = () => {
+  return <div>hi</div>;
+};
 
-export default bmiCalculator
+export default BmiCalculator;
