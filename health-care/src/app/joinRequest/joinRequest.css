@@ -1,10 +1,22 @@
 .joinRequestPage {
+    display: flex;
+    flex-direction: row;
   position: relative;
   top: 120px;
 }
 
+.imageInJoinRequestPage{
+    position: relative;
+    top:100px
+}
+
 .joinRequestPageParts {
   margin-left: 50px;
+}
+
+.headInJoinRequestPage{
+    color: #9b59b6;
+    font-weight: bold;
 }
 
 .textInJoinRequestPage {
@@ -13,7 +25,7 @@
   left: 3px;
 }
 
-.nameInputSection {
+.nameInputSection,.emailAndPictureInputSection {
   display: flex;
   flex-direction: row;
   gap: 7vw;
@@ -38,9 +50,11 @@
   color: white;
   font-size: larger;
   font-weight: bold;
-  width: 80px;
+  width: 100px;
   height: 5vh;
   justify-content: center;
+  border-radius: 5px;
+  border: white solid 1px;
   position: relative;
   top: 3vh;
   left: 260px

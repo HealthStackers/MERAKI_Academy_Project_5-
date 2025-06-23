@@ -71,7 +71,9 @@
   color: white;
   font-size: larger;
   font-weight: bold;
-  width: 80px;
+  border-radius: 5px;
+  border: white solid 1px;
+  width: 100px;
   height: 5vh;
   justify-content: center;
 }
