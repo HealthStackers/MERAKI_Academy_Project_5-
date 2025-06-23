@@ -116,7 +116,7 @@ export const Login = async (email: string, password: string) => {
         token: token,
       };
     } else {
-      throw new Error("Failed please check the password");
+      throw new Error(" Please check the password");
     }
   } else {
     throw new Error("Invalid credentials");
