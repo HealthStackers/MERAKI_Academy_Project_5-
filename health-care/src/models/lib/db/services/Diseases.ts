@@ -1,7 +1,7 @@
 import pool from "../index";
 
 export type Disease = {
-  id ?:number
+  id?: number;
   name: string;
   effectedBodyPart: [];
   symptoms: [];
@@ -31,9 +31,9 @@ export const DiseaseByTreatments = async (treatments: string) => {
   return result.rows;
 };
 
-export const DiseaseBySymptoms = async (symptoms: string) => {
+export const DiseaseBySymptoms = async (symptoms: string[]) => {
   const result = await pool.query(
-    "SELECT * FROM diseases WHERE symptoms @> ARRAY[$1]",
+    "SELECT * FROM diseases WHERE symptoms && $1",
     [symptoms]
   );
 
@@ -45,6 +45,12 @@ export const DiseaseByEffectedBodyPart = async (effectedBodyPart: string) => {
     "SELECT * FROM diseases WHERE effectedBodyPart = ($1)",
     [effectedBodyPart]
   );
+
+  return result.rows;
+};
+
+export const GetAllSymptoms = async () => {
+  const result = await pool.query("SELECT symptoms FROM diseases");
 
   return result.rows;
 };

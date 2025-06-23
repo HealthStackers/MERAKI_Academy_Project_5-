@@ -50,7 +50,7 @@
   margin-top: 5px;
 }
 
-.massHead {
+.mastHead {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -60,15 +60,15 @@
   padding: 150px;
 }
 
-.headTextInMassHead {
+.headTextInMastHead {
   font-size: xx-large;
 }
 
-.bodyTextInMassHead {
+.bodyTextInMastHead {
   font-size: large;
 }
 
-.BlogsbuttonInMassHead {
+.BlogsbuttonInMastHead {
   display: flex;
   background: linear-gradient(135deg, #71b7e6, #9b59b6);
   color: white;

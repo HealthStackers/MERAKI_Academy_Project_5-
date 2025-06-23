@@ -1,6 +1,7 @@
 import React from "react";
+
 import "./bmicalculator.css";
-function bmiCalculator() {
+function BmiCalculator() {
   return (
     <div className="bmiPage">
       <div className="bmiHeaderAndText">
@@ -76,4 +77,5 @@ function bmiCalculator() {
   );
 }
 
-export default bmiCalculator;
+export default BmiCalculator;
+
