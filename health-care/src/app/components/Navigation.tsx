@@ -14,6 +14,7 @@ const Navigation = () => {
   const [showJoinRequest, setShowJoinRequest] = useState(false);
   console.log("roleId: ", roleId);
   const [token, settoken] = useState(localStorage.getItem("token") || null);
+  
 
   useEffect(() => {
     const roleId = localStorage.getItem("roleId");
@@ -29,6 +30,8 @@ const Navigation = () => {
         setShowJoinRequest(false);
       }
     }
+
+    
   }, []);
 
   return (

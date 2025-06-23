@@ -4,6 +4,7 @@ import { NextResponse } from "next/server"
 export const GET = async ()=>{
     try {
         const result= await getAllService()
+        
         return NextResponse.json({data:result,message:"All blogs"},{status:200})
     } catch (error) {
         console.log(error);
