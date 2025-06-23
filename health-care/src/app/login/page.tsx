@@ -29,14 +29,10 @@ const Login = () => {
       email: form.email,
       callbackUrl: "/home",
     });
-    
 
     if (result?.ok) {
-     console.log("result: ",result);
-     
-      setTimeout(() => {
-        router.push("/home");
-      }, 3000);
+      console.log("result: ", result);
+      router.push("/home");
     } else {
       seteshowErrorMessage(true);
       if (result?.error) {

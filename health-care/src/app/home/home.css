@@ -71,8 +71,34 @@
   color: white;
   font-size: larger;
   font-weight: bold;
-  width: 80px;
+  border-radius: 5px;
+  border: white solid 1px;
+  width: 100px;
   height: 5vh;
   justify-content: center;
-  
+}
+
+.howToUseSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 150px;
+}
+
+.searchDectionSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: start;
+  margin-top: 30px;
+}
+
+.textAndHeadInSearchSection {
+  width: 35%;
+}
+
+.imageInSearchSection {
+  position: relative;
+  bottom: 10vh;
 }

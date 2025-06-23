@@ -1,0 +1,74 @@
+.joinRequestPage {
+    display: flex;
+    flex-direction: row;
+  position: relative;
+  top: 120px;
+}
+
+.imageInJoinRequestPage{
+    position: relative;
+    top:100px
+}
+
+.joinRequestPageParts {
+  margin-left: 50px;
+}
+
+.headInJoinRequestPage{
+    color: #9b59b6;
+    font-weight: bold;
+}
+
+.textInJoinRequestPage {
+  font-size: large;
+  position: relative;
+  left: 3px;
+}
+
+.nameInputSection,.emailAndPictureInputSection {
+  display: flex;
+  flex-direction: row;
+  gap: 7vw;
+}
+
+.InputInJoinRequest {
+  border-radius: 5px;
+  border: solid black 1.5px;
+  width: 17vw;
+  height: 5vh;
+  margin-bottom: 10px;
+}
+
+.textInInputInJoinRequest {
+  position: relative;
+  left: 0.5vw;
+}
+
+.submitButtonInJoinRequest {
+  display: flex;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  color: white;
+  font-size: larger;
+  font-weight: bold;
+  width: 100px;
+  height: 5vh;
+  justify-content: center;
+  border-radius: 5px;
+  border: white solid 1px;
+  position: relative;
+  top: 3vh;
+  left: 260px
+}
+
+.alertMessageApproved{
+   position: fixed;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #28a745;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000; 
+}

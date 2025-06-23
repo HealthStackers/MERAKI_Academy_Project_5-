@@ -11,22 +11,27 @@ const Navigation = () => {
   const { roleId, setRoleId, userId, setUserId } = useContext(AuthContext);
 
   const [showAdminPanel, setShowAdminPanel] = useState(false);
-  console.log("roleId: ",roleId);
- 
-  const token= localStorage.getItem("token")
-   console.log("token:",token);
-
- // const [token, settoken] = useState(localStorage.getItem("token") || "null" );
+  const [showJoinRequest, setShowJoinRequest] = useState(false);
+  console.log("roleId: ", roleId);
+  const [token, settoken] = useState(localStorage.getItem("token") || null);
+  
 
   useEffect(() => {
     const roleId = localStorage.getItem("roleId");
     if (roleId !== null) {
       if (+roleId === 1) {
         setShowAdminPanel(true);
-      } else if (+roleId === 2 || +roleId === 3) {
+        setShowJoinRequest(false);
+      } else if (+roleId === 2) {
         setShowAdminPanel(false);
+        setShowJoinRequest(true);
+      } else if (+roleId === 3) {
+        setShowAdminPanel(false);
+        setShowJoinRequest(false);
       }
     }
+
+    
   }, []);
 
   return (
@@ -109,6 +114,15 @@ const Navigation = () => {
                     Contact
                   </a>
                 </li>
+
+                {showJoinRequest && (
+                  <li className="nav-item">
+                    <a className="nav-link" href="joinRequest">
+                      Join Request
+                    </a>
+                  </li>
+                )}
+
               </div>
               {!token && (
                 <div className="partTwoInNavBar">
@@ -132,7 +146,7 @@ const Navigation = () => {
         </div>
       </nav>
 
-      <div className="offcanvas offcanvas-start"  id="mobileDrawer">
+      <div className="offcanvas offcanvas-start" id="mobileDrawer">
         <div className="offcanvas-header">
           <h5 className="offcanvas-title">Menu</h5>
           <button

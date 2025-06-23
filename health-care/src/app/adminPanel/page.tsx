@@ -20,6 +20,7 @@ import {
 import { clockSystem } from "@/models/lib/db/services/appointment";
 import Disease from "../components/Disease";
 import Blogs from "../components/Blogs";
+import HandleJoinRequest from "../components/handleJoinRequest"
 
 const AdminPanel = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -210,6 +211,13 @@ const AdminPanel = () => {
             className="btn btn-outline-primary"
           >
             Add a blog
+          </button>
+          <button
+            onClick={() => toggleVisibility(9)}
+            type="button"
+            className="btn btn-outline-primary"
+          >
+            Join Requests
           </button>
         </div>
       </div>
@@ -615,6 +623,7 @@ const AdminPanel = () => {
         })}
 
       {activeIndex === 8 && <Blogs/>}
+      {activeIndex === 9 && <HandleJoinRequest/>}
       <div>
         {/* Buttons to toggle visibility
         <button onClick={() => toggleVisibility(0)}>Toggle Content 1</button>

@@ -45,6 +45,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [token, setToken] = useState<string | null>(null);
   const [roleId, setRoleId] = useState<string | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
+
   const [info, setInfo] = useState({
     age: "",
     gender: "",
@@ -52,6 +53,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [symptoms, setSymptoms] = useState<string[]>([]);
   const [conditions, setConditions] = useState<string[]>([]);
 
+ 
   useEffect(() => {
     const t =
       typeof window !== "undefined" ? localStorage.getItem("token") : null;
