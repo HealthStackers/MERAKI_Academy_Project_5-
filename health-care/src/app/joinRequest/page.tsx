@@ -3,9 +3,11 @@ import axios from "axios";
 import React from "react";
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import "./joinRequest.css";
 function joinRequest() {
+  const router = useRouter();
   const [token, settoken] = useState(localStorage.getItem("token") || null);
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
@@ -20,6 +22,7 @@ function joinRequest() {
   const [showAlertMessage, setShowAlertMessage] = useState<boolean>(false);
   const [alertMessage, setAlertMessage] = useState<string>("");
   const { roleId, setRoleId, userId, setUserId } = useContext(AuthContext);
+ 
 
   const newRequest = () => {
     if (!file) return alert("Select a PDF first");
@@ -67,6 +70,12 @@ function joinRequest() {
                 }
               )
               .then((result) => {
+                localStorage.setItem("submittedJoinRequest", "true");
+                setAlertMessage("You Request has been submitted successfully")
+                setShowAlertMessage(true)
+                setTimeout(() => {
+                setShowAlertMessage(false)
+              }, 2000);
                 console.log("json.secure_url: ", json.secure_url);
 
                 console.log("cvUrl: ", cvUrl);
@@ -136,7 +145,7 @@ function joinRequest() {
               accept="image/*"
               className="uploadCv"
               onChange={(e) => {
-               setImage(e.target.files[0]);
+                setImage(e.target.files[0]);
               }}
             ></input>
           </div>
@@ -189,7 +198,19 @@ function joinRequest() {
         <button
           className="submitButtonInJoinRequest"
           onClick={() => {
-            newRequest();
+            if (localStorage.getItem("submittedJoinRequest") === "true") {
+              console.log("test Alread con");
+              
+              setShowAlertMessage(true)
+              setAlertMessage("You already submitted a join request")
+              setTimeout(() => {
+                setShowAlertMessage(false)
+                router.push("/home");
+              }, 2000);
+              
+            } else {
+              newRequest();
+            }
           }}
         >
           {" "}
@@ -203,6 +224,7 @@ function joinRequest() {
         width={600}
         height={400}
       />
+      {showAlertMessage && <div className="alertMessageApproved">{alertMessage}</div>}
     </div>
   );
 }

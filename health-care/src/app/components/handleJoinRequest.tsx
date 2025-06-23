@@ -4,6 +4,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import "./handleJoinRequests.css";
+
 function HandleJoinRequest() {
   interface allRequestsType {
     id: number;
@@ -16,11 +17,14 @@ function HandleJoinRequest() {
     cvurl: string;
     profilepictureurl: string;
     status: string;
+    doctor_id: number;
   }
+
   const [token, settoken] = useState(localStorage.getItem("token") || null);
   const [allRequests, setAllRequests] = useState<allRequestsType[]>([]);
-  // const [requestId, setRequestId] = useState<number>(0);
   const [requestStatus, setRequestStatus] = useState<string>("");
+  const [showAlertMessage, setshowAlertMessage] = useState<number>(0);
+  const [alertMessage, setAlertMessage] = useState<string>("");
 
   useEffect(() => {
     axios
@@ -63,10 +67,37 @@ function HandleJoinRequest() {
         }
       )
       .then((result) => {
+        if (newStatus === "rejected") {
+          setshowAlertMessage(1);
+          setAlertMessage("The Reqest has been rejected");
+          setTimeout(() => {
+            setshowAlertMessage(0);
+          }, 2000);
+        } else {
+          setshowAlertMessage(2);
+          setAlertMessage("The Reqest has been approved");
+          setTimeout(() => {
+            setshowAlertMessage(0);
+          }, 2000);
+          window.location.reload();
+        }
+
         console.log(result);
       })
       .catch((error) => {
         console.log(error);
+      });
+  };
+  const HandleUpdateRole = (id: number) => {
+    axios
+      .put(`http://localhost:3000/api/users/profile/${id}`, {
+        role_id: 3,
+      })
+      .then((result) => {
+        console.log("result in update role: ", result);
+      })
+      .catch((error) => {
+        console.log("error in update role: ", error);
       });
   };
   return (
@@ -75,44 +106,65 @@ function HandleJoinRequest() {
         {allRequests.map((ele, i) => {
           return (
             <div key={i} className="joinRequstInAdminPanel">
-              <div>
-                Name: {ele.firstname} {ele.lastname}
-              </div>
-              <div>Specialization: {ele.specialization} </div>
-              <div>City: {ele.city} </div>
-              <div>Clinic Name: {ele.clinicname} </div>
-              <div>Email: {ele.email} </div>
-              <a href={ele.cvurl}>CV</a>
               <img
                 className="imageInSearchSectionss"
                 src={ele.profilepictureurl}
                 alt="Image"
-                width={200}
-                height={120}
+                width={150}
+                height={100}
               />
+              <div className="applicationDetails">
+                <div className="nameInJoinRequestInAdminPanel">
+                  Dr. {ele.firstname} {ele.lastname}
+                </div>
+                <div>
+                  {" "}
+                  <strong>Specialization:</strong> {ele.specialization}{" "}
+                </div>
+                <div>
+                  <strong>City:</strong> {ele.city}{" "}
+                </div>
+                <div>
+                  <strong>Clinic Name:</strong> {ele.clinicname}{" "}
+                </div>
+                <div>
+                  <strong>Email:</strong> {ele.email}{" "}
+                </div>
+                <div>
+                  <strong>Doctor CV:</strong> <a href={ele.cvurl}>View</a>{" "}
+                </div>
+              </div>
               <div className="buttonsInHandleJoinRequest">
                 <button
-                  className=""
+                  className="approvedButtonInJoinRequest"
                   onClick={(e) => {
                     handleEditStatus(ele.id, "approved");
+                    HandleUpdateRole(ele.doctor_id);
                   }}
                 >
                   {" "}
-                  Approved{" "}
+                  Approve{" "}
                 </button>
                 <button
+                  className="rejectedButtonInJoinRequest"
                   onClick={(e) => {
                     handleEditStatus(ele.id, "rejected");
                   }}
                 >
                   {" "}
-                  Rejected
+                  Reject
                 </button>
               </div>
             </div>
           );
         })}
       </div>
+      {showAlertMessage === 1 && (
+        <div className="alertMessageRejected">{alertMessage}</div>
+      )}
+      {showAlertMessage === 2 && (
+        <div className="alertMessageApproved">{alertMessage}</div>
+      )}
     </div>
   );
 }

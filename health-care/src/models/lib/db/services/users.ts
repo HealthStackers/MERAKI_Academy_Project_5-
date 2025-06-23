@@ -125,7 +125,7 @@ export const Login = async (email: string, password: string) => {
 
 export const UpdateUser = async (id: number, UpdatedUser: UpdateUser) => {
   const result = await pool.query<UpdateUser>(
-    `UPDATE users SET firstName = COALESCE($1,firstName) , lastName = COALESCE($2,lastName), age = COALESCE($3 , age), country = COALESCE($4 , country),phoneNumber =  COALESCE($5,phoneNumber )  , email =COALESCE($6 , email) , password = COALESCE($7,password ), role_id = COALESCE($8, role_id) ,is_deleted = COALESCE($9, is_deleted) WHERE id = $9 RETURNING *`,
+    `UPDATE users SET firstName = COALESCE($1,firstName) , lastName = COALESCE($2,lastName), age = COALESCE($3 , age), country = COALESCE($4 , country),phoneNumber =  COALESCE($5,phoneNumber )  , email =COALESCE($6 , email) , password = COALESCE($7,password ), role_id = COALESCE($8, role_id) ,is_deleted = COALESCE($9, is_deleted) WHERE id = $10 RETURNING *`,
     [
       UpdatedUser.firstName,
       UpdatedUser.lastName,
