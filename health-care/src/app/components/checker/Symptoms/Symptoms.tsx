@@ -91,7 +91,6 @@ const Symptoms = () => {
                         role="button"
                         className="delete-icon"
                         onClick={(e) => {
-                          console.log(idx);
                           //   tags.splice(idx, 1);
                           setSymptoms(
                             symptoms.filter((e, index) => {
@@ -100,6 +99,16 @@ const Symptoms = () => {
                               return index !== idx;
                             })
                           );
+                          if (symptoms.length === 1) {
+                            Swal.fire({
+                              title: "No Symptoms is existing!",
+                              text: "Please Add Symptoms.",
+                              icon: "success",
+                              confirmButtonText: "Okay",
+                            }).then(() => {
+                              window.location.reload();
+                            });
+                          }
                         }}
                       >
                         <svg

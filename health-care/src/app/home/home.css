@@ -1,33 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
 .searchSection {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   padding: 30px;
-  background: black; /* Just for testing */
-  width: 100vw;
 }
 
+
+
 .textInsearchSection {
-  font-size: x-large;
-  color: white;
+  font-size: 30px;
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+   font-weight: 600;
+  color: #343b48;
+  margin: 0 0 10px;
+  text-wrap: balance;
+  margin-bottom: 50px;
 }
 
 .searchInput {
-  width: 20vw;
-  height: 5vh;
-  
+  width: 360px;
+  height: 50px;
+    color: #343b48;
+margin-bottom: 20px;
 }
 
 .searchButton {
-  height: 5.2vh;
-
+  height: 50px;
+  width: 100px;
   background: linear-gradient(135deg, #71b7e6, #9b59b6);
   color: white;
   font-size: large;
   font-weight: bold;
   border: none;
-  margin-left: 2px;
 }
 
 .iconInSearch {
@@ -45,9 +67,13 @@
 }
 
 .text2InsearchSection {
-  font-size: x-large;
-  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 25px;
+  color: #343b48;
   margin-top: 5px;
+  text-transform: capitalize;
+  font-weight: 500;
+  margin-bottom: 50px;
 }
 
 .mastHead {
@@ -56,29 +82,51 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  top: 75px;
+  top: 60px;
   padding: 150px;
+  margin-bottom: 20px;
+  
+}
+
+.headingInMastHead {
+  font-size: 20px;
+  color: #343b48;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
 }
 
 .headTextInMastHead {
-  font-size: xx-large;
+  font-size: 40px;
+  color: #343b48;
+  font-weight: 800;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
+
 
 .bodyTextInMastHead {
-  font-size: large;
+  font-size: 18px;
+  color: #343b48;
+  font-weight: 500;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 1.5px;
+  margin-bottom: 40px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+ 
 }
 
-.BlogsbuttonInMastHead {
-  display: flex;
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);
-  color: white;
-  font-size: larger;
-  font-weight: bold;
-  border-radius: 5px;
-  border: white solid 1px;
-  width: 100px;
-  height: 5vh;
-  justify-content: center;
+.BlogsButton {
+  font-size: 20px;
+  width: 200px;
+  height: 50px;
+    font-family: 'Poppins', sans-serif;
+
 }
 
 .howToUseSection {
@@ -87,6 +135,7 @@
   justify-content: space-evenly;
   align-items: center;
   margin-top: 150px;
+  font-family: "Poppins", sans-serif;
 }
 
 .searchDectionSection {
@@ -104,4 +153,52 @@
 .imageInSearchSection {
   position: relative;
   bottom: 10vh;
+}
+
+
+
+/* Appointment Section */
+.appointmentSectionHome {
+  display: flex;
+  flex-wrap: wrap;
+  background: #e8f0fa;
+  width: 100%;
+  padding: 60px 30px;
+}
+
+.FeaturedServiceBannerModule-content {
+  flex: 1 1 300px;
+  margin: 40px;
+  max-width: 700px;
+}
+
+.FeaturedServiceBannerModule-image img {
+  width: 100%;
+  max-width: 400px;
+  height: 400px;
+  display: block;
+}
+
+.FeaturedServiceBannerModule-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  margin-bottom: 16px;
+  font-weight: 900;
+  font-size: 0.875rem;
+  color: #fff;
+  background: #216ecf;
+  border-radius: 500px;
+}
+
+.FeaturedServiceBannerModule-title {
+  font-weight: 900;
+  font-size: 2rem;
+  color: #343b48;
+  margin-bottom: 0.5rem;
+}
+
+.FeaturedServiceBannerModule-subtitle {
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #343b48;
 }

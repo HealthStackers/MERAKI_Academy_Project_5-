@@ -1,8 +1,7 @@
-"use client";
+'use client';
 import React, { useContext, useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
-import Link from "next/link";
 import { AuthContext } from "../context/AuthContext";
 import { useSession } from "next-auth/react";
 

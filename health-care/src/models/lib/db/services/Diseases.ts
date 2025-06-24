@@ -54,3 +54,9 @@ export const GetAllSymptoms = async () => {
 
   return result.rows;
 };
+
+
+export const GetAllDiseases = async () => {
+  const result = await pool.query("SELECT * FROM diseases");
+  return result.rows;
+};
