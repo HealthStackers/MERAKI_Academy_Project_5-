@@ -1,10 +1,13 @@
+'use client';
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/app/context/AuthContext";
 import Symptoms from "../checker/Symptoms/Symptoms";
 import axios from "axios";
 import "./treatments.css";
+import { useRouter } from 'next/navigation';
 
 const Treatments = () => {
+  const router = useRouter()
   const [treatments, setTreatments] = useState<string[]>([]);
   const [hidden, setHidden] = useState(false);
   const [title, setTitle] = useState("");
@@ -24,6 +27,7 @@ const Treatments = () => {
         console.log(err);
       });
   };
+
 
   useEffect(() => {
     getDetails();
@@ -88,7 +92,6 @@ const Treatments = () => {
               <div className="gray-border"></div>
             </>
           )}
-
           {conditions.length === 0 ? (
             ""
           ) : (
@@ -131,7 +134,6 @@ const Treatments = () => {
               <div className="gray-border"></div>
             </>
           )}
-
           {conditions.length !== 0 ? (
             <div>
               <br></br>
@@ -190,6 +192,33 @@ const Treatments = () => {
             </div>
             
           </div> */}
+        </div>
+      </div>
+       <div className="appointmentSectionHome">
+        <div className="FeaturedServiceBannerModule-content">
+          <small className="FeaturedServiceBannerModule-badge">New</small>
+          <h2 className="FeaturedServiceBannerModule-title">
+            Brighten your smile
+          </h2>
+          <p className="FeaturedServiceBannerModule-subtitle">
+            Book your next dental appointment with ease
+          </p>
+          <button
+            type="button"
+            className="btn btn-outline-primary"
+            onClick={(e) => {
+              router.push("/bookAppointment");
+            }}
+          >
+            Find an Appointment
+          </button>
+        </div>
+        <div className="FeaturedServiceBannerModule-image">
+          <img
+            src="https://i.pinimg.com/736x/6c/92/d3/6c92d38a123128ed967d410f7eebd305.jpg"
+            alt=""
+            loading="lazy"
+          />
         </div>
       </div>
     </div>

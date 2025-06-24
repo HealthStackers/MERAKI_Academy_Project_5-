@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 import React, { useContext, useEffect, useState } from "react";
 import "./conditions.css";
 import { AuthContext } from "@/app/context/AuthContext";
-import Symptoms from "../checker/Symptoms/Symptoms";
+import Symptoms from "../Symptoms/Symptoms";
 import axios from "axios";
 
 const Conditions = () => {

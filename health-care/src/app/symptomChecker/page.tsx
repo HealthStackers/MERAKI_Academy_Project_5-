@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./symptomChecker.css";
 import InfoComponent from "../components/checker/InfoComponent/InfoComponent";
 import Symptoms from "../components/checker/Symptoms/Symptoms";
-import Conditions from "../components/Conditions/Conditions";
+import Conditions from "../components/checker/Conditions/Conditions";
 import Details from "../components/checker/Details/Details";
 import Treatments from "../components/checker/Treatments/Treatments";
 
