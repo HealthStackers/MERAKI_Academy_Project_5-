@@ -108,6 +108,13 @@ const Navigation = () => {
                     </a>
                   </li>
                 )}
+
+                <li className="nav-item">
+                  <a className="nav-link" href="#">
+                    Contact
+                  </a>
+                </li>
+
                 {showJoinRequest && (
                   <li className="nav-item">
                     <a className="nav-link" href="joinRequest">
@@ -115,6 +122,7 @@ const Navigation = () => {
                     </a>
                   </li>
                 )}
+
               </div>
               {!token && (
                 <div className="partTwoInNavBar">

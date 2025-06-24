@@ -35,9 +35,9 @@ const Home = () => {
   return (
     <div>
     <Navigation/>
-<div className="massHead">
-  <p className="headTextInMassHead"> Your health, our priority trusted care solutions</p>
-  <p className="bodyTextInMassHead">Empowering healthcare with innovative, user-friendly designs for medical professionals and institutions.</p>
+<div className="mastHead">
+  <p className="headTextInMastHead"> Your health, our priority trusted care solutions</p>
+  <p className="bodyTextInMastHead">Empowering healthcare with innovative, user-friendly designs for medical professionals and institutions.</p>
   <button className="BlogsbuttonInMassHead" onClick={()=>{
 router.push("/showBlogs");
   }}>Blogs</button>

@@ -1,17 +1,20 @@
-.BlogsDiv{
-    width: 800px;
-    margin-left: 60px;
+.ServiceDiv{
+   margin-left: 60px;
+   width: 600px;
 }
 
-.BlogSection{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.ServiceSection{
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
 }
 
-.addBlog{
-margin-top: 20px;
-width: 100%;
+
+
+.addService{
+    margin-top: 20px;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 .success{
@@ -32,9 +35,4 @@ text-transform: capitalize;
 letter-spacing: 2.5px;
 }
 
-.selectService{
-font-size: 16px;
-font-weight: 500;
-text-transform: uppercase;
-letter-spacing: 2.5px;
-}
+

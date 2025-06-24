@@ -1,0 +1,199 @@
+.TreatmentsDiv {
+  position: relative;
+  top: 200px;
+  margin-left: 60px;
+}
+
+.Treatments {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  max-width: 1000px;
+}
+
+.para {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+.span {
+  font-weight: 400;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+}
+
+.ResultsTreatments {
+  max-width: 600px;
+}
+
+.condition {
+  color: #6d6d6d;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 15px;
+  text-transform: capitalize;
+}
+
+.single_condition {
+  background-color: #effafd;
+  border-radius: 3px;
+  -webkit-box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 0.14);
+  box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 0.14);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #1b88bf;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 15px;
+  letter-spacing: 0.2px;
+  list-style: none;
+  margin-bottom: 5px;
+  min-height: 85px;
+  outline: 0;
+  position: relative;
+  width: 500px;
+}
+
+.details {
+  display: flex;
+  flex-direction: row;
+  gap: 110px;
+}
+
+.info-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.symptom-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.test {
+  display: flex;
+  flex-direction: column;
+}
+
+.titleDisease {
+  text-align: center;
+}
+
+.heading {
+  font-family: "Poppins", sans-serif;
+}
+
+.warning {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.TreatmentsUl {
+  margin: 0;
+  padding: 0;
+}
+
+.msgNoDiseaseTreatment {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.infoTitle {
+  color: #393939;
+  font-weight: 300;
+  margin-bottom: 5px;
+  padding-right: 5px;
+  margin-right: 3px;
+}
+
+.symptomTitle {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.edit-link {
+  color: #0696f3;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Source Sans Pro, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  margin-left: auto;
+  text-decoration: none;
+}
+
+.infoDetails {
+  color: #554c57;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.gray-border {
+  border: 1px solid #dfdfdf;
+  width: 500px;
+}
+
+.collapsible-btn {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+}
+
+.thanks{
+text-align: center;
+}
+
+.questionDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.answers {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.question {
+  color: #3a3b3c;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.33;
+  margin-bottom: 0.313rem;
+  text-align: left;
+}
+.button {
+  background-color: #e7f2f9;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.12);
+  color: #333;
+  cursor: pointer;
+  display: inline;
+  padding: 12px 24px;
+  margin-right: 5px;
+  font-family: Source Sans Pro, Arial, sans-serif;
+  font-size: 17px;
+  text-align: center;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  vertical-align: middle;
+}
+
+.hidden {
+  display: none !important;
+}
