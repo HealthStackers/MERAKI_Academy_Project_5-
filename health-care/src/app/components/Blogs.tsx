@@ -41,6 +41,7 @@ const Blogs = () => {
         }, 3000);
       });
   };
+  
   const GetServices = async () => {
     axios
       .get("http://localhost:3000/api/service")

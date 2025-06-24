@@ -5,18 +5,29 @@ import "./style.css";
 import Link from "next/link";
 import { AuthContext } from "../context/AuthContext";
 import { useSession } from "next-auth/react";
+import axios from "axios";
 
 const Navigation = () => {
   const { data: session } = useSession();
   const { roleId, setRoleId, userId, setUserId } = useContext(AuthContext);
+  const [services, setServices] = useState<string[]>([]);
 
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [showJoinRequest, setShowJoinRequest] = useState(false);
   console.log("roleId: ", roleId);
   const [token, settoken] = useState(localStorage.getItem("token") || null);
-  
+
+  const GetServices = async () => {
+    axios
+      .get("http://localhost:3000/api/service")
+      .then((res) => {
+        setServices(res.data.data);
+      })
+      .catch((err) => {});
+  };
 
   useEffect(() => {
+    GetServices();
     const roleId = localStorage.getItem("roleId");
     if (roleId !== null) {
       if (+roleId === 1) {
@@ -30,8 +41,6 @@ const Navigation = () => {
         setShowJoinRequest(false);
       }
     }
-
-    
   }, []);
 
   return (
@@ -78,29 +87,28 @@ const Navigation = () => {
                   <a
                     className="nav-link dropdown-toggle"
                     href="#"
+                    id="servicesDropdown"
                     role="button"
                     data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
                   >
                     Services
                   </a>
-                  <ul className="dropdown-menu">
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Action
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Another action
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Something else
-                      </a>
-                    </li>
+                  <ul
+                    className="dropdown-menu"
+                    aria-labelledby="servicesDropdown"
+                  >
+                    {services.map((ele) => (
+                      <li key={ele.id}>
+                        <a className="dropdown-item" href="#">
+                          {ele.title}
+                        </a>
+                      </li>
+                    ))}
                   </ul>
                 </li>
+
                 {showAdminPanel && (
                   <li className="nav-item">
                     <a className="nav-link" href="adminPanel">
@@ -122,7 +130,6 @@ const Navigation = () => {
                     </a>
                   </li>
                 )}
-
               </div>
               {!token && (
                 <div className="partTwoInNavBar">
