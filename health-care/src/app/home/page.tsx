@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import Navigation from "@/app/components/Navigation"
+import Navigation from "@/app/components/Navigation";
 import "./home.css";
 
 const Home = () => {
@@ -13,20 +13,17 @@ const Home = () => {
   // const [showLoginAndRegister, setShowLoginAndRegister] = useState(false);
   const router = useRouter();
   useEffect(() => {
-    const isReload = sessionStorage.getItem('isReload')
+    const isReload = sessionStorage.getItem("isReload");
     if (session) {
       localStorage.setItem("roleId", session.user.role_id.toString());
       localStorage.setItem("email", session.user.email);
       localStorage.setItem("userId", session.user.id.toString());
       localStorage.setItem("token", session.user.token);
     }
-    if(!isReload){
-
-      sessionStorage.setItem('isReload' , 'true')
-      window.location.reload()
-
+    if (!isReload) {
+      sessionStorage.setItem("isReload", "true");
+      window.location.reload();
     }
-  
   }, []);
 
   const [token, settoken] = useState(localStorage.getItem("token") || null);
@@ -34,14 +31,30 @@ const Home = () => {
 
   return (
     <div>
-    <Navigation/>
-<div className="mastHead">
-  <p className="headTextInMastHead"> Your health, our priority trusted care solutions</p>
-  <p className="bodyTextInMastHead">Empowering healthcare with innovative, user-friendly designs for medical professionals and institutions.</p>
-  <button className="BlogsbuttonInMassHead" onClick={()=>{
-router.push("/showBlogs");
-  }}>Blogs</button>
-</div>
+      <Navigation />
+      <div className="mastHead">
+        <span className="headingInMastHead">
+          More visibility and a better patient experience
+        </span>
+        <p className="headTextInMastHead">
+          {" "}
+          “Your health, our priority trusted care solutions”
+        </p>
+        <p className="bodyTextInMastHead">
+          Empowering healthcare with innovative, user-friendly designs for
+          medical professionals and institutions.
+        </p>
+
+        <button
+          type="button"
+          className="btn btn-outline-primary BlogsButton"
+          onClick={(e) => {
+            router.push("/blogs");
+          }}
+        >
+          Blogs
+        </button>
+      </div>
       <div className="searchSection">
         <p className="textInsearchSection">Find Doctors Near You </p>
         <span className="searchBarAndButton">
@@ -78,55 +91,110 @@ router.push("/showBlogs");
             Search
           </button>
         </span>
-        <p className="text2InsearchSection"> Access doctors’ profiles and qualifications.</p>
+        <p className="text2InsearchSection">
+          {" "}
+          Access doctors’ profiles and qualifications.
+        </p>
+      </div>
+
+      <div className="appointmentSectionHome">
+        <div className="FeaturedServiceBannerModule-content">
+          <small className="FeaturedServiceBannerModule-badge">New</small>
+          <h2 className="FeaturedServiceBannerModule-title">
+            Brighten your smile
+          </h2>
+          <p className="FeaturedServiceBannerModule-subtitle">
+            Book your next dental appointment with ease
+          </p>
+          <button
+            type="button"
+            className="btn btn-outline-primary"
+            onClick={(e) => {
+              router.push("/bookAppointment");
+            }}
+          >
+            Find an Appointment
+          </button>
+        </div>
+        <div className="FeaturedServiceBannerModule-image">
+          <img
+            src="https://i.pinimg.com/736x/6c/92/d3/6c92d38a123128ed967d410f7eebd305.jpg"
+            alt=""
+            loading="lazy"
+          />
+        </div>
       </div>
 
       <div className="howToUseSection">
+        <div className="searchDectionSection">
+          <div className="textAndHeadInSearchSection">
+            <h5 className="headInserchDectionSection">
+              1- Search for a Doctor by Location and Specialization
+            </h5>
+            <p className="textInserchDectionSection">
+              Our platform’s intuitive search tool allows patients to quickly
+              find the right healthcare professional based on their geographical
+              preference and medical needs.
+            </p>
+          </div>
+          <Image
+            className="imageInSearchSection"
+            src="/images/imageinsearchforadoctorsector.PNG"
+            alt="Doctor Image"
+            width={500}
+            height={300}
+          />
+        </div>
 
         <div className="searchDectionSection">
-       <div className="textAndHeadInSearchSection">
-         <h5 className="headInserchDectionSection">1- Search for a Doctor by Location and Specialization</h5>
-        <p className="textInserchDectionSection" >Our platform’s intuitive search tool allows patients to quickly find the right healthcare professional based on their geographical preference and medical needs.</p></div>
-        <Image
-        className="imageInSearchSection"
-  src="/images/imageinsearchforadoctorsector.PNG"   
-  alt="Doctor Image"
-  width={500}
-  height={300}
-/>
-      </div>
-
-      <div className="searchDectionSection">
-        <Image
-        className="imageInSearchSection"
-  src="/images/becomeADoctor.PNG"   
-  alt="become A Doctor Image"
-  width={600}
-  height={300}
-/>
-       <div className="textAndHeadInSearchSection">
-         <h5 className="headInserchDectionSection">2- Become a Doctor and Share Blogs</h5>
-        <p className="textInserchDectionSection" >Our “Become a Doctor” portal invites licensed practitioners to join our community and build their online presence. After completing a straightforward registration process—verifying credentials and setting up a professional profile—doctors gain access to a suite of content-creation tools. They can publish insightful blog posts on topics ranging from preventative care to the latest research breakthroughs, positioning themselves as thought leaders.</p></div>
-        
-      </div>
+          <Image
+            className="imageInSearchSection"
+            src="/images/becomeADoctor.PNG"
+            alt="become A Doctor Image"
+            width={600}
+            height={300}
+          />
+          <div className="textAndHeadInSearchSection">
+            <h5 className="headInserchDectionSection">
+              2- Become a Doctor and Share Blogs
+            </h5>
+            <p className="textInserchDectionSection">
+              Our “Become a Doctor” portal invites licensed practitioners to
+              join our community and build their online presence. After
+              completing a straightforward registration process—verifying
+              credentials and setting up a professional profile—doctors gain
+              access to a suite of content-creation tools. They can publish
+              insightful blog posts on topics ranging from preventative care to
+              the latest research breakthroughs, positioning themselves as
+              thought leaders.
+            </p>
+          </div>
+        </div>
 
         <div className="searchDectionSection">
-       <div className="textAndHeadInSearchSection">
-         <h5 className="headInserchDectionSection">3- Book an Appointment with a Doctor</h5>
-        <p className="textInserchDectionSection" >Once a suitable physician is identified, patients can seamlessly schedule consultations through our appointment-booking module. The system displays each doctor’s real-time availability calendar, offering slots for in-person visits, telemedicine calls, or home visits where applicable. With just a few clicks, users select their preferred date and time, confirm their personal details, and book an appointment. </p></div>
-        <Image
-        className="imageInSearchSection"
-  src="/images/bookAnApointment.PNG"   
-  alt="book An Apointment Image"
-  width={500}
-  height={300}
-/>
+          <div className="textAndHeadInSearchSection">
+            <h5 className="headInserchDectionSection">
+              3- Book an Appointment with a Doctor
+            </h5>
+            <p className="textInserchDectionSection">
+              Once a suitable physician is identified, patients can seamlessly
+              schedule consultations through our appointment-booking module. The
+              system displays each doctor’s real-time availability calendar,
+              offering slots for in-person visits, telemedicine calls, or home
+              visits where applicable. With just a few clicks, users select
+              their preferred date and time, confirm their personal details, and
+              book an appointment.{" "}
+            </p>
+          </div>
+          <Image
+            className="imageInSearchSection"
+            src="/images/bookAnApointment.PNG"
+            alt="book An Apointment Image"
+            width={500}
+            height={300}
+          />
+        </div>
       </div>
-      </div>
-
-      
-      
-
     </div>
   );
 };

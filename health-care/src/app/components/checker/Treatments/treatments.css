@@ -1,7 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
 .TreatmentsDiv {
   position: relative;
   top: 200px;
-  margin-left: 60px;
+  bottom: 100px;
+  padding-bottom: 50px;
 }
 
 .Treatments {
@@ -9,6 +12,8 @@
   flex-direction: row;
   gap: 100px;
   max-width: 1000px;
+  margin-left: 60px;
+  margin-bottom: 30px;
 }
 
 .para {
@@ -24,6 +29,7 @@
 
 .ResultsTreatments {
   max-width: 600px;
+  height: 300px;
 }
 
 .condition {
@@ -153,8 +159,8 @@
   font-size: 14px;
 }
 
-.thanks{
-text-align: center;
+.thanks {
+  text-align: center;
 }
 
 .questionDiv {
@@ -196,4 +202,99 @@ text-align: center;
 
 .hidden {
   display: none !important;
+}
+
+.appointmentSection {
+  display: flex;
+  flex-direction: row;
+  min-width: 320px;
+  max-width: 1020px;
+  background: #e8f0fa;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.FeaturedServiceBannerModule-content {
+  width: 400px;
+  margin-left: 100px;
+  margin-top: 40px;
+}
+
+.FeaturedServiceBannerModule-image img {
+  width: 400px;
+}
+
+.FeaturedServiceBannerModule-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  margin-bottom: 16px;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 1;
+  color: #fff;
+  background: #216ecf;
+  border-radius: 500px;
+}
+
+.FeaturedServiceBannerModule-title {
+  font-weight: 900;
+  font-size: 32px;
+  color: #343b48;
+  margin: 0 0 10px;
+  text-wrap: balance;
+}
+
+.FeaturedServiceBannerModule-subtitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.3;
+  color: #343b48;
+  margin: 0 0 16px;
+  text-wrap: balance;
+}
+
+/* Appointment Section */
+.appointmentSectionHome {
+  display: flex;
+  flex-wrap: wrap;
+  background: #e8f0fa;
+  width: 100%;
+  padding: 60px 30px;
+}
+
+.FeaturedServiceBannerModule-content {
+  flex: 1 1 300px;
+  margin: 40px;
+  max-width: 700px;
+}
+
+.FeaturedServiceBannerModule-image img {
+  width: 100%;
+  max-width: 400px;
+  height: 400px;
+  display: block;
+}
+
+.FeaturedServiceBannerModule-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  margin-bottom: 16px;
+  font-weight: 900;
+  font-size: 0.875rem;
+  color: #fff;
+  background: #216ecf;
+  border-radius: 500px;
+}
+
+.FeaturedServiceBannerModule-title {
+  font-weight: 900;
+  font-size: 2rem;
+  color: #343b48;
+  margin-bottom: 0.5rem;
+}
+
+.FeaturedServiceBannerModule-subtitle {
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #343b48;
 }

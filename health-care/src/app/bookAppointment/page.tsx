@@ -1,5 +1,6 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
+import "./appointment.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import Swal from "sweetalert2";

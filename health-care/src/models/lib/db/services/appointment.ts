@@ -29,13 +29,13 @@ export const durationMap = {
 export type DurationMap = typeof durationMap;
 
 export type Appointment = {
-  id ?:number
-  DateAppointment: Date;
+  id?: number;
+  DateAppointment?: Date;
   BloodType: string;
   MedicalHistory: string;
-  TimeAppointment: DateTime;
-  clockSystem: clockSystem;
-  DurationTime: DurationMap[AppointmentType];
+  TimeAppointment?: DateTime;
+  clockSystem?: clockSystem;
+  DurationTime?: DurationMap[AppointmentType];
   AppointmentType: AppointmentType;
   description: string;
   Gender: string;
@@ -251,5 +251,3 @@ export const getAllAppointments = async () => {
     return result.rows;
   }
 };
-
-
