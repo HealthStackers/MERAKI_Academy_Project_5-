@@ -80,7 +80,9 @@ function joinRequest() {
 
                 console.log("cvUrl: ", cvUrl);
 
-                console.log(result);
+                setTimeout(() => {
+                 location.reload()
+                }, 3000);
               })
               .catch((error) => {
                 console.log(error);
