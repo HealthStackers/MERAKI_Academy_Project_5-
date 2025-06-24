@@ -31,9 +31,6 @@ import { clockSystem } from "@/models/lib/db/services/appointment";
 // Disease_id: number;
 const BookAppointment = () => {
   const { roleId, setRoleId, userId, setUserId } = useContext(AuthContext);
-  const [defualtDate, setdefualtDate] = useState<Date>();
-  const [msg, setMsg] = useState<string>("");
-  const [DurationTime, setDurationTime] = useState("");
   const [AppointmentType, setAppointmentType] =
     useState<AppointmentType>("Check-ups");
   const [diseases, setDiseases] = useState([]);
