@@ -175,3 +175,5 @@ export const GetAllPatients = async () => {
   );
   return result.rows;
 };
+
+
