@@ -45,11 +45,16 @@ margin-bottom: 20px;
 .searchButton {
   height: 50px;
   width: 100px;
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);
-  color: white;
+  background-color: white; 
+   color: #216ecf;
   font-size: large;
-  font-weight: bold;
-  border: none;
+  font-weight:500;
+  border: solid 1px #216ecf;
+}
+
+.searchButton:hover{
+  background-color: #216ecf; 
+  color: white;
 }
 
 .iconInSearch {

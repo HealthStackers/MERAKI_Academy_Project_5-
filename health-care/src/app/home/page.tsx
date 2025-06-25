@@ -1,17 +1,43 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Navigation from "@/app/components/Navigation";
 import "./home.css";
+import { AuthContext } from "../context/AuthContext";
 
 const Home = () => {
   const { data: session } = useSession();
   // const [showAdminPanel, setShowAdminPanel] = useState(false);
   // const [showLoginAndRegister, setShowLoginAndRegister] = useState(false);
   const router = useRouter();
+  const [test, setTest] = useState("");
+  const {
+    searchByLocation,
+    setSearchByLocation,
+    searchBySpecialization,
+    setSearchBySpecialization,
+    searchLocationValue,
+    setSearchLocationValue,
+    searchSpecializationValue,
+    setSearchSpecializationValue,
+  } = useContext(AuthContext);
+
+  console.log(
+    "searchBySpecialization: ",
+    searchBySpecialization,
+    "searchSpecializationValue: ",
+    searchSpecializationValue
+  );
+  console.log(
+    "searchByLocation: ",
+    searchByLocation,
+    "searchLocationValue: ",
+    searchLocationValue
+  );
+
   useEffect(() => {
     const isReload = sessionStorage.getItem("isReload");
     if (session) {
@@ -61,7 +87,8 @@ const Home = () => {
           <svg
             className="iconInSearch"
             viewBox="0 0 20 20"
-            fill="none"
+            fill="currentColor"
+            color="#216ecf"
             xmlns="https://www.w3.org/2000/svg"
           >
             <path
@@ -70,14 +97,28 @@ const Home = () => {
             ></path>
           </svg>
           <input
+            onChange={(e) => {
+              setSearchByLocation(false);
+              setSearchBySpecialization(true);
+              setSearchSpecializationValue(e.target.value);
+            }}
             className="searchInput"
             placeholder="Search By Specialization"
           ></input>
+
           <input
+            onChange={(e) => {
+              setSearchByLocation(true);
+              setSearchBySpecialization(false);
+              setSearchLocationValue(e.target.value);
+            }}
             className="searchInput"
             placeholder="Search By Location"
           ></input>
-          <button className="searchButton">
+          <button className="searchButton" onClick={()=>{
+            router.push("./allDoctorAfterSearch")
+          }}>
+            
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"

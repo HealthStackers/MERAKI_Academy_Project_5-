@@ -22,31 +22,43 @@ interface AuthContextType {
   conditions: string[];
   setConditions: Dispatch<SetStateAction<string[]>>;
   allDoctors: {
-  firstname: string;
-  lastname: string;
-  age: number;
-  country: string;
-  email: string;
-  phonenumber: number;
-  userprofilepic: string;
-  role_id: number;
-  specialization: string;
-  clinicname: string;
-  city: string;
-}[];
-  setAllDoctors: Dispatch<SetStateAction<{
-  firstname: string;
-  lastname: string;
-  age: number;
-  country: string;
-  email: string;
-  phonenumber: number;
-  userprofilepic: string;
-  role_id: number;
-  specialization: string;
-  clinicname: string;
-  city: string;
-}[]>>;
+    firstname: string;
+    lastname: string;
+    age: number;
+    country: string;
+    email: string;
+    phonenumber: number;
+    userprofilepic: string;
+    role_id: number;
+    specialization: string;
+    clinicname: string;
+    city: string;
+  }[];
+  setAllDoctors: Dispatch<
+    SetStateAction<
+      {
+        firstname: string;
+        lastname: string;
+        age: number;
+        country: string;
+        email: string;
+        phonenumber: number;
+        userprofilepic: string;
+        role_id: number;
+        specialization: string;
+        clinicname: string;
+        city: string;
+      }[]
+    >
+  >;
+  searchByLocation: boolean;
+  setSearchByLocation: Dispatch<SetStateAction<boolean>>;
+  searchBySpecialization: boolean;
+  setSearchBySpecialization: Dispatch<SetStateAction<boolean>>;
+  searchLocationValue: string;
+  setSearchLocationValue: Dispatch<SetStateAction<string>>;
+  searchSpecializationValue: string;
+  setSearchSpecializationValue: Dispatch<SetStateAction<string>>;
 }
 
 export const AuthContext = createContext<AuthContextType>({
@@ -65,8 +77,17 @@ export const AuthContext = createContext<AuthContextType>({
   setSymptoms: () => [],
   conditions: [],
   setConditions: () => [],
-  allDoctors:[],
-setAllDoctors:()=>[]
+  allDoctors: [],
+  setAllDoctors: () => [],
+
+  searchByLocation: false,
+  setSearchByLocation: () => {},
+  searchBySpecialization: false,
+  setSearchBySpecialization: () => {},
+  searchLocationValue: "",
+  setSearchLocationValue: () => {},
+  searchSpecializationValue: "",
+  setSearchSpecializationValue: () => {},
 });
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -80,21 +101,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   });
   const [symptoms, setSymptoms] = useState<string[]>([]);
   const [conditions, setConditions] = useState<string[]>([]);
-  const [allDoctors, setAllDoctors] = useState<{
-  firstname: string;
-  lastname: string;
-  age: number;
-  country: string;
-  email: string;
-  phonenumber: number;
-  userprofilepic: string;
-  role_id: number;
-  specialization: string;
-  clinicname: string;
-  city: string;
-}[]>([])
+  const [allDoctors, setAllDoctors] = useState<
+    {
+      firstname: string;
+      lastname: string;
+      age: number;
+      country: string;
+      email: string;
+      phonenumber: number;
+      userprofilepic: string;
+      role_id: number;
+      specialization: string;
+      clinicname: string;
+      city: string;
+    }[]
+  >([]);
+  const [searchByLocation, setSearchByLocation] = useState<boolean>(false);
+  const [searchBySpecialization, setSearchBySpecialization] =
+    useState<boolean>(false);
+  const [searchLocationValue, setSearchLocationValue] = useState<string>("");
+  const [searchSpecializationValue, setSearchSpecializationValue] =
+    useState<string>("");
 
- 
   useEffect(() => {
     const t =
       typeof window !== "undefined" ? localStorage.getItem("token") : null;
@@ -123,10 +151,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setInfo,
         symptoms,
         setSymptoms,
-        conditions, 
+        conditions,
         setConditions,
-        allDoctors, 
-        setAllDoctors
+        allDoctors,
+        setAllDoctors,
+        searchByLocation,
+        setSearchByLocation,
+        searchBySpecialization,
+        setSearchBySpecialization,
+        searchLocationValue,
+        setSearchLocationValue,
+        searchSpecializationValue,
+        setSearchSpecializationValue,
       }}
     >
       {children}
