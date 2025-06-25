@@ -6,13 +6,24 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Navigation from "@/app/components/Navigation";
 import "./home.css";
+import axios from "axios";
 
 const Home = () => {
   const { data: session } = useSession();
-  // const [showAdminPanel, setShowAdminPanel] = useState(false);
-  // const [showLoginAndRegister, setShowLoginAndRegister] = useState(false);
   const router = useRouter();
+  const [services, setServices] = useState<string[]>([]);
+console.log(services)
+  const GetServices = async () => {
+    axios
+      .get("http://localhost:3000/api/service/withBlogs")
+      .then((res) => {
+        setServices(res.data.data);
+      })
+      .catch((err) => {});
+  };
+
   useEffect(() => {
+    GetServices();
     const isReload = sessionStorage.getItem("isReload");
     if (session) {
       localStorage.setItem("roleId", session.user.role_id.toString());
@@ -33,6 +44,7 @@ const Home = () => {
     <div>
       <Navigation />
       <div className="mastHead">
+
         <span className="headingInMastHead">
           More visibility and a better patient experience
         </span>
@@ -125,7 +137,32 @@ const Home = () => {
         </div>
       </div>
 
+      <div className="row gx-3 gy-4 services">
+        {services.map((ele) => (
+          <div
+            className="col-sm-6 col-md-4 d-flex align-items-stretch"
+            key={ele.service_id || ele.service_title}
+          >
+            <div className="card w-100 h-100 d-flex flex-column">
+              <img
+                className="card-img-top"
+                src={ele.imageurl}
+                alt={ele.service_title}
+              />
+              <div className="card-body d-flex flex-column">
+                <h5 className="card-title">{ele.service_title}</h5>
+                <p className="card-text">{ele.description}</p>
+                <a href={`/blogs/${ele.service_id}`} className="btn btn-primary">
+                  Learn more
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
       <div className="howToUseSection">
+        <p className="introHowToUseSection">How to use the webSite</p>
         <div className="searchDectionSection">
           <div className="textAndHeadInSearchSection">
             <h5 className="headInserchDectionSection">
