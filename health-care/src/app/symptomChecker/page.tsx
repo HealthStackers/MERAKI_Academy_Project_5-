@@ -8,6 +8,7 @@ import Details from "../components/checker/Details/Details";
 import Treatments from "../components/checker/Treatments/Treatments";
 
 const SymptomChecker = () => {
+  
   const [activeIdx, setActiveIdx] = useState(0); 
    const steps = [
     { label: "INFO", component: <InfoComponent /> },
