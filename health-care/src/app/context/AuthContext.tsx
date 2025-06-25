@@ -21,6 +21,32 @@ interface AuthContextType {
   setSymptoms: Dispatch<SetStateAction<string[]>>;
   conditions: string[];
   setConditions: Dispatch<SetStateAction<string[]>>;
+  allDoctors: {
+  firstname: string;
+  lastname: string;
+  age: number;
+  country: string;
+  email: string;
+  phonenumber: number;
+  userprofilepic: string;
+  role_id: number;
+  specialization: string;
+  clinicname: string;
+  city: string;
+}[];
+  setAllDoctors: Dispatch<SetStateAction<{
+  firstname: string;
+  lastname: string;
+  age: number;
+  country: string;
+  email: string;
+  phonenumber: number;
+  userprofilepic: string;
+  role_id: number;
+  specialization: string;
+  clinicname: string;
+  city: string;
+}[]>>;
 }
 
 export const AuthContext = createContext<AuthContextType>({
@@ -39,6 +65,8 @@ export const AuthContext = createContext<AuthContextType>({
   setSymptoms: () => [],
   conditions: [],
   setConditions: () => [],
+  allDoctors:[],
+setAllDoctors:()=>[]
 });
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -52,6 +80,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   });
   const [symptoms, setSymptoms] = useState<string[]>([]);
   const [conditions, setConditions] = useState<string[]>([]);
+  const [allDoctors, setAllDoctors] = useState<{
+  firstname: string;
+  lastname: string;
+  age: number;
+  country: string;
+  email: string;
+  phonenumber: number;
+  userprofilepic: string;
+  role_id: number;
+  specialization: string;
+  clinicname: string;
+  city: string;
+}[]>([])
 
  
   useEffect(() => {
@@ -83,7 +124,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         symptoms,
         setSymptoms,
         conditions, 
-        setConditions
+        setConditions,
+        allDoctors, 
+        setAllDoctors
       }}
     >
       {children}

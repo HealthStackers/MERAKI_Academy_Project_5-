@@ -117,8 +117,8 @@ const Navigation = () => {
                 )}
 
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Contact
+                  <a className="nav-link" href="allDoctors">
+                    All Doctors
                   </a>
                 </li>
 
