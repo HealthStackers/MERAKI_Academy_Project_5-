@@ -11,12 +11,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Home = () => {
-  const { token } = useContext(AuthContext);
   const handleAction = () => {
+    const token = localStorage.getItem("token");
     if (token) {
-      setTimeout(() => {
-        router.push("/bookAppointment");
-      }, 1000); 
+      router.push("/bookAppointment");
     } else {
       toast.error("Please log in or register to access this feature");
     }
