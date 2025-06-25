@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
 *,
 *::before,
@@ -8,8 +8,8 @@
   box-sizing: border-box;
 }
 
-
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
 }
@@ -22,13 +22,11 @@ html, body {
   padding: 30px;
 }
 
-
-
 .textInsearchSection {
   font-size: 30px;
   text-transform: uppercase;
   font-family: "Poppins", sans-serif;
-   font-weight: 600;
+  font-weight: 600;
   color: #343b48;
   margin: 0 0 10px;
   text-wrap: balance;
@@ -38,8 +36,8 @@ html, body {
 .searchInput {
   width: 360px;
   height: 50px;
-    color: #343b48;
-margin-bottom: 20px;
+  color: #343b48;
+  margin-bottom: 20px;
 }
 
 .searchButton {
@@ -85,7 +83,6 @@ margin-bottom: 20px;
   top: 60px;
   padding: 150px;
   margin-bottom: 20px;
-  
 }
 
 .headingInMastHead {
@@ -107,7 +104,6 @@ margin-bottom: 20px;
   word-wrap: break-word;
 }
 
-
 .bodyTextInMastHead {
   font-size: 18px;
   color: #343b48;
@@ -118,15 +114,13 @@ margin-bottom: 20px;
   margin-bottom: 40px;
   overflow-wrap: break-word;
   word-wrap: break-word;
- 
 }
 
 .BlogsButton {
   font-size: 20px;
   width: 200px;
   height: 50px;
-    font-family: 'Poppins', sans-serif;
-
+  font-family: "Poppins", sans-serif;
 }
 
 .howToUseSection {
@@ -134,7 +128,7 @@ margin-bottom: 20px;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  margin-top: 150px;
+  margin-top: 120px;
   font-family: "Poppins", sans-serif;
 }
 
@@ -154,8 +148,6 @@ margin-bottom: 20px;
   position: relative;
   bottom: 10vh;
 }
-
-
 
 /* Appointment Section */
 .appointmentSectionHome {
@@ -201,4 +193,30 @@ margin-bottom: 20px;
   font-weight: 600;
   font-size: 1.25rem;
   color: #343b48;
+}
+
+.introHowToUseSection {
+  text-transform: uppercase;
+  align-self: first baseline;
+  margin-left: 80px;
+  font-size: 32px;
+  color: #343b48;
+  font-weight: 700;
+}
+
+.card {
+cursor: pointer;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 200px; 
+  object-fit: cover; 
+  flex-shrink: 0; 
+}
+
+.services {
+  margin-top: 30px;
+  margin-left: 60px;
+  margin-right: 20px;
 }

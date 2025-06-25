@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React, { useContext, useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
@@ -18,7 +18,7 @@ const Navigation = () => {
 
   const GetServices = async () => {
     axios
-      .get("http://localhost:3000/api/service")
+      .get("http://localhost:3000/api/service/withBlogs")
       .then((res) => {
         setServices(res.data.data);
       })
@@ -99,9 +99,12 @@ const Navigation = () => {
                     aria-labelledby="servicesDropdown"
                   >
                     {services.map((ele) => (
-                      <li key={ele.id}>
-                        <a className="dropdown-item" href="#">
-                          {ele.title}
+                      <li key={ele.service_id}>
+                        <a
+                          className="dropdown-item"
+                          href={`/blogs/${ele.service_id}`}
+                        >
+                          {ele.service_title}
                         </a>
                       </li>
                     ))}
