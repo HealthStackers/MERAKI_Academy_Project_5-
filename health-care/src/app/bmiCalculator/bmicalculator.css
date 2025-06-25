@@ -164,9 +164,7 @@
 .obesityNumber {
   grid-column-start: 4;
   grid-column-end: 4;
-  justify-self: right;
-  justify-items: right;
-  justify-content: right;
+ 
 }
 
 .bmiRangeTitle {

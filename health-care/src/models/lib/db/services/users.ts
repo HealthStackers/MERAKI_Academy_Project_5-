@@ -27,6 +27,7 @@ export type UpdateUser = {
   password: string;
   role_id: number;
   is_deleted: 0;
+  userprofilepic:string;
 };
 
 export type LoginUser = {
@@ -125,7 +126,7 @@ export const Login = async (email: string, password: string) => {
 
 export const UpdateUser = async (id: number, UpdatedUser: UpdateUser) => {
   const result = await pool.query<UpdateUser>(
-    `UPDATE users SET firstName = COALESCE($1,firstName) , lastName = COALESCE($2,lastName), age = COALESCE($3 , age), country = COALESCE($4 , country),phoneNumber =  COALESCE($5,phoneNumber )  , email =COALESCE($6 , email) , password = COALESCE($7,password ), role_id = COALESCE($8, role_id) ,is_deleted = COALESCE($9, is_deleted) WHERE id = $10 RETURNING *`,
+    `UPDATE users SET firstName = COALESCE($1,firstName) , lastName = COALESCE($2,lastName), age = COALESCE($3 , age), country = COALESCE($4 , country),phoneNumber =  COALESCE($5,phoneNumber )  , email =COALESCE($6 , email) , password = COALESCE($7,password ), role_id = COALESCE($8, role_id) ,is_deleted = COALESCE($9, is_deleted),userprofilepic = COALESCE($10, userprofilepic)   WHERE id = $11 RETURNING *`,
     [
       UpdatedUser.firstName,
       UpdatedUser.lastName,
@@ -136,6 +137,7 @@ export const UpdateUser = async (id: number, UpdatedUser: UpdateUser) => {
       UpdatedUser.password,
       UpdatedUser.role_id,
       UpdatedUser.is_deleted,
+      UpdatedUser.userprofilepic,
       id,
     ]
   );
@@ -152,11 +154,13 @@ export const DeleteUser = async (id: number) => {
 
 export const GetAllDoctors = async () => {
   const result = await pool.query(
-    `SELECT * FROM users FULL OUTER JOIN services ON users.id = services.doctor_id 
-       FULL OUTER JOIN blogs ON users.id = blogs.doctor_id
-    FULL OUTER JOIN join_request ON users.id = join_request.doctor_id 
-      FULL OUTER JOIN role ON role.id = users.role_id 
-    WHERE role.role_name = 'doctor'`
+    `SELECT users.firstname, users.lastname, users.age, users.country, users.email, users.role_id, users.phonenumber, users.userprofilepic, join_request.city, join_request.clinicname, join_request.specialization
+FROM users 
+FULL OUTER JOIN services ON users.id = services.doctor_id 
+FULL OUTER JOIN blogs ON users.id = blogs.doctor_id
+FULL OUTER JOIN join_request ON users.id = join_request.doctor_id 
+FULL OUTER JOIN role ON role.id = users.role_id 
+WHERE role.role_name = 'doctor'`
   );
   return result.rows;
 };

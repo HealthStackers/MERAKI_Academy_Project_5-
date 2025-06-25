@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import axios from "axios";
+import axios, { all } from "axios";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import "./handleJoinRequests.css";
@@ -39,6 +39,7 @@ function HandleJoinRequest() {
       .then((result) => {
         console.log("result.data: ", result.data.data);
         setAllRequests(result.data.data);
+
       })
       .catch((error) => {
         console.log(error);
@@ -79,7 +80,7 @@ function HandleJoinRequest() {
           setTimeout(() => {
             setshowAlertMessage(0);
           }, 2000);
-          window.location.reload();
+         // window.location.reload();
         }
 
         console.log(result);
@@ -89,9 +90,13 @@ function HandleJoinRequest() {
       });
   };
   const HandleUpdateRole = (id: number) => {
+    const doctorProfilePicture= allRequests.find((ele)=>{return ele.doctor_id===id})?.profilepictureurl
+    console.log("doctorProfilePicture: ",doctorProfilePicture);
+    
     axios
       .put(`http://localhost:3000/api/users/profile/${id}`, {
         role_id: 3,
+        userprofilepic: doctorProfilePicture,
       })
       .then((result) => {
         console.log("result in update role: ", result);
@@ -133,6 +138,7 @@ function HandleJoinRequest() {
                 <div>
                   <strong>Doctor CV:</strong> <a href={ele.cvurl}>View</a>{" "}
                 </div>
+                
               </div>
               <div className="buttonsInHandleJoinRequest">
                 <button
