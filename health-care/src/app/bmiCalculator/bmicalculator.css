@@ -1,6 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+
 .bmiPage {
   position: relative;
   top: 100px;
+  font-family: "Poppins", sans-serif;
 }
 
 .bmiHeaderAndText {
@@ -121,7 +125,8 @@
   top: 3px;
 }
 
-.heightInput,.weightSectionInput{
+.heightInput,
+.weightSectionInput {
   border-radius: 5px;
   border: #9b59b6 1.5px solid;
 }
@@ -139,7 +144,7 @@
 .overweight,
 .obesity {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr ;
+  grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
   border-bottom: #9b59b6 solid 1px;
   padding: 5px;
@@ -171,16 +176,20 @@
   font-weight: bold;
 }
 
-.bmiResult{
+.bmiResult {
   border-bottom: #9b59b6 solid 2px;
   font-size: large;
-
 }
 
-.overweight,.underweight,.healthy,.obesity{
+.overweight,
+.underweight,
+.healthy,
+.obesity {
   background-color: white;
 }
-#overweight,#underweight,#healthy,#obesity{
+#overweight,
+#underweight,
+#healthy,
+#obesity {
   background-color: #8ad59b;
 }
-
