@@ -123,3 +123,20 @@ margin-bottom: 50px;
     color:#000;
     background-color: #fff;
 }
+
+.nextButtonInChecker{
+  height: 50px;
+  width: 100px;
+  background-color: white; 
+   color: #216ecf;
+  font-size: large;
+  font-weight:500;
+  border: solid 1px #216ecf;
+  border-radius: 5px;
+  align-self: center;
+}
+
+.nextButtonInChecker:hover{
+  background-color: #216ecf; 
+  color: white;
+}

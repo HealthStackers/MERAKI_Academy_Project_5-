@@ -103,7 +103,7 @@ const Home = () => {
               setSearchSpecializationValue(e.target.value);
             }}
             className="searchInput"
-            placeholder="Search By Specialization"
+            placeholder= "Search By Specialization "
           ></input>
 
           <input
@@ -112,8 +112,9 @@ const Home = () => {
               setSearchBySpecialization(false);
               setSearchLocationValue(e.target.value);
             }}
+            
             className="searchInput"
-            placeholder="Search By Location"
+            placeholder="Search By City"
           ></input>
           <button className="searchButton" onClick={()=>{
             router.push("./allDoctorAfterSearch")

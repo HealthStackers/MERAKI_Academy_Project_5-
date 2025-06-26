@@ -40,6 +40,14 @@ html, body {
   height: 50px;
     color: #343b48;
 margin-bottom: 20px;
+margin-right: 2px;
+border-radius: 5px;
+padding-left: 5px;
+}
+
+.searchInput::placeholder{
+  position: relative;
+  left: 10px;
 }
 
 .searchButton {
@@ -50,6 +58,8 @@ margin-bottom: 20px;
   font-size: large;
   font-weight:500;
   border: solid 1px #216ecf;
+  border-radius: 5px;
+
 }
 
 .searchButton:hover{

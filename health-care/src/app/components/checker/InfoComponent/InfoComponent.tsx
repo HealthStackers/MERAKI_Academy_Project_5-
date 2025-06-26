@@ -5,7 +5,7 @@ import { AuthContext } from "@/app/context/AuthContext";
 
 const InfoComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { info, setInfo, symptoms, setSymptoms } = useContext(AuthContext);
+  const { info, setInfo, symptoms, setSymptoms,activeIdx, setActiveIdx } = useContext(AuthContext);
 
   console.log(info);
   return (
@@ -109,7 +109,11 @@ const InfoComponent = () => {
             </button>
           </div>
         </div>
+         <button className="nextButtonInChecker" onClick={()=>{
+        setActiveIdx(1)
+      }}> Next</button>
       </form>
+     
     </div>
   );
 };

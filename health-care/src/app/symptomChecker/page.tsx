@@ -1,17 +1,19 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./symptomChecker.css";
 import InfoComponent from "../components/checker/InfoComponent/InfoComponent";
 import Symptoms from "../components/checker/Symptoms/Symptoms";
 import Conditions from "../components/checker/Conditions/Conditions";
 import Details from "../components/checker/Details/Details";
 import Treatments from "../components/checker/Treatments/Treatments";
+import { AuthContext } from "../context/AuthContext";
 
 const SymptomChecker = () => {
-  const [activeIdx, setActiveIdx] = useState(0); 
-   const steps = [
+  const { activeIdx, setActiveIdx } = useContext(AuthContext);
+
+  const steps = [
     { label: "INFO", component: <InfoComponent /> },
-    { label: "SYMPTOMS", component: <Symptoms/> },
+    { label: "SYMPTOMS", component: <Symptoms /> },
     { label: "CONDITIONS", component: <Conditions /> },
     { label: "DETAILS", component: <Details /> },
     { label: "TREATMENTS", component: <Treatments /> },
@@ -20,7 +22,6 @@ const SymptomChecker = () => {
   return (
     <>
       <div className="SymptomCheckerDiv">
-       
         <div className="navbar-container">
           <ul className="navbarChecker">
             {steps.map((step, idx) => {
@@ -44,9 +45,7 @@ const SymptomChecker = () => {
         </div>
       </div>
 
-      <div className="symptoms-page">
-         {steps[activeIdx].component}
-      </div>
+      <div className="symptoms-page">{steps[activeIdx].component}</div>
     </>
   );
 };

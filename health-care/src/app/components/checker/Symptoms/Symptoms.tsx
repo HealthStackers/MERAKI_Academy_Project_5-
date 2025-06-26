@@ -9,7 +9,7 @@ import { AuthContext } from "@/app/context/AuthContext";
 const Symptoms = () => {
   const inputRef = useRef(null);
 
-  const { info, setInfo, symptoms, setSymptoms } = useContext(AuthContext);
+  const { info, setInfo, symptoms, setSymptoms,activeIdx, setActiveIdx } = useContext(AuthContext);
   console.log(info);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   //   const [symptoms, setSymptoms] = useState<any[]>([]);
@@ -130,11 +130,20 @@ const Symptoms = () => {
               </ul>
             </div>
           </div>
+          <div className="navigationInChecker">
+            <button className="nextButtonInChecker" onClick={()=>{
+        setActiveIdx(0)
+      }}> Previous</button>
+      <button className="nextButtonInChecker" onClick={()=>{
+        setActiveIdx(2)
+      }}> Next</button>
+          </div>
         </div>
         {/* <div className="validation-container fade-out">
           <span className="validation-text">false</span>
         </div> */}
       </div>
+      
     </div>
   );
 };
