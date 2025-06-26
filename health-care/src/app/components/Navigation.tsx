@@ -27,7 +27,7 @@ const Navigation = () => {
 
   const GetServices = async () => {
     axios
-      .get("http://localhost:3000/api/service")
+      .get("http://localhost:3000/api/service/withBlogs")
       .then((res) => {
         setServices(res.data.data);
       })
@@ -107,9 +107,12 @@ const Navigation = () => {
                     aria-labelledby="servicesDropdown"
                   >
                     {services.map((ele) => (
-                      <li key={ele.id}>
-                        <a className="dropdown-item" href="#">
-                          {ele.title}
+                      <li key={ele.service_id}>
+                        <a
+                          className="dropdown-item"
+                          href={`/blogs/${ele.service_id}`}
+                        >
+                          {ele.service_title}
                         </a>
                       </li>
                     ))}
@@ -125,8 +128,13 @@ const Navigation = () => {
                 )}
 
                 <li className="nav-item">
+<<<<<<< AddLoginLogoutButtons
                   <a className="nav-link" href="contact">
                     Contact
+=======
+                  <a className="nav-link" href="allDoctors">
+                    All Doctors
+>>>>>>> main
                   </a>
                 </li>
 
