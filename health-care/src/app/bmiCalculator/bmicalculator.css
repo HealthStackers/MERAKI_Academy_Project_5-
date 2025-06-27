@@ -182,13 +182,16 @@
   font-weight: bold;
 }
 
-<<<<<<< HEAD
+
+
 .bmiResult{
   border-bottom: #216ecf solid 2px;
-=======
+
+
+
 .bmiResult {
   border-bottom: #9b59b6 solid 2px;
->>>>>>> bfca3eacc6bef1c141d82a1b673e85fe97714c74
+
   font-size: large;
 }
 
