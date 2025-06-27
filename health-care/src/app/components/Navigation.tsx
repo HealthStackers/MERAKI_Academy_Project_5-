@@ -1,24 +1,40 @@
-'use client';
+"use client";
 import React, { useContext, useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
 import { AuthContext } from "../context/AuthContext";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Navigation = () => {
+   type servicesArray = {
+    service_id: number;
+    service_title: string;
+    imageurl: string;
+    description: string;
+  }[];
+  const { setToken } = useContext(AuthContext);
+  const token = localStorage.getItem("token");
+  const roleId = localStorage.getItem("roleId");
   const { data: session } = useSession();
-  const { roleId, setRoleId, userId, setUserId } = useContext(AuthContext);
-  const [services, setServices] = useState<string[]>([]);
-
+  const [services, setServices] = useState<servicesArray>([]);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [showJoinRequest, setShowJoinRequest] = useState(false);
-  console.log("roleId: ", roleId);
-  const [token, settoken] = useState(localStorage.getItem("token") || null);
+
+  const handleLogout = async () => {
+    setToken(null);
+    localStorage.clear();
+    sessionStorage.clear()
+    await signOut({ redirect: true, callbackUrl: "/login" }); // Redirects to login page after logout
+  };
+
+  // const [token, settoken] = useState(localStorage.getItem("token") || null);
 
   const GetServices = async () => {
     axios
-      .get("http://localhost:3000/api/service")
+      .get("http://localhost:3000/api/service/withBlogs")
       .then((res) => {
         setServices(res.data.data);
       })
@@ -27,7 +43,6 @@ const Navigation = () => {
 
   useEffect(() => {
     GetServices();
-    const roleId = localStorage.getItem("roleId");
     if (roleId !== null) {
       if (+roleId === 1) {
         setShowAdminPanel(true);
@@ -68,12 +83,12 @@ const Navigation = () => {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="blogs">
-                    Blogs
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="symptomChecker">
+                  <a
+                    className={`nav-link ${token ? "" : "disabled"}`}
+                    href={token ? "symptomChecker" : undefined}
+                    aria-disabled={!token}
+                    onClick={token ? undefined : (e) => e.preventDefault()}
+                  >
                     Symptom Checker
                   </a>
                 </li>
@@ -99,9 +114,12 @@ const Navigation = () => {
                     aria-labelledby="servicesDropdown"
                   >
                     {services.map((ele) => (
-                      <li key={ele.id}>
-                        <a className="dropdown-item" href="#">
-                          {ele.title}
+                      <li key={ele.service_id}>
+                        <a
+                          className="dropdown-item"
+                          href={`/blogs/${ele.service_id}`}
+                        >
+                          {ele.service_title}
                         </a>
                       </li>
                     ))}
@@ -115,10 +133,14 @@ const Navigation = () => {
                     </a>
                   </li>
                 )}
-
                 <li className="nav-item">
                   <a className="nav-link" href="allDoctors">
                     All Doctors
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="contact">
+                    Contact
                   </a>
                 </li>
 
@@ -130,25 +152,30 @@ const Navigation = () => {
                   </li>
                 )}
               </div>
-              {!token && (
-                <div className="partTwoInNavBar">
-                  <li className="loginAndRegister">
-                    <li className="nav-item">
-                      {" "}
-                      <a href="login" className="nav-link">
-                        <button id="loginButtonInNavBar">Login</button>
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a href="register" className="nav-link">
-                        <button id="registerButtonInNavBar">Register</button>
-                      </a>
-                    </li>
-                  </li>
-                </div>
-              )}
             </ul>
           </div>
+          {token ? (
+            <button
+              type="button"
+              data-mdb-button-init
+              data-mdb-ripple-init
+              className="btn btn-primary btn-m logout"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          ) : (
+            <button
+              type="button"
+              data-mdb-button-init
+              data-mdb-ripple-init
+              className="btn btn-primary btn-m login"
+            >
+              <a className="nav-link" href="login">
+                Login
+              </a>
+            </button>
+          )}
         </div>
       </nav>
 

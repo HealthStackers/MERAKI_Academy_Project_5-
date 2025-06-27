@@ -52,3 +52,7 @@
   border: #71b7e6;
   width: 5vw;
 }
+
+.login , .logout{
+  margin-right: 30px;
+}

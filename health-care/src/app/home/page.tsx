@@ -6,13 +6,32 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Navigation from "@/app/components/Navigation";
 import "./home.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { AuthContext } from "../context/AuthContext";
 
+import axios from "axios";
+
 const Home = () => {
+  type servicesArray = {
+    service_id: number;
+    service_title: string;
+    imageurl: string;
+    description: string;
+  }[];
+  const handleAction = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      router.push("/bookAppointment");
+    } else {
+      toast.error("Please log in or register to access this feature");
+    }
+  };
+
   const { data: session } = useSession();
-  // const [showAdminPanel, setShowAdminPanel] = useState(false);
-  // const [showLoginAndRegister, setShowLoginAndRegister] = useState(false);
   const router = useRouter();
+
   const [test, setTest] = useState("");
   const {
     searchByLocation,
@@ -38,7 +57,19 @@ const Home = () => {
     searchLocationValue
   );
 
+  const [services, setServices] = useState<servicesArray>([]);
+  console.log(services);
+  const GetServices = async () => {
+    axios
+      .get("http://localhost:3000/api/service/withBlogs")
+      .then((res) => {
+        setServices(res.data.data);
+      })
+      .catch((err) => {});
+  };
+
   useEffect(() => {
+    GetServices();
     const isReload = sessionStorage.getItem("isReload");
     if (session) {
       localStorage.setItem("roleId", session.user.role_id.toString());
@@ -52,12 +83,10 @@ const Home = () => {
     }
   }, []);
 
-  const [token, settoken] = useState(localStorage.getItem("token") || null);
-  console.log(token);
-
   return (
     <div>
       <Navigation />
+
       <div className="mastHead">
         <span className="headingInMastHead">
           More visibility and a better patient experience
@@ -103,7 +132,7 @@ const Home = () => {
               setSearchSpecializationValue(e.target.value);
             }}
             className="searchInput"
-            placeholder= "Search By Specialization "
+            placeholder="Search By Specialization "
           ></input>
 
           <input
@@ -112,14 +141,15 @@ const Home = () => {
               setSearchBySpecialization(false);
               setSearchLocationValue(e.target.value);
             }}
-            
             className="searchInput"
             placeholder="Search By City"
           ></input>
-          <button className="searchButton" onClick={()=>{
-            router.push("./allDoctorAfterSearch")
-          }}>
-            
+          <button
+            className="searchButton"
+            onClick={() => {
+              router.push("./allDoctorAfterSearch");
+            }}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -138,7 +168,6 @@ const Home = () => {
           Access doctors’ profiles and qualifications.
         </p>
       </div>
-
       <div className="appointmentSectionHome">
         <div className="FeaturedServiceBannerModule-content">
           <small className="FeaturedServiceBannerModule-badge">New</small>
@@ -167,75 +196,109 @@ const Home = () => {
         </div>
       </div>
 
+      <div className="FeaturedServiceBannerModule-content">
+        <div className="row gx-3 gy-4 services">
+          {services.map((ele) => (
+            <div
+              className="col-sm-6 col-md-4 d-flex align-items-stretch"
+              key={ele.service_id || ele.service_title}
+            >
+              <div className="card w-100 h-100 d-flex flex-column">
+                <img
+                  className="card-img-top"
+                  src={ele.imageurl}
+                  alt={ele.service_title}
+                />
+                <div className="card-body d-flex flex-column">
+                  <h5 className="card-title">{ele.service_title}</h5>
+                  <p className="card-text">{ele.description}</p>
+                  <a
+                    href={`/blogs/${ele.service_id}`}
+                    className="btn btn-primary"
+                  >
+                    Learn more
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="howToUseSection">
-        <div className="searchDectionSection">
-          <div className="textAndHeadInSearchSection">
-            <h5 className="headInserchDectionSection">
-              1- Search for a Doctor by Location and Specialization
-            </h5>
-            <p className="textInserchDectionSection">
-              Our platform’s intuitive search tool allows patients to quickly
-              find the right healthcare professional based on their geographical
-              preference and medical needs.
-            </p>
-          </div>
-          <Image
-            className="imageInSearchSection"
-            src="/images/imageinsearchforadoctorsector.PNG"
-            alt="Doctor Image"
-            width={500}
-            height={300}
-          />
-        </div>
+        <p className="introHowToUseSection">How to use the webSite</p>
 
-        <div className="searchDectionSection">
-          <Image
-            className="imageInSearchSection"
-            src="/images/becomeADoctor.PNG"
-            alt="become A Doctor Image"
-            width={600}
-            height={300}
-          />
-          <div className="textAndHeadInSearchSection">
-            <h5 className="headInserchDectionSection">
-              2- Become a Doctor and Share Blogs
-            </h5>
-            <p className="textInserchDectionSection">
-              Our “Become a Doctor” portal invites licensed practitioners to
-              join our community and build their online presence. After
-              completing a straightforward registration process—verifying
-              credentials and setting up a professional profile—doctors gain
-              access to a suite of content-creation tools. They can publish
-              insightful blog posts on topics ranging from preventative care to
-              the latest research breakthroughs, positioning themselves as
-              thought leaders.
-            </p>
+        <div className="howToUseSection">
+          <div className="searchDectionSection">
+            <div className="textAndHeadInSearchSection">
+              <h5 className="headInserchDectionSection">
+                1- Search for a Doctor by Location and Specialization
+              </h5>
+              <p className="textInserchDectionSection">
+                Our platform’s intuitive search tool allows patients to quickly
+                find the right healthcare professional based on their
+                geographical preference and medical needs.
+              </p>
+            </div>
+            <Image
+              className="imageInSearchSection"
+              src="/images/imageinsearchforadoctorsector.PNG"
+              alt="Doctor Image"
+              width={500}
+              height={300}
+            />
           </div>
-        </div>
 
-        <div className="searchDectionSection">
-          <div className="textAndHeadInSearchSection">
-            <h5 className="headInserchDectionSection">
-              3- Book an Appointment with a Doctor
-            </h5>
-            <p className="textInserchDectionSection">
-              Once a suitable physician is identified, patients can seamlessly
-              schedule consultations through our appointment-booking module. The
-              system displays each doctor’s real-time availability calendar,
-              offering slots for in-person visits, telemedicine calls, or home
-              visits where applicable. With just a few clicks, users select
-              their preferred date and time, confirm their personal details, and
-              book an appointment.{" "}
-            </p>
+          <div className="searchDectionSection">
+            <Image
+              className="imageInSearchSection"
+              src="/images/becomeADoctor.PNG"
+              alt="become A Doctor Image"
+              width={600}
+              height={300}
+            />
+            <div className="textAndHeadInSearchSection">
+              <h5 className="headInserchDectionSection">
+                2- Become a Doctor and Share Blogs
+              </h5>
+              <p className="textInserchDectionSection">
+                Our “Become a Doctor” portal invites licensed practitioners to
+                join our community and build their online presence. After
+                completing a straightforward registration process—verifying
+                credentials and setting up a professional profile—doctors gain
+                access to a suite of content-creation tools. They can publish
+                insightful blog posts on topics ranging from preventative care
+                to the latest research breakthroughs, positioning themselves as
+                thought leaders.
+              </p>
+            </div>
           </div>
-          <Image
-            className="imageInSearchSection"
-            src="/images/bookAnApointment.PNG"
-            alt="book An Apointment Image"
-            width={500}
-            height={300}
-          />
+
+          <div className="searchDectionSection">
+            <div className="textAndHeadInSearchSection">
+              <h5 className="headInserchDectionSection">
+                3- Book an Appointment with a Doctor
+              </h5>
+              <p className="textInserchDectionSection">
+                Once a suitable physician is identified, patients can seamlessly
+                schedule consultations through our appointment-booking module.
+                The system displays each doctor’s real-time availability
+                calendar, offering slots for in-person visits, telemedicine
+                calls, or home visits where applicable. With just a few clicks,
+                users select their preferred date and time, confirm their
+                personal details, and book an appointment.{" "}
+              </p>
+            </div>
+            <Image
+              className="imageInSearchSection"
+              src="/images/bookAnApointment.PNG"
+              alt="book An Apointment Image"
+              width={500}
+              height={300}
+            />
+          </div>
         </div>
+        <ToastContainer />
       </div>
     </div>
   );
