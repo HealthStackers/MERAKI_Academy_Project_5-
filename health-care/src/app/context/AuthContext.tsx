@@ -59,6 +59,8 @@ interface AuthContextType {
   setSearchLocationValue: Dispatch<SetStateAction<string>>;
   searchSpecializationValue: string;
   setSearchSpecializationValue: Dispatch<SetStateAction<string>>;
+  activeIdx: number;
+  setActiveIdx: Dispatch<SetStateAction<number>>;
 }
 
 export const AuthContext = createContext<AuthContextType>({
@@ -88,6 +90,8 @@ export const AuthContext = createContext<AuthContextType>({
   setSearchLocationValue: () => {},
   searchSpecializationValue: "",
   setSearchSpecializationValue: () => {},
+  activeIdx: 0,
+  setActiveIdx: () => {},
 });
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -122,6 +126,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [searchLocationValue, setSearchLocationValue] = useState<string>("");
   const [searchSpecializationValue, setSearchSpecializationValue] =
     useState<string>("");
+  const [activeIdx, setActiveIdx] = useState<number>(0);
 
   useEffect(() => {
     const t =
@@ -163,6 +168,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setSearchLocationValue,
         searchSpecializationValue,
         setSearchSpecializationValue,
+        activeIdx,
+        setActiveIdx,
       }}
     >
       {children}

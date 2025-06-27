@@ -9,17 +9,34 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Navigation = () => {
+
+   type servicesArray = {
+    service_id: number;
+    service_title: string;
+    imageurl: string;
+    description: string;
+  }[];
+
+
   const { setToken } = useContext(AuthContext);
   const token = localStorage.getItem("token");
   const roleId = localStorage.getItem("roleId");
   const { data: session } = useSession();
-  const [services, setServices] = useState<string[]>([]);
+
+  const [services, setServices] = useState<servicesArray>([]);
+
+ 
+
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [showJoinRequest, setShowJoinRequest] = useState(false);
 
   const handleLogout = async () => {
     setToken(null);
     localStorage.clear();
+
+    sessionStorage.clear()
+
+
     await signOut({ redirect: true, callbackUrl: "/login" }); // Redirects to login page after logout
   };
 
@@ -126,15 +143,18 @@ const Navigation = () => {
                     </a>
                   </li>
                 )}
-
                 <li className="nav-item">
-<<<<<<< AddLoginLogoutButtons
-                  <a className="nav-link" href="contact">
-                    Contact
-=======
+
+                  
+
                   <a className="nav-link" href="allDoctors">
                     All Doctors
->>>>>>> main
+
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="contact">
+                    Contact
                   </a>
                 </li>
 

@@ -10,7 +10,7 @@ const Details = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const { info, setInfo, symptoms, setSymptoms, conditions, setConditions } =
+  const { info, setInfo, symptoms, setSymptoms, conditions, setConditions,setActiveIdx } =
     useContext(AuthContext);
   const arr = symptoms.toString().split(",").join("/");
   console.log(arr);
@@ -118,6 +118,14 @@ const Details = () => {
             
           </div> */}
       </div>
+       <div className="navigationInChecker">
+            <button className="nextButtonInChecker" onClick={()=>{
+        setActiveIdx(2)
+      }}> Previous</button>
+      <button className="nextButtonInChecker" onClick={()=>{
+        setActiveIdx(4)
+      }}> Next</button>
+          </div>
     </div>
   );
 };
