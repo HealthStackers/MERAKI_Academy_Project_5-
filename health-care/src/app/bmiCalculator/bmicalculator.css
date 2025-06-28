@@ -16,7 +16,7 @@
 
 .bmiHeader {
   display: flex;
-  border-bottom: solid 2px #9b59b6;
+  border-bottom: solid 2px #216ecf;
   align-self: center;
 }
 
@@ -68,7 +68,7 @@
 .bmiCalculatorHeaderSection {
   display: flex;
   padding: 30px 40px;
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  background-color: #216ecf;
   color: white;
   font-weight: bold;
   width: 100%;
@@ -85,7 +85,7 @@
 .bmiCategoriesHeader {
   display: flex;
   padding: 30px 40px;
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  background-color: #216ecf;
   color: white;
   font-weight: bold;
   width: 100%;
@@ -94,18 +94,24 @@
 
 .calculateInBmiPage {
   display: flex;
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);
-  border: none;
+  background-color: white;
+  border: 1px #216ecf solid ;
   width: 150px;
   height: 40px;
   border-radius: 10px;
   color: white;
   font-size: x-large;
-  font-weight: bold;
+  font-weight: 600;
   align-items: center;
   justify-self: center;
   justify-content: center;
   margin: 20px;
+  color: #216ecf;
+}
+
+.calculateInBmiPage:hover{
+  background-color:#216ecf;
+  color: white;
 }
 
 .heightSection,
@@ -128,7 +134,7 @@
 .heightInput,
 .weightSectionInput {
   border-radius: 5px;
-  border: #9b59b6 1.5px solid;
+  border: #216ecf 1.5px solid;
 }
 
 .bmiCategorySection {
@@ -146,7 +152,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
-  border-bottom: #9b59b6 solid 1px;
+  border-bottom: #216ecf solid 1px;
   padding: 5px;
   align-self: start;
   justify-items: start;
@@ -169,17 +175,23 @@
 .obesityNumber {
   grid-column-start: 4;
   grid-column-end: 4;
-  justify-self: right;
-  justify-items: right;
-  justify-content: right;
+ 
 }
 
 .bmiRangeTitle {
   font-weight: bold;
 }
 
+
+
+.bmiResult{
+  border-bottom: #216ecf solid 2px;
+
+
+
 .bmiResult {
   border-bottom: #9b59b6 solid 2px;
+
   font-size: large;
 }
 

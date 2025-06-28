@@ -27,6 +27,7 @@ export type UpdateUser = {
   password: string;
   role_id: number;
   is_deleted: 0;
+  userprofilepic:string;
 };
 
 export type LoginUser = {
@@ -125,7 +126,7 @@ export const Login = async (email: string, password: string) => {
 
 export const UpdateUser = async (id: number, UpdatedUser: UpdateUser) => {
   const result = await pool.query<UpdateUser>(
-    `UPDATE users SET firstName = COALESCE($1,firstName) , lastName = COALESCE($2,lastName), age = COALESCE($3 , age), country = COALESCE($4 , country),phoneNumber =  COALESCE($5,phoneNumber )  , email =COALESCE($6 , email) , password = COALESCE($7,password ), role_id = COALESCE($8, role_id) ,is_deleted = COALESCE($9, is_deleted) WHERE id = $10 RETURNING *`,
+    `UPDATE users SET firstName = COALESCE($1,firstName) , lastName = COALESCE($2,lastName), age = COALESCE($3 , age), country = COALESCE($4 , country),phoneNumber =  COALESCE($5,phoneNumber )  , email =COALESCE($6 , email) , password = COALESCE($7,password ), role_id = COALESCE($8, role_id) ,is_deleted = COALESCE($9, is_deleted),userprofilepic = COALESCE($10, userprofilepic)   WHERE id = $11 RETURNING *`,
     [
       UpdatedUser.firstName,
       UpdatedUser.lastName,
@@ -136,6 +137,7 @@ export const UpdateUser = async (id: number, UpdatedUser: UpdateUser) => {
       UpdatedUser.password,
       UpdatedUser.role_id,
       UpdatedUser.is_deleted,
+      UpdatedUser.userprofilepic,
       id,
     ]
   );
@@ -159,6 +161,7 @@ export const GetAllDoctors = async () => {
   );
   return result.rows;
 };
+
 
 export const GetAllPatients = async () => {
   const result = await pool.query(

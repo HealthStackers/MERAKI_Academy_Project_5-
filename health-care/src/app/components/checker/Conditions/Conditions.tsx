@@ -7,7 +7,7 @@ import axios from "axios";
 
 const Conditions = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { info, setInfo, symptoms, setSymptoms, conditions, setConditions } =
+  const { info, setInfo, symptoms, setSymptoms, conditions, setConditions,setActiveIdx } =
     useContext(AuthContext);
   const arr = symptoms.toString().split(",").join("/");
   console.log(arr);
@@ -38,6 +38,7 @@ const Conditions = () => {
 
   return (
     <div className="conditionsDiv">
+      
       {(symptoms.length === 1 &&  conditions.length !== 0)? (
         <p className="warning">
           You received few matches. Try adding more symptoms to improve your
@@ -47,8 +48,9 @@ const Conditions = () => {
         ""
       )}
 
-      <div className="conditions">
-        <div className="TheResults">
+      <div className="conditionsText">
+        <div className="conditions">
+            <div className="TheResults">
           <h3 className="heading"> Conditions that match your symptoms </h3>
           <section className={`collapsible-section ${isOpen ? "active" : ""}`}>
             <button
@@ -122,7 +124,18 @@ const Conditions = () => {
             </div>
           </div>
         </div>
+        </div>
+      
+        <div className="navigationInChecker">
+            <button className="nextButtonInChecker" onClick={()=>{
+        setActiveIdx(1)
+      }}> Previous</button>
+      <button className="nextButtonInChecker" onClick={()=>{
+        setActiveIdx(3)
+      }}> Next</button>
+          </div>
       </div>
+      
     </div>
   );
 };

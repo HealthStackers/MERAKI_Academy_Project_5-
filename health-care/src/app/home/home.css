@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
 *,
 *::before,
@@ -8,8 +8,8 @@
   box-sizing: border-box;
 }
 
-
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
 }
@@ -22,18 +22,11 @@ html, body {
   padding: 30px;
 }
 
-
-.imgBookingPenal{
-
-
-}
-
-
 .textInsearchSection {
   font-size: 30px;
   text-transform: uppercase;
   font-family: "Poppins", sans-serif;
-   font-weight: 600;
+  font-weight: 600;
   color: #343b48;
   margin: 0 0 10px;
   text-wrap: balance;
@@ -43,18 +36,38 @@ html, body {
 .searchInput {
   width: 360px;
   height: 50px;
-    color: #343b48;
-margin-bottom: 20px;
+
+
+  color: #343b48;
+  margin-bottom: 20px;
+  margin-right: 2px;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+.searchInput::placeholder {
+  position: relative;
+  left: 10px;
+
+
+  color: #343b48;
+  margin-bottom: 20px;
 }
 
 .searchButton {
   height: 50px;
   width: 100px;
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);
-  color: white;
+  background-color: white;
+  color: #216ecf;
   font-size: large;
-  font-weight: bold;
-  border: none;
+  font-weight: 500;
+  border: solid 1px #216ecf;
+  border-radius: 5px;
+}
+
+.searchButton:hover {
+  background-color: #216ecf;
+  color: white;
 }
 
 .iconInSearch {
@@ -90,7 +103,6 @@ margin-bottom: 20px;
   top: 60px;
   padding: 150px;
   margin-bottom: 20px;
-  
 }
 
 .headingInMastHead {
@@ -112,7 +124,6 @@ margin-bottom: 20px;
   word-wrap: break-word;
 }
 
-
 .bodyTextInMastHead {
   font-size: 18px;
   color: #343b48;
@@ -123,15 +134,13 @@ margin-bottom: 20px;
   margin-bottom: 40px;
   overflow-wrap: break-word;
   word-wrap: break-word;
- 
 }
 
 .BlogsButton {
   font-size: 20px;
   width: 200px;
   height: 50px;
-    font-family: 'Poppins', sans-serif;
-
+  font-family: "Poppins", sans-serif;
 }
 
 .howToUseSection {
@@ -139,7 +148,7 @@ margin-bottom: 20px;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  margin-top: 150px;
+  margin-top: 120px;
   font-family: "Poppins", sans-serif;
 }
 
@@ -159,7 +168,6 @@ margin-bottom: 20px;
   position: relative;
   bottom: 10vh;
 }
-
 
 /* Appointment Section */
 .appointmentSectionHome {
@@ -206,3 +214,40 @@ margin-bottom: 20px;
   font-size: 1.25rem;
   color: #343b48;
 }
+
+.introHowToUseSection {
+  text-transform: uppercase;
+  align-self: first baseline;
+  margin-left: 80px;
+  font-size: 32px;
+  color: #343b48;
+  font-weight: 700;
+}
+
+.card {
+
+  cursor: pointer;
+
+
+}
+
+.card-img-top {
+  width: 100%;
+
+  height: 200px;
+  object-fit: cover;
+  flex-shrink: 0;
+
+ 
+
+}
+
+.services {
+  margin-top: 30px;
+
+  width: 94vw;
+}
+
+
+ 
+
