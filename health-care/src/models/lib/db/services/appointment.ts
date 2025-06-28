@@ -44,6 +44,7 @@ export type Appointment = {
   is_deleted: 0;
   user_id: number;
   Disease_id: number;
+  role_id: number;
 };
 
 export type UpdateAppointment = {
@@ -60,12 +61,13 @@ export type UpdateAppointment = {
   Specializing: string;
   user_id: number;
   Disease_id: number;
+  role_id?: number;
 };
 export const bookAppointment = async (appointment: Appointment) => {
   const result = await pool.query<Appointment>(
-    `INSERT INTO Appointments (DateAppointment, BloodType, MedicalHistory, TimeAppointment,  clockSystem,DurationTime, AppointmentType, description, Gender, DoctorName, Specializing, user_id, Disease_id) 
-SELECT $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 , $13 
-WHERE NOT EXISTS (
+    `INSERT INTO Appointments (DateAppointment, BloodType, MedicalHistory, TimeAppointment,  clockSystem,DurationTime, AppointmentType, description, Gender, DoctorName, Specializing, user_id, Disease_id , role_id) 
+SELECT $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 , $13 ,$14 
+WHERE  $14 = 2   AND NOT EXISTS (
     SELECT 1
     FROM Appointments 
     WHERE DateAppointment = $1 AND user_id = $12
@@ -101,6 +103,7 @@ WHERE NOT EXISTS (
       appointment.Specializing.trim(),
       appointment.user_id,
       appointment.Disease_id,
+      appointment.role_id,
     ]
   );
 
@@ -140,16 +143,16 @@ export const getAppointmentsByUserId = async (role: string, id: number) => {
             WHEN AppointmentType = 'Follow-up' THEN INTERVAL '15 minutes'
             ELSE INTERVAL '0 minutes'
         END AS "Endtime",
-         AppointmentType , description , Gender , diseases.name , diseases.effectedBodyPart ,
+         Appointments.AppointmentType , Appointments.description , Appointments.Gender , diseases.name , diseases.effectedBodyPart ,
      diseases.symptoms , diseases.symptoms, users.id ,users.firstName , users.lastName , users.age , users.country , users.email  FROM Appointments FULL OUTER JOIN users ON users.id = Appointments.user_id 
     FULL OUTER JOIN role ON role.id = users.role_id 
     FULL OUTER JOIN diseases ON diseases.id = Appointments.disease_id
-    WHERE role.role_name = $1 AND  users.id = $2 AND appointment_date >= CURRENT_DATE`,
+    WHERE role.role_name = $1 AND  Appointments.user_id = $2 AND DateAppointment = CURRENT_DATE AND TimeAppointment >= CURRENT_TIME`,
       [role, id]
     );
   } else if (role_name === "patient") {
     result = await pool.query(
-      `SELECT   users.firstName , users.lastName  , users.country , users.email ,Appointments.DoctorName, Appointments.Specializing , DateAppointment ,  TimeAppointment , DurationTime  , 
+      `SELECT   users.firstName , users.lastName  , users.country , users.email ,Appointments.DoctorName, Appointments.Specializing , DateAppointment  , TimeAppointment , DurationTime  , 
         TimeAppointment + 
         CASE
             WHEN AppointmentType = 'Check-ups' THEN INTERVAL '20 minutes'
@@ -160,7 +163,7 @@ export const getAppointmentsByUserId = async (role: string, id: number) => {
       AppointmentType  FROM Appointments FULL OUTER JOIN users ON users.id = Appointments.user_id 
     FULL OUTER JOIN role ON role.id = users.role_id 
     FULL OUTER JOIN diseases ON diseases.id = Appointments.disease_id
-    WHERE role.role_name = $1 AND  users.id = $2 AND appointment_date >= CURRENT_DATE `,
+    WHERE role.role_name = $1 AND  Appointments.user_id = $2 AND DateAppointment = CURRENT_DATE AND TimeAppointment >= CURRENT_TIME `,
       [role, id]
     );
   }
@@ -250,4 +253,10 @@ export const getAllAppointments = async () => {
   } else {
     return result.rows;
   }
+};
+
+
+export const GetAllBloodTypeByID = async (id : number) => {
+  const result = await pool.query("SELECT BloodType FROM Appointments WHERE user_id = $1 LIMIT 1" , [id]);
+  return result.rows;
 };

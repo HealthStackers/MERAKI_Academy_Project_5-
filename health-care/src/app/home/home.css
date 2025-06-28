@@ -23,6 +23,11 @@ html, body {
 }
 
 
+.imgBookingPenal{
+
+
+}
+
 
 .textInsearchSection {
   font-size: 30px;
@@ -156,7 +161,6 @@ margin-bottom: 20px;
 }
 
 
-
 /* Appointment Section */
 .appointmentSectionHome {
   display: flex;
@@ -168,14 +172,14 @@ margin-bottom: 20px;
 
 .FeaturedServiceBannerModule-content {
   flex: 1 1 300px;
-  margin: 40px;
+  margin: 30px;
   max-width: 700px;
 }
 
 .FeaturedServiceBannerModule-image img {
-  width: 100%;
-  max-width: 400px;
-  height: 400px;
+  max-width: 300px;
+  object-fit: cover;
+  object-position: center;
   display: block;
 }
 

@@ -26,7 +26,7 @@ function HandleJoinRequest() {
   const [showAlertMessage, setshowAlertMessage] = useState<number>(0);
   const [alertMessage, setAlertMessage] = useState<string>("");
 
-  useEffect(() => {
+  const GetAllRequests = () => {
     axios
       .get<allRequestsType[]>("http://localhost:3000/api/joinRequest", {
         params: {
@@ -43,9 +43,7 @@ function HandleJoinRequest() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
-
-  console.log("allRequests: ", allRequests);
+  };
 
   const handleEditStatus = (requestId: number, newStatus: string) => {
     console.log("requestId: ", requestId);
@@ -90,7 +88,7 @@ function HandleJoinRequest() {
   };
   const HandleUpdateRole = (id: number) => {
     axios
-      .put(`http://localhost:3000/api/users/profile/${id}`, {
+      .put(`http://localhost:3000/api/users/profile/` + id, {
         role_id: 3,
       })
       .then((result) => {
@@ -100,6 +98,13 @@ function HandleJoinRequest() {
         console.log("error in update role: ", error);
       });
   };
+
+  useEffect(() => {
+    GetAllRequests();
+  }, [GetAllRequests]);
+
+  console.log("allRequests: ", allRequests);
+
   return (
     <div className="joinRequstPageInAdminPanel">
       <div className="AlljoinRequstsInAdminPanel">

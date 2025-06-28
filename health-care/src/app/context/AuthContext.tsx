@@ -21,6 +21,8 @@ interface AuthContextType {
   setSymptoms: Dispatch<SetStateAction<string[]>>;
   conditions: string[];
   setConditions: Dispatch<SetStateAction<string[]>>;
+  role: string | null;
+  SetRole: (t: string | null) => void;
 }
 
 export const AuthContext = createContext<AuthContextType>({
@@ -39,11 +41,14 @@ export const AuthContext = createContext<AuthContextType>({
   setSymptoms: () => [],
   conditions: [],
   setConditions: () => [],
+  role: null,
+  SetRole: () => {},
 });
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [token, setToken] = useState<string | null>(null);
   const [roleId, setRoleId] = useState<string | null>(null);
+  const [role, SetRole] = useState<string | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
 
   const [info, setInfo] = useState({
@@ -53,7 +58,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [symptoms, setSymptoms] = useState<string[]>([]);
   const [conditions, setConditions] = useState<string[]>([]);
 
- 
   useEffect(() => {
     const t =
       typeof window !== "undefined" ? localStorage.getItem("token") : null;
@@ -82,8 +86,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setInfo,
         symptoms,
         setSymptoms,
-        conditions, 
-        setConditions
+        conditions,
+        setConditions,
+        role,
+        SetRole,
       }}
     >
       {children}

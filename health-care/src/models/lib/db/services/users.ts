@@ -152,10 +152,9 @@ export const DeleteUser = async (id: number) => {
 
 export const GetAllDoctors = async () => {
   const result = await pool.query(
-    `SELECT * FROM users FULL OUTER JOIN services ON users.id = services.doctor_id 
-       FULL OUTER JOIN blogs ON users.id = blogs.doctor_id
-    FULL OUTER JOIN join_request ON users.id = join_request.doctor_id 
-      FULL OUTER JOIN role ON role.id = users.role_id 
+    `SELECT * FROM users  
+    INNER JOIN join_request ON users.id = join_request.doctor_id 
+      INNER JOIN role ON role.id = users.role_id 
     WHERE role.role_name = 'doctor'`
   );
   return result.rows;
@@ -163,11 +162,51 @@ export const GetAllDoctors = async () => {
 
 export const GetAllPatients = async () => {
   const result = await pool.query(
-    `SELECT * FROM users FULL OUTER JOIN  Appointments ON users.id = Appointments.user_id 
-    FULL OUTER JOIN user_diseases ON users.id = user_diseases.user_id
-       FULL OUTER JOIN diseases ON diseases.id = user_diseases.disease_id
-      FULL OUTER JOIN role ON role.id = users.role_id 
+    `SELECT * FROM users  
+    INNER JOIN Appointments ON users.id = Appointments.user_id 
+      INNER JOIN role ON role.id = users.role_id 
+      INNER JOIN diseases ON diseases.id = Appointments.disease_id
     WHERE role.role_name = 'patient'`
+  );
+  return result.rows;
+};
+
+export const GetUserById = async (id: number) => {
+  const result = await pool.query(
+    `SELECT *
+FROM join_request
+FULL JOIN users ON users.id = join_request.doctor_id
+WHERE users.id = $1`,
+    [id]
+  );
+
+  return result.rows;
+};
+
+export const GetCountAppointmentsById = async (id: number) => {
+  const result = await pool.query(
+    `SELECT
+  a.user_id,
+  COUNT(a.id)              AS total_appointments,
+  COUNT(DISTINCT a.user_id) AS distinct_patients
+FROM appointments AS a
+WHERE users.id = $1
+GROUP BY a.user_id;`,
+    [id]
+  );
+  return result.rows;
+};
+
+export const GetCountAppointmentsForDoctor = async (name: string) => {
+  const result = await pool.query(
+    `SELECT
+  a.DoctorName,
+  COUNT(a.id)              AS total_appointments,
+  COUNT(DISTINCT a.user_id) AS distinct_patients
+FROM appointments AS a
+WHERE a.DoctorName = $1
+GROUP BY a.DoctorName;`,
+    [name]
   );
   return result.rows;
 };

@@ -457,7 +457,7 @@ const AdminPanel = () => {
             <div className="container">
               <div className="card shadow-sm">
                 <div className="row g-0">
-                  <div className="col-md-4 p-3 text-center">
+                  <div className="col-md-4 p-3 text-center doctorImg">
                     <img
                       src={ele?.profilepictureurl}
                       className="img"
