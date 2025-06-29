@@ -126,7 +126,7 @@ const Conditions = () => {
         </div>
         </div>
       
-        <div className="navigationInChecker">
+        <div className="navigationInCheckerInConditions">
             <button className="nextButtonInChecker" onClick={()=>{
         setActiveIdx(1)
       }}> Previous</button>

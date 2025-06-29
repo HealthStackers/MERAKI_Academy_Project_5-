@@ -189,14 +189,12 @@ const Home = () => {
         </div>
         <div className="FeaturedServiceBannerModule-image">
           <img
-            src="https://i.pinimg.com/736x/37/81/5d/37815d621d044bd8d47fc1fcf896413f.jpg"
+            src="/images/Book appointment image.jpg"
             alt=""
             loading="lazy"
           />
         </div>
       </div>
-
-    
 
       <div className="FeaturedServiceBannerModule-content">
         <div className="row gx-3 gy-4 services">
@@ -229,6 +227,7 @@ const Home = () => {
 
       <div className="howToUseSection">
         <p className="introHowToUseSection">How to use the webSite</p>
+
 
         <div className="howToUseSection">
           <div className="searchDectionSection">

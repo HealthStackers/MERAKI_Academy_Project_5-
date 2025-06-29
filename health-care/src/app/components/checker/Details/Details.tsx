@@ -118,7 +118,7 @@ const Details = () => {
             
           </div> */}
       </div>
-       <div className="navigationInChecker">
+       <div className="navigationInCheckerInDetials">
             <button className="nextButtonInChecker" onClick={()=>{
         setActiveIdx(2)
       }}> Previous</button>
