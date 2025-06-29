@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+.appointmentsCards {
+  position: relative;
+  top: 150px;
+  margin-left: 60px;
+  text-transform: capitalize;
+    font-family: "Poppins", sans-serif;
+
+}
+
+.currentAppointment {
+  margin-bottom: 30px;
+  font-weight: 600;
+  font-size: 30px;
+  color: #343b48;
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+}

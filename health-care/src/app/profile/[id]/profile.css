@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+.profile-card {
+  position: relative;
+  top: 100px;
+  font-family: "Poppins", sans-serif;
+}
+
+.patient-fields,
+.head-office-fields,.doctor-fields {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.bookAppointmentbtn,
+.adminPanel,.viewSchedulebtn {
+  margin-top: 20px;
+  align-self: center;
+}
+

@@ -3,8 +3,9 @@ import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import "./allDoctorAfterSearch.css";
-
+import { useRouter } from "next/navigation";
 function allDoctorAfterSearch() {
+   const router= useRouter()
   type allDoctorAfterFiltration = {
     firstname: string;
     lastname: string;
@@ -30,6 +31,8 @@ function allDoctorAfterSearch() {
     setSearchSpecializationValue,
     allDoctors,
     setAllDoctors,
+    doctorIdInBookBtn,
+    setDoctorIdInBookBtn,
   } = useContext(AuthContext);
 
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -67,7 +70,9 @@ function allDoctorAfterSearch() {
           });
           if (filterBySpecialization.length === 0) {
             seteshowErrorMessage(true);
-            setErrorMessage("No Doctors Found wtih the entered specialization ");
+            setErrorMessage(
+              "No Doctors Found wtih the entered specialization "
+            );
             setTimeout(() => {
               seteshowErrorMessage(false);
             }, 2000);
@@ -189,7 +194,19 @@ function allDoctorAfterSearch() {
                     </div>
                   </div>
                 </div>
-                <button className="bookAnAppointmentInDoctorBox">
+                <button
+                  className="bookAnAppointmentInDoctorBox"
+                  onClick={() => {
+                    setDoctorIdInBookBtn({
+                      doctor_id: ele.doctor_id,
+                      firstname: ele.firstname,
+                      lastname: ele.lastname,
+                      specialization: ele.specialization,
+                      clinicname: ele.clinicname,
+                    });
+                    router.push("/bookAppointment");
+                  }}
+                >
                   {" "}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

@@ -13,6 +13,8 @@ import {
 } from "@/models/lib/db/services/appointment";
 import { AuthContext } from "../context/AuthContext";
 import { clockSystem } from "@/models/lib/db/services/appointment";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // id ?:number
 // DateAppointment: Date;
@@ -30,10 +32,15 @@ import { clockSystem } from "@/models/lib/db/services/appointment";
 // user_id: number;
 // Disease_id: number;
 const BookAppointment = () => {
-  const { roleId, setRoleId, userId, setUserId } = useContext(AuthContext);
+  const { doctorIdInBookBtn, setDoctorIdInBookBtn } = useContext(AuthContext);
+  console.log("doctorIdInBookBtn: ",doctorIdInBookBtn);
+  
+  const UID = localStorage.getItem("userId");
+  const roleId = localStorage.getItem("roleId");
   const [AppointmentType, setAppointmentType] =
     useState<AppointmentType>("Check-ups");
   const [diseases, setDiseases] = useState([]);
+  const [doctorID, SetDoctorID] = useState<string>("");
   const [doctors, setDoctors] = useState([]);
   console.log(AppointmentType);
   const [appointments, setAppointments] = useState<Appointment>({
@@ -46,14 +53,21 @@ const BookAppointment = () => {
     DoctorName: "",
     Specializing: "",
     is_deleted: 0,
-    user_id: Number(userId),
+    user_id: Number(UID),
     Disease_id: 0,
+    role_id: 2,
   });
 
   console.log(appointments);
-  console.log(diseases);
+  console.log(doctorID);
+  console.log(doctors);
   //
   const AddAppointment = () => {
+    if (roleId !== "2") {
+      toast.error("Appointment booking is available to patients only.");
+      return;
+    }
+
     axios
       .post(`http://localhost:3000/api/appointments/`, appointments)
       .then((res) => {
@@ -262,17 +276,25 @@ const BookAppointment = () => {
             />
             <select
               className="form-select"
+              defaultValue={doctorIdInBookBtn.firstname +  doctorIdInBookBtn.lastname }
               aria-label="Default select example"
               onChange={(e) => {
-                setAppointments({
-                  ...appointments,
-                  DoctorName: e.target.value,
-                });
+                const selectedName =
+                  e.target.options[e.target.selectedIndex].text;
+
+                setAppointments((prev) => ({
+                  ...prev,
+                  DoctorName: selectedName,
+                }));
               }}
             >
-              <option selected disabled>
+              <option value="" disabled>
                 Select a Doctor
-              </option>
+              </option> 
+
+              {doctorIdInBookBtn.firstname!=="" && <option >
+               {doctorIdInBookBtn.firstname}  {doctorIdInBookBtn.lastname }
+              </option>}
 
               {doctors?.map((ele) => (
                 <option key={ele.id}>
@@ -283,8 +305,11 @@ const BookAppointment = () => {
 
             <select
               className="form-select"
+              defaultValue={doctorIdInBookBtn.specialization}
               aria-label="Select a Specializing"
               onChange={(e) => {
+   console.log("doctorIdInBookBtn.specialization: ",);
+   
                 setAppointments({
                   ...appointments,
                   Specializing: e.target.value,
@@ -295,10 +320,12 @@ const BookAppointment = () => {
                 Select a Specializing
               </option>
 
+              {doctorIdInBookBtn.specialization!=="" && <option >
+                {doctorIdInBookBtn.specialization}
+              </option>}
+
               {doctors?.map((ele) => (
-                <option key={ele.id}>
-                  {ele.specialization}
-                </option>
+                <option  key={ele.id}>{ele.specialization}</option>
               ))}
             </select>
 
@@ -359,6 +386,7 @@ const BookAppointment = () => {
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

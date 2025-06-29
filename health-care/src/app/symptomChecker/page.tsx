@@ -9,9 +9,12 @@ import Treatments from "../components/checker/Treatments/Treatments";
 import { AuthContext } from "../context/AuthContext";
 
 const SymptomChecker = () => {
+
   const { activeIdx, setActiveIdx } = useContext(AuthContext);
 
-  const steps = [
+ 
+   const steps = [
+
     { label: "INFO", component: <InfoComponent /> },
     { label: "SYMPTOMS", component: <Symptoms /> },
     { label: "CONDITIONS", component: <Conditions /> },

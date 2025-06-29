@@ -21,7 +21,10 @@ interface AuthContextType {
   setSymptoms: Dispatch<SetStateAction<string[]>>;
   conditions: string[];
   setConditions: Dispatch<SetStateAction<string[]>>;
+  role: string | null;
+  SetRole: (t: string | null) => void;
   allDoctors: {
+    doctor_id:number,
     firstname: string;
     lastname: string;
     age: number;
@@ -36,7 +39,7 @@ interface AuthContextType {
   }[];
   setAllDoctors: Dispatch<
     SetStateAction<
-      {
+      { doctor_id:number,
         firstname: string;
         lastname: string;
         age: number;
@@ -61,6 +64,17 @@ interface AuthContextType {
   setSearchSpecializationValue: Dispatch<SetStateAction<string>>;
   activeIdx: number;
   setActiveIdx: Dispatch<SetStateAction<number>>;
+  doctorIdInBookBtn: {doctor_id:number,
+    firstname:string,
+    lastname:string,
+    specialization:string,
+    clinicname:string,
+  };
+  setDoctorIdInBookBtn: Dispatch<SetStateAction<{doctor_id:number,
+    firstname:string,
+    lastname:string,
+    specialization:string,
+    clinicname:string,}>>;
 }
 
 export const AuthContext = createContext<AuthContextType>({
@@ -79,6 +93,8 @@ export const AuthContext = createContext<AuthContextType>({
   setSymptoms: () => [],
   conditions: [],
   setConditions: () => [],
+  role: null,
+  SetRole: () => {},
   allDoctors: [],
   setAllDoctors: () => [],
 
@@ -92,11 +108,14 @@ export const AuthContext = createContext<AuthContextType>({
   setSearchSpecializationValue: () => {},
   activeIdx: 0,
   setActiveIdx: () => {},
+  doctorIdInBookBtn: {doctor_id: 0, firstname: "", lastname: "", specialization: "", clinicname: ""},
+  setDoctorIdInBookBtn: () => {},
 });
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [token, setToken] = useState<string | null>(null);
   const [roleId, setRoleId] = useState<string | null>(null);
+  const [role, SetRole] = useState<string | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
 
   const [info, setInfo] = useState({
@@ -106,7 +125,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [symptoms, setSymptoms] = useState<string[]>([]);
   const [conditions, setConditions] = useState<string[]>([]);
   const [allDoctors, setAllDoctors] = useState<
-    {
+    { doctor_id:number,
       firstname: string;
       lastname: string;
       age: number;
@@ -127,6 +146,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [searchSpecializationValue, setSearchSpecializationValue] =
     useState<string>("");
   const [activeIdx, setActiveIdx] = useState<number>(0);
+  const [doctorIdInBookBtn, setDoctorIdInBookBtn] = useState<{
+    doctor_id:number,
+    firstname:string,
+    lastname:string,
+    specialization:string,
+    clinicname:string,
+  }>({doctor_id:0,
+    firstname:"",
+    lastname:"",
+    specialization:"",
+    clinicname:"",});
 
   useEffect(() => {
     const t =
@@ -158,6 +188,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setSymptoms,
         conditions,
         setConditions,
+        role,
+        SetRole,
         allDoctors,
         setAllDoctors,
         searchByLocation,
@@ -170,6 +202,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setSearchSpecializationValue,
         activeIdx,
         setActiveIdx,
+        doctorIdInBookBtn,
+        setDoctorIdInBookBtn,
       }}
     >
       {children}
