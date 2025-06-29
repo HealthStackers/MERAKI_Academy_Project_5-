@@ -101,7 +101,7 @@
   border-radius: 10px;
   color: white;
   font-size: x-large;
-  font-weight: 600;
+  font-weight: 500;
   align-items: center;
   justify-self: center;
   justify-content: center;
@@ -135,6 +135,7 @@
 .weightSectionInput {
   border-radius: 5px;
   border: #216ecf 1.5px solid;
+  
 }
 
 .bmiCategorySection {
@@ -182,14 +183,11 @@
   font-weight: bold;
 }
 
-<<<<<<< HEAD
+
 .bmiResult{
   border-bottom: #216ecf solid 2px;
-=======
-.bmiResult {
-  border-bottom: #9b59b6 solid 2px;
->>>>>>> bfca3eacc6bef1c141d82a1b673e85fe97714c74
-  font-size: large;
+
+
 }
 
 .overweight,
@@ -203,4 +201,8 @@
 #healthy,
 #obesity {
   background-color: #8ad59b;
+}
+
+.heightUnit,.weightUnit{
+  font-size: small;
 }

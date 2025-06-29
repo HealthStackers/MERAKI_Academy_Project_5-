@@ -149,3 +149,15 @@
   justify-content: center;
   align-content: space-between;
 }
+
+.navigationInCheckerInConditions{
+  
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 15px;
+    position: relative;
+    top:28vh
+    
+
+}

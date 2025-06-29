@@ -197,3 +197,13 @@
     margin-bottom: 10px;
 
 }
+
+
+.navigationInCheckerInDetials{
+   display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 15px;
+    position: relative;
+    top:31vh
+}
