@@ -189,7 +189,7 @@ const Home = () => {
         </div>
         <div className="FeaturedServiceBannerModule-image">
           <img
-            src="https://i.pinimg.com/736x/6c/92/d3/6c92d38a123128ed967d410f7eebd305.jpg"
+            src="https://i.pinimg.com/736x/37/81/5d/37815d621d044bd8d47fc1fcf896413f.jpg"
             alt=""
             loading="lazy"
           />

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import axios from "axios";
 import React from "react";
@@ -22,7 +23,6 @@ function joinRequest() {
   const [showAlertMessage, setShowAlertMessage] = useState<boolean>(false);
   const [alertMessage, setAlertMessage] = useState<string>("");
   const { roleId, setRoleId, userId, setUserId } = useContext(AuthContext);
- 
 
   const newRequest = () => {
     if (!file) return alert("Select a PDF first");
@@ -71,17 +71,17 @@ function joinRequest() {
               )
               .then((result) => {
                 localStorage.setItem("submittedJoinRequest", "true");
-                setAlertMessage("You Request has been submitted successfully")
-                setShowAlertMessage(true)
+                setAlertMessage("You Request has been submitted successfully");
+                setShowAlertMessage(true);
                 setTimeout(() => {
-                setShowAlertMessage(false)
-              }, 2000);
+                  setShowAlertMessage(false);
+                }, 2000);
                 console.log("json.secure_url: ", json.secure_url);
 
                 console.log("cvUrl: ", cvUrl);
 
                 setTimeout(() => {
-                 location.reload()
+                  location.reload();
                 }, 3000);
               })
               .catch((error) => {
@@ -93,140 +93,150 @@ function joinRequest() {
         console.log(error);
       });
   };
+
+  const onSubmit = () => {
+    if (localStorage.getItem("submittedJoinRequest") === "true") {
+      setShowAlertMessage(true);
+      setAlertMessage("You already submitted a join request");
+      setTimeout(() => {
+        setShowAlertMessage(false);
+        router.push("/home");
+      }, 1000);
+    } else {
+      newRequest();
+    }
+  };
   return (
-    <div className="joinRequestPage">
+    <div className="joinRequestPageContainer">
       <div className="joinRequestPageParts">
-        <h3 className="headInJoinRequestPage">*Join MEDIVO Community.</h3>
+        <h3 className="headInJoinRequestPage">
+          Become Part of Medivo – “Where Trust Meets Innovation”.
+        </h3>
         <p className="textInJoinRequestPage">
           {" "}
           Join our platform and start helping patients while growing your
           medical presence online.
         </p>
 
-        <div className="nameInputSection">
-          <div className="firstNameSection">
-            <div className="textInInputInJoinRequest">First Name</div>
-            <input
-              placeholder="First Name"
-              className="InputInJoinRequest"
-              onChange={(e) => {
-                setFirstName(e.target.value);
-              }}
-            ></input>
-          </div>
-          <div className="lastNameSection">
-            <div className="textInInputInJoinRequest">Last Name</div>
-            <input
-              placeholder="Last Name"
-              className="InputInJoinRequest"
-              onChange={(e) => {
-                setLastName(e.target.value);
-              }}
-            ></input>
-          </div>
-        </div>
-        <div className="emailAndPictureInputSection">
-          <div className="emailSection">
-            <div className="textInInputInJoinRequest">Email</div>
-            <input
-              placeholder="Email"
-              className="InputInJoinRequest"
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            ></input>
-          </div>
+        <section className="JoinRequestPage">
+          <div className="containerJoinRequest">
+            <div className="titleJoinRequest">Join as Doctor</div>
+            <div className="content">
+              <div className="user-JoinRequest">
+                <div className="input-box">
+                  <span className="details">First Name</span>
+                  <input
+                    className="inputInJoinRequest"
+                    name="firstName"
+                    type="text"
+                    placeholder="Enter your First Name"
+                    onChange={(e) => {
+                      setFirstName(e.target.value);
+                    }}
+                    required
+                  />
+                </div>
+                <div className="input-box">
+                  <span className="details">Last Name</span>
+                  <input
+                    className="inputInJoinRequest"
+                    name="lastName"
+                    type="text"
+                    placeholder="Enter your Last Name"
+                    onChange={(e) => {
+                      setLastName(e.target.value);
+                    }}
+                    required
+                  />
+                </div>
+                <div className="input-box">
+                  <span className="details">Email</span>
+                  <input
+                    className="inputInJoinRequest"
+                    name="email"
+                    type="text"
+                    placeholder="Enter your Email"
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
+                    required
+                  />
+                </div>
+                <div className="input-box">
+                  <span className="details">City</span>
+                  <input
+                    className="inputInJoinRequest"
+                    name="city"
+                    type="text"
+                    placeholder="Enter your City"
+                    onChange={(e) => {
+                      setCity(e.target.value);
+                    }}
+                    required
+                  />
+                </div>
+                <div className="input-box">
+                  <span className="details">Clinic Name</span>
+                  <input
+                    className="inputInJoinRequest"
+                    name="clinicName"
+                    type="text"
+                    placeholder="Enter your Clinic Name"
+                    onChange={(e) => {
+                      setClinicName(e.target.value);
+                    }}
+                    required
+                  />
+                </div>
+                <div className="input-box">
+                  <span className="details">Specialization</span>
+                  <input
+                    className="inputInJoinRequest"
+                    name="specialization"
+                    type="specialization"
+                    placeholder="Enter your Specialization"
+                    onChange={(e) => {
+                      setSpecialization(e.target.value);
+                    }}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="profilePictureSection">
+                <div className="uploadProfilePictureText">
+                  {" "}
+                  Upload Profile Picture
+                </div>
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="uploadCv"
+                  onChange={(e) => {
+                    setImage(e.target.files[0]);
+                  }}
+                ></input>
+              </div>
+              <div className="cvSection">
+                <div className=" uploadYourCvText"> Upload Your CV</div>
+                <input
+                  type="file"
+                  accept=".pdf"
+                  className="uploadCv"
+                  onChange={(e) => {
+                    setFile(e.target.files[0]);
+                  }}
+                ></input>
+              </div>
 
-          <div className="profilePictureSection">
-            <div className=" uploadProfilePictureText">
-              {" "}
-              Upload Profile Picture
+              <button className="submitButtonInJoinRequest" onClick={onSubmit}> Submit </button>
+
+              {showAlertMessage && (
+                <div className="alertMessageApproved">{alertMessage}</div>
+              )}
             </div>
-            <input
-              type="file"
-              accept="image/*"
-              className="uploadCv"
-              onChange={(e) => {
-                setImage(e.target.files[0]);
-              }}
-            ></input>
           </div>
-        </div>
-        <div className="citySection">
-          <div className="textInInputInJoinRequest">City</div>
-          <input
-            placeholder="City"
-            className="InputInJoinRequest"
-            onChange={(e) => {
-              setCity(e.target.value);
-            }}
-          ></input>
-        </div>
-
-        <div className="clinicNameSection">
-          <div className="textInInputInJoinRequest">Clinic Name</div>
-          <input
-            placeholder="Clinic Name"
-            className="InputInJoinRequest"
-            onChange={(e) => {
-              setClinicName(e.target.value);
-            }}
-          ></input>
-        </div>
-
-        <div className="specializationSection">
-          <div className="textInInputInJoinRequest">Specialization</div>
-          <input
-            placeholder="Specialization"
-            className="InputInJoinRequest"
-            onChange={(e) => {
-              setSpecialization(e.target.value);
-            }}
-          ></input>
-        </div>
-
-        <div className="cvSection">
-          <div className=" uploadYourCvText"> Upload Your CV</div>
-          <input
-            type="file"
-            accept=".pdf"
-            className="uploadCv"
-            onChange={(e) => {
-              setFile(e.target.files[0]);
-            }}
-          ></input>
-        </div>
-
-        <button
-          className="submitButtonInJoinRequest"
-          onClick={() => {
-            if (localStorage.getItem("submittedJoinRequest") === "true") {
-              console.log("test Alread con");
-              
-              setShowAlertMessage(true)
-              setAlertMessage("You already submitted a join request")
-              setTimeout(() => {
-                setShowAlertMessage(false)
-                router.push("/home");
-              }, 2000);
-              
-            } else {
-              newRequest();
-            }
-          }}
-        >
-          {" "}
-          Submit{" "}
-        </button>
+        </section>
       </div>
-      <Image
-        className="imageInJoinRequestPage"
-        src="/images/imageInJoinRequestPage.JPEG"
-        alt="book An Apointment Image"
-        width={600}
-        height={400}
-      />
-      {showAlertMessage && <div className="alertMessageApproved">{alertMessage}</div>}
     </div>
   );
 }

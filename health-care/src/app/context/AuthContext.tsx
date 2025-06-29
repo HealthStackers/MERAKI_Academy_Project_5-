@@ -21,6 +21,8 @@ interface AuthContextType {
   setSymptoms: Dispatch<SetStateAction<string[]>>;
   conditions: string[];
   setConditions: Dispatch<SetStateAction<string[]>>;
+  role: string | null;
+  SetRole: (t: string | null) => void;
   allDoctors: {
     firstname: string;
     lastname: string;
@@ -79,6 +81,8 @@ export const AuthContext = createContext<AuthContextType>({
   setSymptoms: () => [],
   conditions: [],
   setConditions: () => [],
+  role: null,
+  SetRole: () => {},
   allDoctors: [],
   setAllDoctors: () => [],
 
@@ -97,6 +101,7 @@ export const AuthContext = createContext<AuthContextType>({
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [token, setToken] = useState<string | null>(null);
   const [roleId, setRoleId] = useState<string | null>(null);
+  const [role, SetRole] = useState<string | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
 
   const [info, setInfo] = useState({
@@ -158,6 +163,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setSymptoms,
         conditions,
         setConditions,
+        role,
+        SetRole,
         allDoctors,
         setAllDoctors,
         searchByLocation,

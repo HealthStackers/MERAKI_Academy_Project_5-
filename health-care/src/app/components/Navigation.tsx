@@ -7,9 +7,12 @@ import { signOut, useSession } from "next-auth/react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaUserCircle } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 const Navigation = () => {
-
+  const route = useRouter();
+  
    type servicesArray = {
     service_id: number;
     service_title: string;
@@ -17,18 +20,14 @@ const Navigation = () => {
     description: string;
   }[];
 
-
   const { setToken } = useContext(AuthContext);
   const token = localStorage.getItem("token");
   const roleId = localStorage.getItem("roleId");
+  const UID = localStorage.getItem("userId");
   const { data: session } = useSession();
 
+
   const [services, setServices] = useState<servicesArray>([]);
-
- 
-
-  const [showAdminPanel, setShowAdminPanel] = useState(false);
-  const [showJoinRequest, setShowJoinRequest] = useState(false);
 
   const handleLogout = async () => {
     setToken(null);
@@ -51,20 +50,12 @@ const Navigation = () => {
       .catch((err) => {});
   };
 
+  const profile = () => {
+    route.push(`/profile/${UID}`);
+  };
+
   useEffect(() => {
     GetServices();
-    if (roleId !== null) {
-      if (+roleId === 1) {
-        setShowAdminPanel(true);
-        setShowJoinRequest(false);
-      } else if (+roleId === 2) {
-        setShowAdminPanel(false);
-        setShowJoinRequest(true);
-      } else if (+roleId === 3) {
-        setShowAdminPanel(false);
-        setShowJoinRequest(false);
-      }
-    }
   }, []);
 
   return (
@@ -88,7 +79,7 @@ const Navigation = () => {
             <ul className="navbar-nav">
               <div className="partOneInNavBar">
                 <li className="nav-item active">
-                  <a className="nav-link" href="home">
+                  <a className="nav-link" href="/home">
                     Home
                   </a>
                 </li>
@@ -103,7 +94,7 @@ const Navigation = () => {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="bmiCalculator">
+                  <a className="nav-link" href="/bmiCalculator">
                     BMI
                   </a>
                 </li>
@@ -136,9 +127,9 @@ const Navigation = () => {
                   </ul>
                 </li>
 
-                {showAdminPanel && (
+                {roleId === "1" && (
                   <li className="nav-item">
-                    <a className="nav-link" href="adminPanel">
+                    <a className="nav-link" href="/adminPanel">
                       Admin Panel
                     </a>
                   </li>
@@ -153,14 +144,14 @@ const Navigation = () => {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="contact">
+                  <a className="nav-link" href="/contact">
                     Contact
                   </a>
                 </li>
 
-                {showJoinRequest && (
+                {roleId === "2" && (
                   <li className="nav-item">
-                    <a className="nav-link" href="joinRequest">
+                    <a className="nav-link" href="/joinRequest">
                       Join Request
                     </a>
                   </li>
@@ -169,15 +160,37 @@ const Navigation = () => {
             </ul>
           </div>
           {token ? (
-            <button
-              type="button"
-              data-mdb-button-init
-              data-mdb-ripple-init
-              className="btn btn-primary btn-m logout"
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
+            <>
+              <button
+                style={{
+                  background: "none",
+                  border: "none",
+                  padding: 0,
+                  cursor: "pointer",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  marginRight: "20px",
+                }}
+                onClick={(e) => {
+                  profile();
+                }}
+              >
+                <FaUserCircle
+                  size={30}
+                  color="#343b48"
+                  style={{ marginRight: "8px" }}
+                />
+              </button>
+              <button
+                type="button"
+                data-mdb-button-init
+                data-mdb-ripple-init
+                className="btn btn-primary btn-m logout"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </>
           ) : (
             <button
               type="button"

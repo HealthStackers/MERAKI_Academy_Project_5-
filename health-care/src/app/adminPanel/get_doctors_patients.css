@@ -16,5 +16,8 @@
 }
 
 .img{
-    max-width: 300px ;
+   max-width: 300px !important;
+  max-height: 200px !important;
+    object-fit: cover;
+    object-position: center;
 }

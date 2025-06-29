@@ -51,7 +51,6 @@ export const DiseaseByEffectedBodyPart = async (effectedBodyPart: string) => {
 
 export const GetAllSymptoms = async () => {
   const result = await pool.query("SELECT symptoms FROM diseases");
-
   return result.rows;
 };
 
@@ -60,3 +59,10 @@ export const GetAllDiseases = async () => {
   const result = await pool.query("SELECT * FROM diseases");
   return result.rows;
 };
+
+
+export const GetDiseaseNameByID = async (id:number) => {
+  const result = await pool.query("SELECT DISTINCT(name) FROM diseases INNER JOIN Appointments ON diseases.id = Appointments.disease_id WHERE Appointments.user_id = $1" ,[id]);
+  return result.rows;
+};
+

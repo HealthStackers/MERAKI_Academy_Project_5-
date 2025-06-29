@@ -16,3 +16,9 @@ export const AddBlog = async (blog: Blog) => {
   );
   return result.rows;
 };
+
+export const getCountBlogsForDoctor = async (id :number) => {
+  const result =
+    await pool.query(`SELECT  b.doctor_id, count(b.id) as Doctor_blogs  FROM Blogs AS b WHERE doctor_id = $1 GROUP BY doctor_id` , [id]);
+  return result.rows;
+};
