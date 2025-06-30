@@ -1,5 +1,6 @@
 import { NextAuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
  import { Login } from "./db/services/users";
 import { userInfo } from "os";
 import { error } from "console";
@@ -53,11 +54,23 @@ export const authOptions: NextAuthOptions = {
         
       },
     }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      authorization: {
+        params: {
+          
+          prompt: "select_account",
+          access_type: "offline",
+          response_type: "code",
+        },
+      },
+    }),
   ],
 
   callbacks: {
     
-    async jwt({ token, user , account }) {
+    async jwt({ token, user , account, profile }) {
       
       if (user) {
         console.log("from  if (user) : ", user);
@@ -71,8 +84,19 @@ export const authOptions: NextAuthOptions = {
        
         
       }
-       if (account) {
-      //  console.log("account:  account: account: ");
+       if (account && profile) {
+
+        
+        console.log("account && profile: ",profile );
+
+  
+        
+      token.accessToken = account.access_token as string;
+        token.id = (profile as any).sub;
+        token.email = (profile as any).email;
+        token.firstName = (profile as any).given_name;
+        token.token = account.access_token as string;
+        token.role_id = 2;
         
         token.accessToken = account.access_token as string;
       }
@@ -88,6 +112,7 @@ export const authOptions: NextAuthOptions = {
         email: token.email,
         token: token.token,
         role_id:token.role_id
+        
       };
 console.log("session from auth : ",session);
       return session;

@@ -35,6 +35,8 @@ export type LoginUser = {
   password: string;
 };
 
+
+
 const hashPassword = async (password: string) => {
   const hashedPassword = await bcrypt.hash(password, 10);
   return hashedPassword;
@@ -123,6 +125,9 @@ export const Login = async (email: string, password: string) => {
     throw new Error("Invalid credentials");
   }
 };
+
+
+
 
 export const UpdateUser = async (id: number, UpdatedUser: UpdateUser) => {
   const result = await pool.query<UpdateUser>(
@@ -213,3 +218,5 @@ GROUP BY a.DoctorName;`,
   );
   return result.rows;
 };
+
+

@@ -16,13 +16,10 @@ country:string,
 body:string,
   }[]
   const params = useParams();
+
+  
   const id = params?.id;
   const [blog, setBlog] = useState<blogType>([]);
-/*
-  const params = useParams();
-  const id = params?.id;
-  const [blog, setBlog] = useState([]);*/
-
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   console.log(blog);
@@ -71,8 +68,9 @@ body:string,
             </div>
           </>
         ))}
-        <Footer/>
+       
       </div>
+       <Footer/>
     </>
   );
 }
