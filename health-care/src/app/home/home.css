@@ -230,6 +230,9 @@ body {
 
 
 }
+#buttonInHomePage{
+  width: 250px;
+}
 
 .card-img-top {
   width: 100%;

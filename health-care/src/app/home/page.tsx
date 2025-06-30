@@ -102,12 +102,13 @@ const Home = () => {
 
         <button
           type="button"
+          id="buttonInHomePage"
           className="btn btn-outline-primary BlogsButton"
           onClick={(e) => {
-            router.push("/blogs");
+            router.push("/bookAppointment");
           }}
         >
-          Blogs
+          Book Appointment
         </button>
       </div>
       <div className="searchSection">
