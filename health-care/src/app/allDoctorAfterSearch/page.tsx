@@ -95,7 +95,7 @@ function allDoctorAfterSearch() {
 
   console.log("allDoctors: ", allDoctors);
   return (
-    <div>
+    <div className="allDoctorsPageAndFooter" >
       <div className="allDoctorsPage">
         <div className="renderAllDoctors">
           {allDoctors.map((ele, i) => {

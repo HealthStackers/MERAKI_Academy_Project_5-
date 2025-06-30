@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -12,6 +11,7 @@ import Footer from "../components/footer"
 import { AuthContext } from "../context/AuthContext";
 
 import axios from "axios";
+import { Result } from "pg";
 
 const Home = () => {
   type servicesArray = {
@@ -32,7 +32,9 @@ const Home = () => {
   const { data: session } = useSession();
   const router = useRouter();
 
-  const [test, setTest] = useState("");
+  console.log("session   vvv:",session?.user);
+  
+
   const {
     searchByLocation,
     setSearchByLocation,
@@ -71,17 +73,28 @@ const Home = () => {
   useEffect(() => {
     GetServices();
     const isReload = sessionStorage.getItem("isReload");
+   
+    
     if (session) {
+console.log("in axois ffffff");
+
+      
+   console.log("sessionvvvvvvvvvvvvvvv: ",session);
+      console.log("session.user.id: ",session.user.id);
+      
       localStorage.setItem("roleId", session.user.role_id.toString());
       localStorage.setItem("email", session.user.email);
       localStorage.setItem("userId", session.user.id.toString());
       localStorage.setItem("token", session.user.token);
+      
+   
     }
     if (!isReload) {
       sessionStorage.setItem("isReload", "true");
       window.location.reload();
     }
-  }, []);
+  }, [session]);
+
 
   return (
     <div>

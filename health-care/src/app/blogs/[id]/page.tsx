@@ -20,7 +20,6 @@ body:string,
   
   const id = params?.id;
   const [blog, setBlog] = useState<blogType>([]);
-
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   console.log(blog);
