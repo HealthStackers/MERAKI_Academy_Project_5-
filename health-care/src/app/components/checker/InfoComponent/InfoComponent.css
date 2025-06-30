@@ -3,7 +3,8 @@
 .InfoComponent{
     position: relative;
     top : 200px;
-    margin-left: 60px;
+   margin: 0;
+   padding: 0; 
     
 }
 
@@ -32,12 +33,14 @@ font-family: 'Poppins', sans-serif;
 .introSymptomChecker{
     display: flex;
     flex-direction: column;
+     margin-left: 60px;
 }
 
 .InfoComponent{
 display: flex;
 flex-direction: column;
 gap: 70px;
+ 
   /* position: relative;
   left: 400px; */
 
@@ -54,7 +57,7 @@ gap: 70px;
 .info-inputs{
     display: flex;
     flex-direction: column;
-    
+    margin-left: 60px;
 gap: 15px;
 margin-bottom: 50px;
 }

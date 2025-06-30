@@ -3,7 +3,7 @@
 .appointmentsCards {
   position: relative;
   top: 150px;
-  margin-left: 60px;
+  
   text-transform: capitalize;
     font-family: "Poppins", sans-serif;
 
@@ -17,3 +17,15 @@
   text-transform: uppercase;
   font-family: "Poppins", sans-serif;
 }
+
+.row,.currentAppointment{
+  margin-left: 60px;
+}
+
+.appointmentsPage{
+  display: flex;
+  flex-direction: column;
+  gap:250px
+}
+
+

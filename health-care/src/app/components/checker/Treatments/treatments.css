@@ -4,7 +4,7 @@
   position: relative;
   top: 200px;
   bottom: 100px;
-  padding-bottom: 50px;
+  
 }
 
 .Treatments {
@@ -257,9 +257,10 @@
 .appointmentSectionHome {
   display: flex;
   flex-wrap: wrap;
-  background: #e8f0fa;
+  background: #CCD7E4;
   width: 100%;
   padding: 60px 30px;
+  margin-bottom: 175px;
 }
 
 .FeaturedServiceBannerModule-content {

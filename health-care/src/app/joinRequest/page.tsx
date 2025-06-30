@@ -6,6 +6,7 @@ import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Footer from "../components/footer"
 import "./joinRequest.css";
 function joinRequest() {
   const router = useRouter();
@@ -237,6 +238,7 @@ function joinRequest() {
           </div>
         </section>
       </div>
+      <Footer/>
     </div>
   );
 }

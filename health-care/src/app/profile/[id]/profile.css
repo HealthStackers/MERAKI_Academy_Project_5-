@@ -18,3 +18,9 @@
   align-self: center;
 }
 
+.profilePage{
+  display: flex;
+  flex-direction: column;
+  gap: 200px;
+}
+

@@ -5,6 +5,7 @@ import Symptoms from "../checker/Symptoms/Symptoms";
 import axios from "axios";
 import "./treatments.css";
 import { useRouter } from 'next/navigation';
+import Footer from "../../../components/footer"
 
 const Treatments = () => {
   const router = useRouter()
@@ -214,13 +215,14 @@ const Treatments = () => {
           </button>
         </div>
         <div className="FeaturedServiceBannerModule-image">
-          <img
-            src="https://i.pinimg.com/736x/6c/92/d3/6c92d38a123128ed967d410f7eebd305.jpg"
+           <img
+            src="/images/Book appointment image.jpg"
             alt=""
             loading="lazy"
           />
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

@@ -3,8 +3,12 @@
 .symptomsDiv{
  position: relative;
     top : 200px;
-    margin-left: 60px;}
+    }
 
+
+    .search-symptoms{
+margin-left: 60px;
+    }
 .enter-title{
     color: #554c57;
     font-family: 'Poppins', sans-serif;
@@ -105,3 +109,4 @@ cursor: pointer;
     margin-top: 15px;
     
 }
+

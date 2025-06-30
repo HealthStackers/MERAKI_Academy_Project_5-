@@ -14,6 +14,7 @@ import {
 import { AuthContext } from "../context/AuthContext";
 import { clockSystem } from "@/models/lib/db/services/appointment";
 import { ToastContainer, toast } from "react-toastify";
+import Footer from "../components/footer"
 import "react-toastify/dist/ReactToastify.css";
 
 // id ?:number
@@ -387,6 +388,7 @@ const BookAppointment = () => {
         </div>
       </div>
       <ToastContainer />
+      <Footer/>
     </div>
   );
 };

@@ -8,7 +8,7 @@ import Navigation from "@/app/components/Navigation";
 import "./home.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import Footer from "../components/footer"
 import { AuthContext } from "../context/AuthContext";
 
 import axios from "axios";
@@ -301,6 +301,7 @@ const Home = () => {
         </div>
         <ToastContainer />
       </div>
+      <Footer/>
     </div>
   );
 };

@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import Footer from "../../components/footer"
 import "./blog.css";
 
 export default function BlogDetailsClient() {
@@ -17,10 +18,10 @@ body:string,
   const params = useParams();
   const id = params?.id;
   const [blog, setBlog] = useState<blogType>([]);
-
+/*
   const params = useParams();
   const id = params?.id;
-  const [blog, setBlog] = useState([]);
+  const [blog, setBlog] = useState([]);*/
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -70,6 +71,7 @@ body:string,
             </div>
           </>
         ))}
+        <Footer/>
       </div>
     </>
   );

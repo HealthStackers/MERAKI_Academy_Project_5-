@@ -5,27 +5,19 @@ import "./Symptoms.css";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { AuthContext } from "@/app/context/AuthContext";
+import Footer from "../../../components/footer"
+
 
 const Symptoms = () => {
   const inputRef = useRef(null);
 
   const { info, setInfo, symptoms, setSymptoms,activeIdx, setActiveIdx } = useContext(AuthContext);
   console.log(info);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  //   const [symptoms, setSymptoms] = useState<any[]>([]);
+  
   const [inputValue, setInputValue] = useState("");
   const [tags, setTags] = useState<string[]>([]);
   console.log(symptoms);
-  //   const getSymptoms = () => {
-  //     axios
-  //       .get(`http://localhost:3000/api/diseases/AllSymptoms`)
-  //       .then((res) => {
-  //         setSymptoms(res.data);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   };
+
 
   const handleAdd = () => {
     const newTag = inputRef.current.value.trim();
@@ -35,9 +27,7 @@ const Symptoms = () => {
     inputRef.current.value = "";
   };
 
-  //   useEffect(() => {
-  //     getSymptoms();
-  //   }, []);
+ 
 
   return (
     <div className="symptomsDiv">
@@ -53,25 +43,7 @@ const Symptoms = () => {
             autoComplete="off"
             onChange={(e) => {
               setInputValue(e.target.value);
-              //const q = e.target.value.toLowerCase();
-              //   eslint-disable-next-line @typescript-eslint/no-explicit-any
-              //   const filtered = symptoms.filter((ele: any) => {
-              //     // ele.symptoms is an array—check if any matches query
-              //     console.log(ele);
-              //     return ele.symptoms.find((e: string) =>
-              //       e.toLowerCase().trim().includes(q.toLowerCase().trim())
-              //     );
-              //   });
-              //console.log(filtered);
-              //   setFiltered(
-              //     filtered
-              //     // q
-              //     //   ? symptoms
-              //     //       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              //     //       .filter((s: any) => s.toLowerCase().includes(q))
-              //     //       .slice(0, 10)
-              //     //   : []
-              //   );
+              
             }}
           />
           <button className="AddSymptoms" type="button" onClick={handleAdd}>
@@ -143,7 +115,7 @@ const Symptoms = () => {
           <span className="validation-text">false</span>
         </div> */}
       </div>
-      
+      <Footer/>
     </div>
   );
 };

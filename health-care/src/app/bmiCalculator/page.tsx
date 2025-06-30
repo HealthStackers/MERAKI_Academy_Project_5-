@@ -1,7 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import axios from "axios";
+import Footer from "../components/footer"
 import "./bmicalculator.css";
+
 function bmiCalculator() {
   const [height, setHeight] = useState<number>(0);
   const [weight, setWeight] = useState<number>(0);
@@ -145,6 +147,7 @@ function bmiCalculator() {
             </div>
           </div>
         </div>
+        <Footer/>
       </div>
     </>
   );
