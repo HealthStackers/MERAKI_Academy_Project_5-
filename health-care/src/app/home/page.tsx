@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -8,10 +7,11 @@ import Navigation from "@/app/components/Navigation";
 import "./home.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import Footer from "../components/footer"
 import { AuthContext } from "../context/AuthContext";
 
 import axios from "axios";
+import { Result } from "pg";
 
 const Home = () => {
   type servicesArray = {
@@ -32,7 +32,9 @@ const Home = () => {
   const { data: session } = useSession();
   const router = useRouter();
 
-  const [test, setTest] = useState("");
+  console.log("session   vvv:",session?.user);
+  
+
   const {
     searchByLocation,
     setSearchByLocation,
@@ -71,17 +73,28 @@ const Home = () => {
   useEffect(() => {
     GetServices();
     const isReload = sessionStorage.getItem("isReload");
+   
+    
     if (session) {
+console.log("in axois ffffff");
+
+      
+   console.log("sessionvvvvvvvvvvvvvvv: ",session);
+      console.log("session.user.id: ",session.user.id);
+      
       localStorage.setItem("roleId", session.user.role_id.toString());
       localStorage.setItem("email", session.user.email);
       localStorage.setItem("userId", session.user.id.toString());
       localStorage.setItem("token", session.user.token);
+      
+   
     }
     if (!isReload) {
       sessionStorage.setItem("isReload", "true");
       window.location.reload();
     }
-  }, []);
+  }, [session]);
+
 
   return (
     <div>
@@ -102,6 +115,7 @@ const Home = () => {
 
         <button
           type="button"
+          id="buttonInHomePage"
           className="btn btn-outline-primary BlogsButton"
           onClick={(e) => {
             router.push("/bookAppointment");
@@ -189,14 +203,12 @@ const Home = () => {
         </div>
         <div className="FeaturedServiceBannerModule-image">
           <img
-            src="https://i.pinimg.com/736x/37/81/5d/37815d621d044bd8d47fc1fcf896413f.jpg"
+            src="/images/Book appointment image.jpg"
             alt=""
             loading="lazy"
           />
         </div>
       </div>
-
-    
 
       <div className="FeaturedServiceBannerModule-content">
         <div className="row gx-3 gy-4 services">
@@ -229,6 +241,7 @@ const Home = () => {
 
       <div className="howToUseSection">
         <p className="introHowToUseSection">How to use the webSite</p>
+
 
         <div className="howToUseSection">
           <div className="searchDectionSection">
@@ -302,6 +315,7 @@ const Home = () => {
         </div>
         <ToastContainer />
       </div>
+      <Footer/>
     </div>
   );
 };

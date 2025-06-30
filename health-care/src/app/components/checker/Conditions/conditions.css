@@ -3,7 +3,7 @@
 .conditionsDiv {
   position: relative;
   top: 200px;
-  margin-left: 60px;
+  
 }
 
 .conditions {
@@ -148,4 +148,20 @@
   flex-direction: column;
   justify-content: center;
   align-content: space-between;
+  margin-left: 60px;
+}
+
+.navigationInCheckerInConditions{
+  
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 130px;
+    margin-bottom: 130px;
+    
+    
+    
+    
+    
+
 }

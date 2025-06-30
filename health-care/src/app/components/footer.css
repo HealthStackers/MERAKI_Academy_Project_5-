@@ -1,0 +1,78 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #216ecf;
+  color: white;
+  padding: 5vh;
+/*  margin-top: 600px;*/
+}
+
+.footerDetails {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25vw;
+}
+
+.websiteLogo {
+  display: flex;
+  flex-direction: row;
+  font-size: 3em;
+  align-self: center;
+  align-items: center;
+  position: relative;
+  top: 7vh;
+}
+
+.websiteInfo,
+.contactDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: start;
+  gap: 1.5vh;
+  position: relative;
+  top: 7vh;
+  font-size: large;
+}
+
+.contactsIcons {
+  display: flex;
+  flex-direction: row;
+  gap: 1vw;
+}
+
+.facebookIcon,
+.instagramIcon,
+.linkedinIcon {
+  width: 30%;
+  height: 32px;
+}
+
+.emailInFooter,
+.phoneNumber,
+.copyRight {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5vw;
+}
+.emailIcon {
+  width: 27px;
+  height: 27px;
+}
+.copyRight {
+  font-size: large;
+}
+
+.copyRightIcon {
+  width: 25px;
+  height: 25px;
+}
+
+.websiteLogoInFooter{
+    width: 250px;
+    height: 250px;
+}

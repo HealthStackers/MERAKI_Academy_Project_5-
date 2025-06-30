@@ -173,7 +173,7 @@ body {
 .appointmentSectionHome {
   display: flex;
   flex-wrap: wrap;
-  background: #e8f0fa;
+  background: #CCD7E4;
   width: 100%;
   padding: 60px 30px;
 }
@@ -229,6 +229,9 @@ body {
   cursor: pointer;
 
 
+}
+#buttonInHomePage{
+  width: 250px;
 }
 
 .card-img-top {

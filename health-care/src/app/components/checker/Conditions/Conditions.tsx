@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./conditions.css";
 import { AuthContext } from "@/app/context/AuthContext";
 import Symptoms from "../Symptoms/Symptoms";
+import Footer from "../../../components/footer"
 import axios from "axios";
 
 const Conditions = () => {
@@ -37,6 +38,7 @@ const Conditions = () => {
   }, []);
 
   return (
+    
     <div className="conditionsDiv">
       
       {(symptoms.length === 1 &&  conditions.length !== 0)? (
@@ -126,7 +128,7 @@ const Conditions = () => {
         </div>
         </div>
       
-        <div className="navigationInChecker">
+        <div className="navigationInCheckerInConditions">
             <button className="nextButtonInChecker" onClick={()=>{
         setActiveIdx(1)
       }}> Previous</button>
@@ -135,7 +137,7 @@ const Conditions = () => {
       }}> Next</button>
           </div>
       </div>
-      
+      <Footer />
     </div>
   );
 };

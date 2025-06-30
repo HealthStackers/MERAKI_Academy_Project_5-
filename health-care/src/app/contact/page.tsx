@@ -1,4 +1,6 @@
 import React from "react";
+import Footer from "../components/footer"
+
 import "./contact.css";
 const Contact = () => {
   return (
@@ -77,6 +79,7 @@ const Contact = () => {
           loading="lazy"
         ></iframe>
       </div>
+      
     </div>
   );
 };

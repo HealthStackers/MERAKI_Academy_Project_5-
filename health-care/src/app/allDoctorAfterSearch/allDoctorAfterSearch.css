@@ -1,3 +1,9 @@
+.allDoctorsPageAndFooter{
+  display: flex;
+  flex-direction: column;
+  gap: 370px;
+}
+
 .allDoctorsPage {
   position: relative;
   top: 120px;

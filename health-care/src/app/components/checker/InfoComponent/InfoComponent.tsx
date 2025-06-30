@@ -2,6 +2,7 @@
 import React, { useContext, useState } from "react";
 import "./InfoComponent.css";
 import { AuthContext } from "@/app/context/AuthContext";
+import Footer from "../../../components/footer"
 
 const InfoComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -113,8 +114,9 @@ const InfoComponent = () => {
         setActiveIdx(1)
       }}> Next</button>
       </form>
-     
+     <Footer/>
     </div>
+    
   );
 };
 

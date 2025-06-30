@@ -4,6 +4,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
+
 import './service.css'
 
 const Service = () => {
@@ -155,6 +156,7 @@ const Service = () => {
           </div>
         )}{" "}
       </div>
+      
     </>
   );
 };

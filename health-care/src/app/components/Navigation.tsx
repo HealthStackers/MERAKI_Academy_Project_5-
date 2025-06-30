@@ -12,20 +12,21 @@ import { useRouter } from "next/navigation";
 
 const Navigation = () => {
   const route = useRouter();
-  
-   type servicesArray = {
+
+  type servicesArray = {
     service_id: number;
     service_title: string;
     imageurl: string;
     description: string;
   }[];
 
-  const { setToken } = useContext(AuthContext);
   const token = localStorage.getItem("token");
   const roleId = localStorage.getItem("roleId");
   const UID = localStorage.getItem("userId");
-  const { data: session } = useSession();
 
+  const { setToken } = useContext(AuthContext);
+
+  const { data: session } = useSession();
 
   const [services, setServices] = useState<servicesArray>([]);
 
@@ -33,8 +34,7 @@ const Navigation = () => {
     setToken(null);
     localStorage.clear();
 
-    sessionStorage.clear()
-
+    sessionStorage.clear();
 
     await signOut({ redirect: true, callbackUrl: "/login" }); // Redirects to login page after logout
   };
@@ -135,12 +135,8 @@ const Navigation = () => {
                   </li>
                 )}
                 <li className="nav-item">
-
-                  
-
                   <a className="nav-link" href="allDoctors">
                     All Doctors
-
                   </a>
                 </li>
                 <li className="nav-item">
@@ -177,7 +173,7 @@ const Navigation = () => {
               >
                 <FaUserCircle
                   size={30}
-                  color="#343b48"
+                  color="#216ecf"
                   style={{ marginRight: "8px" }}
                 />
               </button>

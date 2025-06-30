@@ -3,9 +3,11 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "./allDoctors.css";
 import { AuthContext } from "../context/AuthContext";
+import { useRouter } from "next/navigation";
+import Footer from "../components/footer"
 function allDoctors() {
-  const { allDoctors, setAllDoctors } = useContext(AuthContext);
-
+  const { allDoctors, setAllDoctors,doctorIdInBookBtn,setDoctorIdInBookBtn } = useContext(AuthContext);
+  const router= useRouter()
   useEffect(() => {
     axios
       .get("http://localhost:3000/api/users/allDoctors")
@@ -118,7 +120,18 @@ function allDoctors() {
                   </div>
                 </div>
               </div>
-              <button className="bookAnAppointmentInDoctorBox">
+              <button className="bookAnAppointmentInDoctorBox" onClick={()=>{
+                console.log("doctor_id: ",ele.doctor_id);
+                
+                setDoctorIdInBookBtn({
+                  doctor_id:ele.doctor_id,
+                  firstname:ele.firstname,
+                  lastname:ele.lastname,
+                  specialization:ele.specialization,
+                  clinicname:ele.clinicname
+                })
+                router.push("/bookAppointment")
+              }}>
                 {" "}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -138,6 +151,7 @@ function allDoctors() {
           );
         })}
       </div>
+      <Footer/>
     </div>
   );
 }
