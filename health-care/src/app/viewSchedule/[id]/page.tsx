@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./viewSchedule.css";
 import axios from "axios";
 import { AuthContext } from "@/app/context/AuthContext";
+import Footer from "../../components/footer" 
 
 const ViewSchedule = () => {
   const UID = localStorage.getItem("userId");
@@ -29,7 +30,7 @@ const ViewSchedule = () => {
   });
 
   return (
-    <>
+    <div className="appointmentsPage">
       <div className="appointmentsCards">
         <h3 className="currentAppointment">Current Appointments »</h3>
         <div className="row">
@@ -110,8 +111,10 @@ const ViewSchedule = () => {
               </div>
             ))}
         </div>
+        
       </div>
-    </>
+      <Footer/>
+    </div>
   );
 };
 

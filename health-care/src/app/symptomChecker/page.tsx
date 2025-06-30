@@ -7,6 +7,7 @@ import Conditions from "../components/checker/Conditions/Conditions";
 import Details from "../components/checker/Details/Details";
 import Treatments from "../components/checker/Treatments/Treatments";
 import { AuthContext } from "../context/AuthContext";
+import Footer from "../components/footer"
 
 const SymptomChecker = () => {
 
@@ -49,6 +50,7 @@ const SymptomChecker = () => {
       </div>
 
       <div className="symptoms-page">{steps[activeIdx].component}</div>
+      
     </>
   );
 };

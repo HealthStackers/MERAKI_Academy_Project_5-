@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useState } from "react";
 import "./details.css";
 import { AuthContext } from "@/app/context/AuthContext";
 import Symptoms from "../checker/Symptoms/Symptoms";
+import Footer from "../../../components/footer"
+
 import axios from "axios";
 
 const Details = () => {
@@ -15,20 +17,14 @@ const Details = () => {
   const arr = symptoms.toString().split(",").join("/");
   console.log(arr);
   console.log(conditions);
-  //   const [currentComponent, setCurrentComponent] = useState('symptoms');
-
-  //   const handleSwitch = (component) => {
-  //     setCurrentComponent(component);
-  //   };
-  //http://localhost:3000/api/diseases/diarrhea/body aches
-
+ 
   const getDetails = () => {
     axios
       .get(`http://localhost:3000/api/diseases/` + arr)
       .then((res) => {
         console.log(res.data.data);
         setConditions(res.data.data);
-        // console.log([...posts, res.data.jobs])
+      
       })
       .catch((err) => {
         console.log(err);
@@ -100,23 +96,6 @@ const Details = () => {
           </div>
         )}
 
-        {/* <div className="symptom-details">
-            <div className="test">
-              <div className="infoTitle symptomTitle"> My Symptoms </div>
-              <span className="infoDetails">
-                {Array.isArray(symptoms)
-                  ? symptoms.map((e, idx) => (
-                      <div className="singleSymptom" key={idx}>
-                        <p className="symptom" key={idx}>
-                          {e}
-                        </p>{" "}
-                      </div>
-                    ))
-                  : null}
-              </span>
-            </div>
-            
-          </div> */}
       </div>
        <div className="navigationInCheckerInDetials">
             <button className="nextButtonInChecker" onClick={()=>{
@@ -126,6 +105,7 @@ const Details = () => {
         setActiveIdx(4)
       }}> Next</button>
           </div>
+          <Footer/>
     </div>
   );
 };

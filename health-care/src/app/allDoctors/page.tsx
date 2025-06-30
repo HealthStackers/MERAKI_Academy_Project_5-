@@ -4,6 +4,7 @@ import axios from "axios";
 import "./allDoctors.css";
 import { AuthContext } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
+import Footer from "../components/footer"
 function allDoctors() {
   const { allDoctors, setAllDoctors,doctorIdInBookBtn,setDoctorIdInBookBtn } = useContext(AuthContext);
   const router= useRouter()
@@ -150,6 +151,7 @@ function allDoctors() {
           );
         })}
       </div>
+      <Footer/>
     </div>
   );
 }

@@ -11,9 +11,9 @@
 .AppointmentPanel {
   position: relative;
   top: 150px;
-  margin-left: 60px;
-  padding-bottom: 50px;
-  width: 700px;
+ 
+ 
+   
   font-family: "Poppins", sans-serif;
 }
 
@@ -25,6 +25,13 @@
 
 .headingAppointment{
   margin-bottom: 30px;
+  margin-left: 60px;
+  
+}
+
+.AddDiv{
+  margin-left: 60px;
+  width: 700px;
 }
 
 .heading {

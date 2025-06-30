@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import "./allDoctorAfterSearch.css";
 import { useRouter } from "next/navigation";
+import Footer from "../components/footer"
 function allDoctorAfterSearch() {
    const router= useRouter()
   type allDoctorAfterFiltration = {
@@ -230,6 +231,7 @@ function allDoctorAfterSearch() {
       <div>
         {showErrorMessage && <div className="errorMessage">{errorMessage}</div>}
       </div>
+       <Footer/>
     </div>
   );
 }

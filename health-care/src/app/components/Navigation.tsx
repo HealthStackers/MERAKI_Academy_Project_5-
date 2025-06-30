@@ -177,7 +177,7 @@ const Navigation = () => {
               >
                 <FaUserCircle
                   size={30}
-                  color="#343b48"
+                  color="#216ecf"
                   style={{ marginRight: "8px" }}
                 />
               </button>

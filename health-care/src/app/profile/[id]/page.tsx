@@ -5,6 +5,8 @@ import "./profile.css";
 import axios from "axios";
 import Link from "next/link";
 import { AuthContext } from "@/app/context/AuthContext";
+import Footer from "../../components/footer"
+
 
 const Profile = () => {
   const token = localStorage.getItem("token");
@@ -65,12 +67,13 @@ const Profile = () => {
   }, [UID]);
 
   return (
-    <>
+    <div className="profilePage">
       {profile.map((e, idx) => (
         <div
           key={idx}
           className="card profile-card mx-auto my-4"
-          style={{ maxWidth: "400px" }}
+          style={{ maxWidth: "400px", marginBottom:"200px"}}
+
         >
           <div className="card-body text-center">
             <img
@@ -158,9 +161,11 @@ const Profile = () => {
               </div>
             )}
           </div>
+          
         </div>
       ))}
-    </>
+      <Footer/>
+    </div>
   );
 };
 
