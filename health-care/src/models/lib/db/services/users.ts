@@ -27,7 +27,7 @@ export type UpdateUser = {
   password: string;
   role_id: number;
   is_deleted: 0;
-  userprofilepic:string;
+  userprofilepic?: string;
 };
 
 export type LoginUser = {
@@ -154,22 +154,35 @@ export const DeleteUser = async (id: number) => {
 
 export const GetAllDoctors = async () => {
   const result = await pool.query(
-    `SELECT * FROM users  
-    INNER JOIN join_request ON users.id = join_request.doctor_id 
-      INNER JOIN role ON role.id = users.role_id 
-    WHERE role.role_name = 'doctor'`
+    `SELECT
+u.* ,
+jr.*,
+  u.id AS doctor_id,
+    u.firstname, u.lastname,
+      r.role_name,
+        COUNT(a.id) AS total_appointments,
+          COUNT(DISTINCT a.user_id) AS distinct_patients
+          FROM users AS u
+          INNER JOIN join_request AS jr
+            ON u.id = jr.doctor_id
+            INNER JOIN role AS r
+              ON r.id = u.role_id
+              LEFT JOIN appointments AS a
+                ON u.id = a.user_id
+                WHERE r.role_name = 'doctor'
+                GROUP BY u.id, u.firstname, u.lastname, r.role_name,jr.id`
   );
   return result.rows;
 };
 
-
 export const GetAllPatients = async () => {
   const result = await pool.query(
-    `SELECT * FROM users  
-    INNER JOIN Appointments ON users.id = Appointments.user_id 
-      INNER JOIN role ON role.id = users.role_id 
-      INNER JOIN diseases ON diseases.id = Appointments.disease_id
-    WHERE role.role_name = 'patient'`
+    `SELECT u.*, d.* , a.* FROM users AS u
+    LEFT JOIN Appointments AS a ON u.id = a.user_id 
+      INNER JOIN role ON role.id = u.role_id 
+      LEFT JOIN diseases AS d ON d.id = a.disease_id
+    WHERE role.role_name = 'patient'
+    group By u.id,a.user_id,d.id ,a.id`
   );
   return result.rows;
 };
@@ -186,30 +199,11 @@ WHERE users.id = $1`,
   return result.rows;
 };
 
-export const GetCountAppointmentsById = async (id: number) => {
-  const result = await pool.query(
-    `SELECT
-  a.user_id,
-  COUNT(a.id)              AS total_appointments,
-  COUNT(DISTINCT a.user_id) AS distinct_patients
-FROM appointments AS a
-WHERE users.id = $1
-GROUP BY a.user_id;`,
-    [id]
-  );
-  return result.rows;
-};
 
-export const GetCountAppointmentsForDoctor = async (name: string) => {
-  const result = await pool.query(
-    `SELECT
-  a.DoctorName,
-  COUNT(a.id)              AS total_appointments,
-  COUNT(DISTINCT a.user_id) AS distinct_patients
-FROM appointments AS a
-WHERE a.DoctorName = $1
-GROUP BY a.DoctorName;`,
-    [name]
-  );
-  return result.rows;
-};
+//  SELECT
+//   a.user_id,
+//   STRING_AGG(DISTINCT d.name, ', ' ORDER BY d.name) AS diseases_list
+// FROM appointments AS a
+// JOIN diseases AS d
+//   ON d.id = a.disease_id
+// GROUP BY a.user_id

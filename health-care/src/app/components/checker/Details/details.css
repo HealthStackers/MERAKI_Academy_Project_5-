@@ -83,6 +83,11 @@
 .title {
   font-family: "Poppins", sans-serif;
 }
+
+.navigationInChecker{
+  margin-top: 150px;
+  padding-bottom: 10px;
+}
 /* .Details {
   display: flex;
   flex-direction: row;

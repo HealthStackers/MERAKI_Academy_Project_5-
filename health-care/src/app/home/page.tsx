@@ -104,10 +104,10 @@ const Home = () => {
           type="button"
           className="btn btn-outline-primary BlogsButton"
           onClick={(e) => {
-            router.push("/blogs");
+            router.push("/bookAppointment");
           }}
         >
-          Blogs
+          Book
         </button>
       </div>
       <div className="searchSection">

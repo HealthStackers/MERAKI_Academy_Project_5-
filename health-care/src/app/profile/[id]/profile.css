@@ -7,14 +7,34 @@
 }
 
 .patient-fields,
-.head-office-fields,.doctor-fields {
+.head-office-fields,
+.doctor-fields {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
 }
+
 .bookAppointmentbtn,
-.adminPanel,.viewSchedulebtn {
+.adminPanel,
+.viewSchedulebtn {
   margin-top: 20px;
   align-self: center;
+}
+
+.edit {
+  border: 0;
+  background-color: white;
+  position: relative;
+  top: 40px;
+  right: 10px;
+  font-size: 16px;
+}
+
+
+.profile-pic-wrapper img {
+  object-fit: cover;
+}
+.profile-pic-wrapper input[type="file"] {
+  cursor: pointer;
 }
 

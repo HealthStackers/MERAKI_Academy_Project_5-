@@ -6,18 +6,6 @@ import "./blog.css";
 
 export default function BlogDetailsClient() {
 
-  type blogType ={
-    imageurl:string,
-title:string,
-firstname:string,
-lastname:string,
-country:string,
-body:string,
-  }[]
-  const params = useParams();
-  const id = params?.id;
-  const [blog, setBlog] = useState<blogType>([]);
-
   const params = useParams();
   const id = params?.id;
   const [blog, setBlog] = useState([]);

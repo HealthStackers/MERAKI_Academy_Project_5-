@@ -1,4 +1,5 @@
 import { UpdateAppointment } from "@/models/lib/db/services/appointment";
+import { GetCountAppointmentsById } from "@/models/lib/db/services/users";
 import { NextResponse } from "next/server";
 
 export const PUT = async (
@@ -9,8 +10,9 @@ export const PUT = async (
 ) => {
   const { id } = await params.params;
   const body = await request.json();
-  const result = await UpdateAppointment(body , +id);
-   return NextResponse.json(result, {
-        status: 200,
-      });
+  const result = await UpdateAppointment(body, +id);
+  return NextResponse.json(result, {
+    status: 200,
+  });
 };
+
