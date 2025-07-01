@@ -216,7 +216,7 @@ const Treatments = () => {
         </div>
         <div className="FeaturedServiceBannerModule-image">
            <img
-            src="/images/Book appointment image.jpg"
+            src="/images/Book appointment image.png"
             alt=""
             loading="lazy"
           />
