@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 .footer {
   display: flex;
   flex-direction: column;
@@ -6,7 +7,10 @@
   background-color: #216ecf;
   color: white;
   padding: 5vh;
-  /*  margin-top: 600px;*/
+
+  font-family: "Poppins", "sans-serif" ;
+
+
 }
 
 .footerDetails {

@@ -34,6 +34,8 @@ const AdminPanel = () => {
   const [UserId, setUserId] = useState<number | string>("");
   const [doctors, setDoctors] = useState([]);
   const [patients, setPatients] = useState([]);
+  const [DoctorsAppointment, setDoctorsAppointment] = useState([]);
+  const [PatientsAppointment, setPatientsAppointment] = useState([]);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const toggleVisibility = (index: any) => {
@@ -41,12 +43,13 @@ const AdminPanel = () => {
   };
   console.log(doctors);
 
+
   const getAppointments = () => {
     axios
       .get("http://localhost:3000/api/appointments/all")
       .then((res) => {
         setAppointments(res.data);
-        // console.log([...posts, res.data.jobs])
+        // console.log(res.data)
       })
       .catch((err) => {
         console.log(err);
@@ -110,6 +113,7 @@ const AdminPanel = () => {
       .get(`http://localhost:3000/api/users/allDoctors`)
       .then((res) => {
         setDoctors(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -223,7 +227,7 @@ const AdminPanel = () => {
         </div>
       </div>
 
-      {activeIndex === 0 && <Service/>}
+      {activeIndex === 0 && <Service />}
       {activeIndex === 4 && (
         <div className="UpdateDiv">
           <div className="appointments">
@@ -486,8 +490,8 @@ const AdminPanel = () => {
                             <strong>25</strong>
                           </div>
                           <div className="col border-start">
-                            <h6>Treating patients</h6>
-                            <strong>142</strong>
+                            <h6>Appointments</h6>
+                            <strong>{ele?.total_appointments}</strong>
                           </div>
                           <div className="col border-start">
                             <h6>Blogs</h6>
@@ -572,7 +576,7 @@ const AdminPanel = () => {
                       <div className="row text-center">
                         <div className="col border-start">
                           <h6>Appointments</h6>
-                          <strong>142</strong>
+                          <strong>{ele?.total_appointments}</strong>
                         </div>
                         <div className="col border-start">
                           <h6>View Blogs</h6>
