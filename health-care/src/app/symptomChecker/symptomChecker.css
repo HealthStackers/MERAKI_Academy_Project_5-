@@ -10,7 +10,14 @@
 }
 
 .navbar-container {
-  background-color: #eaecef;
+    background-color: #eaecef;
+  margin: 20px;
+  width: 100%;
+  max-width: 1200px; 
+  padding: 0 15px;  
+  box-sizing: border-box;
+
+
 }
 
 .navbarChecker {
@@ -56,3 +63,12 @@ li a {
 a:focus {
   text-decoration: underline;
 }
+
+
+
+@media (max-width: 768px) {
+  .navbar-container {
+  
+    width: 245vw  }
+}
+

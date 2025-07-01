@@ -299,3 +299,11 @@
   font-size: 1.25rem;
   color: #343b48;
 }
+
+
+@media (max-width: 768px) {
+  .appointmentSectionHome{
+width: 266%;
+
+  }
+}

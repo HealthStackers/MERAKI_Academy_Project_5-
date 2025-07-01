@@ -100,3 +100,10 @@ input {
   margin-top: 30px;
   width: 100%;
 }
+
+
+@media (max-width: 768px) {
+  .addAppointment{
+margin-bottom: 50px;
+  }
+}

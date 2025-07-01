@@ -61,19 +61,21 @@ const Navigation = () => {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div className="container-fluid">
-          <button
-            className="btn btn-outline-secondary d-lg-none"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#mobileDrawer"
-          >
-            ☰
-          </button>
+        <div className="container-fluid d-flex align-items-center">
+          <div className="d-flex align-items-center">
+            <button
+              className="btn btn-outline-secondary d-lg-none me-4"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#mobileDrawer"
+            >
+              ☰
+            </button>
 
-          <a className="navbar-brand logo" href="/home">
-            <span id="letter">M</span>ed<span id="letter">i</span>vo
-          </a>
+            <a className="navbar-brand logo" href="/home">
+              <span id="letter">M</span>ed<span id="letter">i</span>vo
+            </a>
+          </div>
 
           <div className="collapse navbar-collapse desktop-menu">
             <ul className="navbar-nav">
@@ -86,7 +88,7 @@ const Navigation = () => {
                 <li className="nav-item">
                   <a
                     className={`nav-link ${token ? "" : "disabled"}`}
-                    href={token ? "symptomChecker" : undefined}
+                    href={token ? "/symptomChecker" : undefined}
                     aria-disabled={!token}
                     onClick={token ? undefined : (e) => e.preventDefault()}
                   >
@@ -135,7 +137,7 @@ const Navigation = () => {
                   </li>
                 )}
                 <li className="nav-item">
-                  <a className="nav-link" href="allDoctors">
+                  <a className="nav-link" href="/allDoctors">
                     All Doctors
                   </a>
                 </li>
@@ -155,50 +157,27 @@ const Navigation = () => {
               </div>
             </ul>
           </div>
-          {token ? (
-            <>
+          <div className="d-flex align-items-center">
+            <button className="btn btn-link p-0" onClick={profile}>
+              <FaUserCircle
+                size={30}
+                style={{ marginRight: "20px" }}
+                color="#216ecf"
+              />
+            </button>
+            {token ? (
               <button
-                style={{
-                  background: "none",
-                  border: "none",
-                  padding: 0,
-                  cursor: "pointer",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  marginRight: "20px",
-                }}
-                onClick={(e) => {
-                  profile();
-                }}
-              >
-                <FaUserCircle
-                  size={30}
-                  color="#216ecf"
-                  style={{ marginRight: "8px" }}
-                />
-              </button>
-              <button
-                type="button"
-                data-mdb-button-init
-                data-mdb-ripple-init
                 className="btn btn-primary btn-m logout"
                 onClick={handleLogout}
               >
                 Logout
               </button>
-            </>
-          ) : (
-            <button
-              type="button"
-              data-mdb-button-init
-              data-mdb-ripple-init
-              className="btn btn-primary btn-m login"
-            >
-              <a className="nav-link" href="login">
+            ) : (
+              <a className="btn btn-primary btn-m login" href="/login">
                 Login
               </a>
-            </button>
-          )}
+            )}
+          </div>
         </div>
       </nav>
 
@@ -214,45 +193,47 @@ const Navigation = () => {
         <div className="offcanvas-body">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/home">
                 Home
               </a>
             </li>
+
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Features
+              <a
+                className="nav-link"
+                href={token ? "/symptomChecker" : undefined}
+              >
+                Symptom Checker
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Pricing
+              <a className="nav-link" href="/bmiCalculator">
+                BMI
               </a>
             </li>
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
                 href="#"
+                id="servicesDropdown"
                 role="button"
                 data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
               >
-                Dropdown link
+                Services
               </a>
-              <ul className="dropdown-menu">
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Something else
-                  </a>
-                </li>
+              <ul className="dropdown-menu" aria-labelledby="servicesDropdown">
+                {services.map((ele) => (
+                  <li key={ele.service_id}>
+                    <a
+                      className="dropdown-item"
+                      href={`/blogs/${ele.service_id}`}
+                    >
+                      {ele.service_title}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </li>
           </ul>

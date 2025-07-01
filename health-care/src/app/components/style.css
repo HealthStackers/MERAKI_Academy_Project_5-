@@ -56,3 +56,26 @@
 .login , .logout{
   margin-right: 30px;
 }
+
+.offcanvas-body .navbar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* spacing between items */
+}
+
+.offcanvas-body .nav-link {
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+@media (max-width: 768px) {
+  .logo{
+margin-left: 0;
+ padding-left: 0px;
+  }
+
+  .container-fluid{
+    
+  }
+}
+
