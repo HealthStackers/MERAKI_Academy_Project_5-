@@ -12,7 +12,6 @@ export default function BlogDetailsClient() {
   const [blog, setBlog] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  console.log(blog);
 
   useEffect(() => {
     if (!id) return;

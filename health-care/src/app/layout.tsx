@@ -6,7 +6,7 @@ import Providers from "./components/providers";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navigation from "./components/Navigation";
 import { AuthProvider } from "./context/AuthContext";
-import Footer from "./components/footer"
+import Footer from "./components/footer";
 import Script from "next/script";
 
 const geistSans = Geist({
@@ -31,28 +31,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body 
+    
+      <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-         <Script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        strategy="afterInteractive"
-      />
-        {" "}
-       
-            <AuthProvider>
+        <Script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          strategy="afterInteractive"
+        />{" "}
+        <AuthProvider>
           <Providers>
-            <Navigation/>
+            <Navigation />
             {children}
-     
           </Providers>
         </AuthProvider>
-      
-    
-        
-        
       </body>
-      
     </html>
   );
 }

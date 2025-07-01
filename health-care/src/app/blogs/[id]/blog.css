@@ -19,3 +19,12 @@ padding-bottom: 80px;
 .title , .name , .country{
     text-transform: capitalize;
 }
+
+
+/* Responsive media query code for mobile devices */
+
+@media(max-width: 459px) {
+ .BlogDiv {
+    width: 100vw !important;
+  }
+}

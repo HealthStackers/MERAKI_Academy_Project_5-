@@ -1,106 +1,102 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
-.InfoComponent{
-    position: relative;
-    top : 200px;
-   margin: 0;
-   padding: 0; 
-    
+.InfoComponent {
+  position: relative;
+  top: 200px;
+  margin: 0;
+  padding: 0;
 }
 
-
-.TitleSymptomChecker{
-display: flex;
-flex-direction: row;
+.TitleSymptomChecker {
+  display: flex;
+  flex-direction: row;
 }
 
-.SymptomChecker{
-font-size: 30px;
-font-family: 'Poppins', sans-serif;
+.SymptomChecker {
+  font-size: 30px;
+  font-family: "Poppins", sans-serif;
 }
 
-.withBodyMap{
-    font-family: 'Poppins', sans-serif;
-    font-size: smaller;
-     top: 25px;
-    color: #71b7e6;
-    font-size: 16px;
-    line-height: .75;
-    padding-left: 2px;
-    text-shadow: 0 1px 2px hsla(0, 0%, 100%, .93);
+.withBodyMap {
+  font-family: "Poppins", sans-serif;
+  font-size: smaller;
+  top: 25px;
+  color: #71b7e6;
+  font-size: 16px;
+  line-height: 0.75;
+  padding-left: 2px;
+  text-shadow: 0 1px 2px hsla(0, 0%, 100%, 0.93);
 }
 
-.introSymptomChecker{
-    display: flex;
-    flex-direction: column;
-     margin-left: 60px;
+.introSymptomChecker {
+  display: flex;
+  flex-direction: column;
+  margin-left: 60px;
 }
 
-.InfoComponent{
-display: flex;
-flex-direction: column;
-gap: 70px;
- 
+.InfoComponent {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+
   /* position: relative;
   left: 400px; */
-
 }
 
-.Continue{
-    background-color: #71b7e6;
-    color: #fff;
-    width: 210px;
-    height: 50px;
-    border: thin;
+.Continue {
+  background-color: #71b7e6;
+  color: #fff;
+  width: 210px;
+  height: 50px;
+  border: thin;
 }
 
-.info-inputs{
-    display: flex;
-    flex-direction: column;
-    margin-left: 60px;
-gap: 15px;
-margin-bottom: 50px;
+.info-inputs {
+  display: flex;
+  flex-direction: column;
+  margin-left: 60px;
+  gap: 15px;
+  margin-bottom: 50px;
 }
 
-.age , .gender{
-    color: #554c57;
-    font-family: Source Sans Pro, Arial, sans-serif;
-    font-size: 1.3125rem;
-    font-weight: 400;
-    text-shadow: 0 1px 2px hsla(0, 0%, 100%, .99);
-    white-space: nowrap;
+.age,
+.gender {
+  color: #554c57;
+  font-family: Source Sans Pro, Arial, sans-serif;
+  font-size: 1.3125rem;
+  font-weight: 400;
+  text-shadow: 0 1px 2px hsla(0, 0%, 100%, 0.99);
+  white-space: nowrap;
 }
 
-#gender{
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    
+#gender {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
 
-.button-default{
-    background-color: #e7f2f9;
-    -webkit-box-shadow: 0 1px 0 0 rgba(0, 0, 0, .12);
-    box-shadow: 0 1px 0 0 rgba(0, 0, 0, .12);
-    color: #333;
-    cursor: pointer;
-    display: inline-block;
-    font-family: Source Sans Pro, Arial, sans-serif;
-    font-size: 1.0625rem;
-    text-align: center;
-    -webkit-transition: background-color .1s;
-    transition: background-color .1s;
-    vertical-align: middle;
-    width: 110px;
-    border: thin;
-    height: 50px;
+.button-default {
+  background-color: #e7f2f9;
+  -webkit-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.12);
+  color: #333;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Source Sans Pro, Arial, sans-serif;
+  font-size: 1.0625rem;
+  text-align: center;
+  -webkit-transition: background-color 0.1s;
+  transition: background-color 0.1s;
+  vertical-align: middle;
+  width: 110px;
+  border: thin;
+  height: 50px;
 }
 
 .button-default:focus {
   background-color: #71b7e6;
-      color: #fff;
+  color: #fff;
 }
-
 
 .collapsible-content {
   max-height: 0;
@@ -123,25 +119,37 @@ margin-bottom: 50px;
   transform: rotate(180deg);
 }
 
-.collapsible-btn{
-    border: thin;
-    color:#000;
-    background-color: #fff;
+.collapsible-btn {
+  border: thin;
+  color: #000;
+  background-color: #fff;
 }
 
-.nextButtonInChecker{
+.nextButtonInChecker {
   height: 50px;
   width: 100px;
-  background-color: white; 
-   color: #216ecf;
+  background-color: white;
+  color: #216ecf;
   font-size: large;
-  font-weight:500;
+  font-weight: 500;
   border: solid 1px #216ecf;
   border-radius: 5px;
   align-self: center;
 }
 
-.nextButtonInChecker:hover{
-  background-color: #216ecf; 
+.nextButtonInChecker:hover {
+  background-color: #216ecf;
   color: white;
 }
+
+
+@media (max-width: 768px) {
+  .SymptomChecker {
+    font-size: 20px; 
+  }
+   .nextButtonInChecker{
+   margin-top: 50px;
+   margin-left: 20px;
+  }
+}
+

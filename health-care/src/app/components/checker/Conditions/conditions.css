@@ -158,10 +158,24 @@
     gap: 5px;
     margin-top: 130px;
     margin-bottom: 130px;
-    
-    
-    
-    
-    
+ 
 
 }
+
+
+@media (max-width: 768px) {
+  .conditions {
+   gap: 120px;
+  }
+
+  .heading{
+        margin-bottom: 50px;
+  }
+  .conditionUl{
+        margin-left: 8px;
+  }
+}
+
+
+
+
