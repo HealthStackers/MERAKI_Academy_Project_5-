@@ -312,7 +312,6 @@ console.log("in axois ffffff");
         </div>
         <ToastContainer />
       </div>
-      <Footer/>
     </div>
   );
 };

@@ -137,7 +137,6 @@ const Conditions = () => {
       }}> Next</button>
           </div>
       </div>
-      <Footer />
     </div>
   );
 };

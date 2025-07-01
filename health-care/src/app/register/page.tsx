@@ -63,6 +63,7 @@ const Register = () => {
   };
 
   return (
+    
     <section className="registerPage">
       <div className="containerInRegister">
         <div className="titleInRegister">Registration</div>

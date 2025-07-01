@@ -105,7 +105,6 @@ const Details = () => {
         setActiveIdx(4)
       }}> Next</button>
           </div>
-          <Footer/>
     </div>
   );
 };

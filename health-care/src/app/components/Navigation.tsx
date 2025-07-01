@@ -60,20 +60,25 @@ const Navigation = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navBarSection">
+      <nav
+        className="navbar navbar-expand-lg navbar-light bg-light fixed-top"
+        id="navBarSection"
+      >
         <div className="container-fluid">
-          <button
-            className="btn btn-outline-secondary d-lg-none"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#mobileDrawer"
-          >
-            ☰
-          </button>
-
-          <a className="navbar-brand logo" href="/home">
-            <span id="letter">M</span>ed<span id="letter">i</span>vo
-          </a>
+          <div className="d-flex align-items-center">
+            <button
+              className="btn btn-outline-secondary d-lg-none me-3"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#mobileDrawer"
+              aria-label="Toggle navigation"
+            >
+              ☰
+            </button>
+              <a className="navbar-brand mb-0 logo" href="/home">
+        <span id="letter">M</span>ed<span id="letter">i</span>vo
+      </a>
+          </div>
 
           <div className="collapse navbar-collapse desktop-menu">
             <ul className="navbar-nav">
@@ -86,7 +91,7 @@ const Navigation = () => {
                 <li className="nav-item">
                   <a
                     className={`nav-link ${token ? "" : "disabled"}`}
-                    href={token ? "symptomChecker" : undefined}
+                    href={token ? "/symptomChecker" : undefined}
                     aria-disabled={!token}
                     onClick={token ? undefined : (e) => e.preventDefault()}
                   >
@@ -135,7 +140,7 @@ const Navigation = () => {
                   </li>
                 )}
                 <li className="nav-item">
-                  <a className="nav-link" href="allDoctors">
+                  <a className="nav-link" href="/allDoctors">
                     All Doctors
                   </a>
                 </li>
@@ -155,96 +160,92 @@ const Navigation = () => {
               </div>
             </ul>
           </div>
-          {token ? (
-            <>
-              <button
-                
-                className="profileIconInNav"
-                onClick={(e) => {
-                  profile();
-                }}
-              >
-                <FaUserCircle
-                  size={30}
-                  color="#216ecf"
-                  style={{ marginRight: "8px" }}
-                />
-              </button>
-              <button
-                type="button"
-                data-mdb-button-init
-                data-mdb-ripple-init
-                className="btn btn-primary btn-m logout"
-                onClick={handleLogout}
-              >
-                Logout
-              </button>
-            </>
-          ) : (
-            <button
-              type="button"
-              data-mdb-button-init
-              data-mdb-ripple-init
-              className="btn btn-primary btn-m login"
-            >
-              <a className="nav-link" href="login">
+          <div className="d-flex align-items-center">
+            {token ? (
+              <>
+                <button
+                  type="button"
+                  className="btn btn-link p-0 me-2"
+                  onClick={() => route.push(`/profile/${UID}`)}
+                  aria-label="Profile"
+                >
+                  <FaUserCircle size={30} color="#216ecf" />
+                </button>
+                <button
+                  className="btn btn-primary btn-m"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <a className="btn btn-primary btn-m" href="/login">
                 Login
               </a>
-            </button>
-          )}
+            )}
+          </div>
         </div>
       </nav>
- 
-      <div className="offcanvas offcanvas-start" id="mobileDrawer"  >
+
+      <div className="offcanvas offcanvas-start" id="mobileDrawer">
         <div className="offcanvas-header">
-          <h5 className="offcanvas-title"><strong>Menu</strong></h5>
+          <h5 className="offcanvas-title">
+            <strong>Menu</strong>
+          </h5>
           <button
             type="button"
             className="btn-close"
             data-bs-dismiss="offcanvas"
           ></button>
         </div>
-        <div className="offcanvas-body" >
-          <ul className="navbar-nav" style={{ display: "flex", flexDirection: "column", justifyContent:"start" }}>
+        <div className="offcanvas-body">
+          <ul
+            className="navbar-nav"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "start",
+            }}
+          >
             <li className="nav-item active">
-              <a className="nav-link" href="home">
+              <a className="nav-link" href="/home">
                 Home
               </a>
             </li>
             <li className="nav-item">
-                  <a
-                    className={`nav-link ${token ? "" : "disabled"}`}
-                    href={token ? "symptomChecker" : undefined}
-                    aria-disabled={!token}
-                    onClick={token ? undefined : (e) => e.preventDefault()}
-                  >
-                    Symptom Checker
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/bmiCalculator">
-                    BMI
-                  </a>
-                </li>
-                 {roleId === "1" && (
-                  <li className="nav-item">
-                    <a className="nav-link" href="/adminPanel">
-                      Admin Panel
-                    </a>
-                  </li>
-                )}
+              <a
+                className={`nav-link ${token ? "" : "disabled"}`}
+                href={token ? "symptomChecker" : undefined}
+                aria-disabled={!token}
+                onClick={token ? undefined : (e) => e.preventDefault()}
+              >
+                Symptom Checker
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/bmiCalculator">
+                BMI
+              </a>
+            </li>
+            {roleId === "1" && (
+              <li className="nav-item">
+                <a className="nav-link" href="/adminPanel">
+                  Admin Panel
+                </a>
+              </li>
+            )}
             <li className="nav-item">
               <a className="nav-link" href="/allDoctors">
                 All Doctors
               </a>
             </li>
             {roleId === "2" && (
-                  <li className="nav-item">
-                    <a className="nav-link" href="/joinRequest">
-                      Join Request
-                    </a>
-                  </li>
-                )}
+              <li className="nav-item">
+                <a className="nav-link" href="/joinRequest">
+                  Join Request
+                </a>
+              </li>
+            )}
             <li className="nav-item">
               <a className="nav-link" href="/contact">
                 Contact
@@ -259,21 +260,18 @@ const Navigation = () => {
               >
                 Services
               </a>
-              <ul
-                    className="dropdown-menu"
-                    aria-labelledby="servicesDropdown"
-                  >
-                    {services.map((ele) => (
-                      <li key={ele.service_id}>
-                        <a
-                          className="dropdown-item"
-                          href={`/blogs/${ele.service_id}`}
-                        >
-                          {ele.service_title}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+              <ul className="dropdown-menu" aria-labelledby="servicesDropdown">
+                {services.map((ele) => (
+                  <li key={ele.service_id}>
+                    <a
+                      className="dropdown-item"
+                      href={`/blogs/${ele.service_id}`}
+                    >
+                      {ele.service_title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </li>
           </ul>
         </div>

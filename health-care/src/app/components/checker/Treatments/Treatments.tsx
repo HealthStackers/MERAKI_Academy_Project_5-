@@ -222,7 +222,6 @@ const Treatments = () => {
           />
         </div>
       </div>
-      <Footer/>
     </div>
   );
 };
