@@ -145,29 +145,9 @@ const BookAppointment = () => {
       <div className="AddDiv">
         <div className="appointments">
           <p className="introAppointment">
-            {/*  an appointment that you want to Update it. */}
+           
           </p>
-          {/* <select
-            className="form-select"
-            multiple
-            aria-label="multiple select example"
-          >
-            {appointments?.map((ele) => (
-              <option
-                key={ele.id}
-                onClick={(e) => {
-                  setAppointmentID(ele.appointment_id);
-                  setDurationTime(ele.durationtime);
-                  setDiseaseId(ele.disease_id);
-                  setUserId(ele.user_id);
-                }}
-                value={ele.appointment_id}
-              >
-                {ele.firstname} {ele.lastname} {ele.phonenumber}{" "}
-                {ele.appointmenttype} {ele.timeappointment}
-              </option>
-            ))}
-          </select> */}
+         
         </div>
 
         <div className="appointmentInfoDiv">
@@ -351,32 +331,7 @@ const BookAppointment = () => {
                 </option>
               ))}
             </select>
-            {/* <input
-              disabled
-              type="text"
-              // value={UserId}
-              placeholder="user_id"
-              onChange={(e) => {
-                // setAppointments({
-                //   ...appointments,
-                //   user_id: Number(e.target.value),
-                // });
-              }}
-            /> */}
-            {/* <input
-              disabled
-              type="text"
-              // value={DiseaseId}
-              placeholder="Disease_id"
-              onChange={(e) => {
-                // setAppointments({
-                //   ...appointments,
-                //   Disease_id: Number(e.target.value),
-                // });
-              }}
-
-
-            /> */}
+           
           </div>
           <button
             type="button"

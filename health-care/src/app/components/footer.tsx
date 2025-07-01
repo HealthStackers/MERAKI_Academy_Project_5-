@@ -19,21 +19,21 @@ function footer() {
         </div>
         <div className="contactDetails">
           <div className="emailInFooter">
-            <MdEmail className="icon" />
+            <MdEmail className="emailIcon" />
             info@medivohealth.com
           </div>
           <div className="phoneNumber">
-            <MdPhone className="icon" />
+            <MdPhone className="phoneNumbericon" />
             +962 (06) 510 0400
           </div>
           <div className="location">
-            <MdLocationOn className="icon" />
+            <MdLocationOn className="locationicon" />
             123 Medivo Street, Jordan
           </div>
           <div className="contactsIcons">
-            <FaFacebookF className="icon" />
-            <FaInstagram className="icon" />
-            <FaLinkedinIn className="icon" />
+            <FaFacebookF className="faceBookIcon" />
+            <FaInstagram className="instgramIcon" />
+            <FaLinkedinIn className="linkedInIcon" />
           </div>
         </div>
       </div>

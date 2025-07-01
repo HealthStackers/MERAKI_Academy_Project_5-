@@ -43,22 +43,21 @@
 .contactDetails{
 display: flex;
 flex-direction: column;
-gap: 10px;
+gap: 5px;
 margin-top: 40px;
 }
 
 .contactsIcons {
   display: flex;
   flex-direction: row;
-  gap: 1vw;
+  gap: 0.5vw;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 15px;
+  
 }
-/* 
-.facebookIcon,
-.instagramIcon,
-.linkedinIcon {
-  width: 30%;
+
+.faceBookIcon ,.instgramIcon,.linkedInIcon{
+  width: 14%;
   height: 32px;
 }
 
@@ -68,15 +67,16 @@ margin-top: 40px;
   display: flex;
   flex-direction: row;
   gap: 0.5vw;
-  margin-top: 30px;
+  
 }
-.emailIcon {
+.emailIcon,.phoneNumbericon
+,.locationicon {
   width: 27px;
   height: 27px;
 }
 .copyRight {
   font-size: large;
-} */
+} 
 
 .copyRightIcon {
   width: 25px;
