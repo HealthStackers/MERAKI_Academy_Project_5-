@@ -117,7 +117,7 @@ function bmiCalculator() {
 
             <div className="bmiCategories">
               
-              <h3 className="bmiCategoriesHeader">BMi Categories</h3>
+              <h3 className="bmiCategoriesHeader">BMI Categories</h3>
               {bmiResult!==0 && (<div className="bmiResult"> Your BMI result is: {bmiResult} </div>)}
               <div className="bmiCategoriesBox">
                 <div className="bmiCategory">

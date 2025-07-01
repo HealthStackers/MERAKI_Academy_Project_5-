@@ -12,7 +12,7 @@ html,
 body {
   height: 100%;
   width: 100%;
-    font-family: "Poppins", "sans-serif" ;
+  font-family: "Poppins", "sans-serif";
 }
 
 .searchSection {
@@ -38,7 +38,6 @@ body {
   width: 360px;
   height: 50px;
 
-
   color: #343b48;
   margin-bottom: 20px;
   margin-right: 2px;
@@ -49,7 +48,6 @@ body {
 .searchInput::placeholder {
   position: relative;
   left: 10px;
-
 
   color: #343b48;
   margin-bottom: 20px;
@@ -165,7 +163,11 @@ body {
   width: 35%;
 }
 
-.imageInSearchSection {
+.imageInSearchSection,
+.imageInBecomeADoctorSection,
+.imageInBookAppointmentSection {
+  width: 500;
+  height: 300;
   position: relative;
   bottom: 10vh;
 }
@@ -226,12 +228,9 @@ body {
 }
 
 .card {
-
   cursor: pointer;
-
-
 }
-#buttonInHomePage{
+#buttonInHomePage {
   width: 250px;
 }
 
@@ -241,9 +240,6 @@ body {
   height: 200px;
   object-fit: cover;
   flex-shrink: 0;
-
- 
-
 }
 
 .services {
@@ -252,6 +248,177 @@ body {
   width: 94vw;
 }
 
+@media (max-width: 500px) {
+  .mastHead {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0px;
+    display: flex;
+    position: relative;
+    top: 125px;
+  }
 
- 
+  .headingInMastHead {
+    color: #343b48;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 30px;
+    font-family: Poppins, sans-serif;
+    font-size: medium;
+  }
 
+  .headTextInMastHead {
+    color: #343b48;
+    text-align: center;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    font-family: Poppins, sans-serif;
+    font-weight: 800;
+    font-size: medium;
+    margin-bottom: 30px;
+  }
+
+  .bodyTextInMastHead {
+    color: #343b48;
+    text-align: center;
+    letter-spacing: 0.5px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    margin-bottom: 40px;
+    font-family: Poppins, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .searchButton {
+    color: #216ecf;
+    background-color: #fff;
+    border: 1px solid #216ecf;
+    border-radius: 5px;
+    width: 100px;
+    height: 50px;
+    font-size: large;
+    font-weight: 500;
+    margin-left: 27vw;
+  }
+
+  .searchSection {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 30px;
+    display: flex;
+    margin-top: 130px;
+  }
+
+  .textInsearchSection {
+    text-transform: uppercase;
+    color: #343b48;
+    text-wrap: auto;
+    margin: 0 0 20px;
+    font-family: Poppins, sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  .text2InsearchSection {
+    display: none;
+    color: #343b48;
+    text-transform: capitalize;
+    margin-top: 5px;
+    margin-bottom: 50px;
+    font-family: Poppins, sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  .iconInSearch {
+    width: 40px;
+    height: 40px;
+    display: none;
+  }
+
+  .FeaturedServiceBannerModule-image img {
+    object-fit: cover;
+    object-position: center;
+    max-width: 300px;
+    display: none;
+  }
+
+  .appointmentSectionHome_ {
+    background: #e8f0fa;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0;
+    display: flex;
+  }
+
+  .logo {
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-left: 15px;
+    font-family: Verdana, sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+  .introHowToUseSection {
+    text-transform: uppercase;
+    color: #343b48;
+    align-self: baseline;
+    margin-left: 4vw;
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  .imageInSearchSection {
+    width: 41vw;
+    height: 25vh;
+    position: relative;
+    bottom: 30px;
+  }
+
+  .imageInBecomeADoctorSection {
+    width: 39vw;
+    height: 23vh;
+    position: relative;
+    top: 150px;
+    bottom: 0;
+  }
+
+  .imageInBookAppointmentSection {
+    width: 39vw;
+    height: 23vh;
+    position: relative;
+    top: 100px;
+    bottom: 0;
+  }
+
+  .h5,
+  h5 {
+    font-size: large;
+  }
+
+  .searchDectionSection {
+    flex-direction: row;
+    margin-left: 2vw;
+    justify-content: start;
+    align-items: start;
+    margin-top: 30px;
+    display: flex;
+  }
+
+  .textAndHeadInSearchSection {
+    width: 60%;
+  }
+  .howToUseSection {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 0px;
+    font-family: Poppins, sans-serif;
+    display: flex;
+  }
+}

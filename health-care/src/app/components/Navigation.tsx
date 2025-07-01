@@ -60,7 +60,7 @@ const Navigation = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navBarSection">
         <div className="container-fluid">
           <button
             className="btn btn-outline-secondary d-lg-none"
@@ -158,15 +158,8 @@ const Navigation = () => {
           {token ? (
             <>
               <button
-                style={{
-                  background: "none",
-                  border: "none",
-                  padding: 0,
-                  cursor: "pointer",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  marginRight: "20px",
-                }}
+                
+                className="profileIconInNav"
                 onClick={(e) => {
                   profile();
                 }}
@@ -201,23 +194,45 @@ const Navigation = () => {
           )}
         </div>
       </nav>
-
-      <div className="offcanvas offcanvas-start" id="mobileDrawer">
+ 
+      <div className="offcanvas offcanvas-start" id="mobileDrawer"  >
         <div className="offcanvas-header">
-          <h5 className="offcanvas-title">Menu</h5>
+          <h5 className="offcanvas-title"><strong>Menu</strong></h5>
           <button
             type="button"
             className="btn-close"
             data-bs-dismiss="offcanvas"
           ></button>
         </div>
-        <div className="offcanvas-body">
-          <ul className="navbar-nav">
+        <div className="offcanvas-body" >
+          <ul className="navbar-nav" style={{ display: "flex", flexDirection: "column", justifyContent:"start" }}>
             <li className="nav-item active">
               <a className="nav-link" href="home">
                 Home
               </a>
             </li>
+            <li className="nav-item">
+                  <a
+                    className={`nav-link ${token ? "" : "disabled"}`}
+                    href={token ? "symptomChecker" : undefined}
+                    aria-disabled={!token}
+                    onClick={token ? undefined : (e) => e.preventDefault()}
+                  >
+                    Symptom Checker
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/bmiCalculator">
+                    BMI
+                  </a>
+                </li>
+                 {roleId === "1" && (
+                  <li className="nav-item">
+                    <a className="nav-link" href="/adminPanel">
+                      Admin Panel
+                    </a>
+                  </li>
+                )}
             <li className="nav-item">
               <a className="nav-link" href="/allDoctors">
                 All Doctors
@@ -242,25 +257,23 @@ const Navigation = () => {
                 role="button"
                 data-bs-toggle="dropdown"
               >
-                Dropdown link
+                Services
               </a>
-              <ul className="dropdown-menu">
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Something else
-                  </a>
-                </li>
-              </ul>
+              <ul
+                    className="dropdown-menu"
+                    aria-labelledby="servicesDropdown"
+                  >
+                    {services.map((ele) => (
+                      <li key={ele.service_id}>
+                        <a
+                          className="dropdown-item"
+                          href={`/blogs/${ele.service_id}`}
+                        >
+                          {ele.service_title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
             </li>
           </ul>
         </div>

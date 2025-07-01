@@ -34,7 +34,7 @@
 .loginAndRegister {
   display: flex;
   flex-direction: row;
-  gap: 3px
+  gap: 3px;
 }
 
 #registerButtonInNavBar {
@@ -53,6 +53,42 @@
   width: 5vw;
 }
 
-.login , .logout{
+.login,
+.logout {
   margin-right: 30px;
+}
+
+.profileIconInNav {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+@media (max-width: 500px) {
+  .navbar > .container-fluid {
+    flex-wrap: inherit;
+    justify-content: start;
+    align-items: center;
+    display: flex;
+  }
+
+  .profileIconInNav {
+    background: none;
+    border: none;
+    padding: 0px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 5px;
+    margin-left: 4vw;
+  }
+
+  .login,
+  .logout {
+    margin-right: -5px;
+  }
 }

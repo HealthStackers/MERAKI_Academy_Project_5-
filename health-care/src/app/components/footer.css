@@ -7,10 +7,7 @@
   background-color: #216ecf;
   color: white;
   padding: 5vh;
-
-  font-family: "Poppins", "sans-serif" ;
-
-
+  font-family: "Poppins", "sans-serif";
 }
 
 .footerDetails {
@@ -19,6 +16,12 @@
   justify-content: space-between;
   align-items: center;
   gap: 25vw;
+}
+
+.websiteInfoAndContactDetails{
+  display: flex;
+  flex-direction: row;
+
 }
 
 .websiteLogo {
@@ -40,11 +43,11 @@
   top: 2vh;
 }
 
-.contactDetails{
-display: flex;
-flex-direction: column;
-gap: 5px;
-margin-top: 40px;
+.contactDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 40px;
 }
 
 .contactsIcons {
@@ -53,10 +56,11 @@ margin-top: 40px;
   gap: 0.5vw;
   align-items: center;
   margin-top: 15px;
-  
 }
 
-.faceBookIcon ,.instgramIcon,.linkedInIcon{
+.faceBookIcon,
+.instgramIcon,
+.linkedInIcon {
   width: 14%;
   height: 32px;
 }
@@ -67,16 +71,16 @@ margin-top: 40px;
   display: flex;
   flex-direction: row;
   gap: 0.5vw;
-  
 }
-.emailIcon,.phoneNumbericon
-,.locationicon {
+.emailIcon,
+.phoneNumbericon,
+.locationicon {
   width: 27px;
   height: 27px;
 }
 .copyRight {
   font-size: large;
-} 
+}
 
 .copyRightIcon {
   width: 25px;
@@ -87,4 +91,107 @@ margin-top: 40px;
 .websiteLogoInFooter {
   width: 250px;
   height: 250px;
+}
+
+#mobileOnly{
+  display: none;
+}
+
+#bigScreen{
+  display: flex;
+}
+
+@media (max-width: 500px) {
+  #mobileOnly{
+  display: flex;
+}
+#bigScreen{
+  display: none;
+}
+  .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    color: #fff;
+    background-color: #216ecf;
+    padding: 0vh;
+    font-family: Poppins, "sans-serif";
+  }
+  .footerDetails {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: start;
+    gap: 0vh;
+    margin-left: 4vw;
+    display: flex;
+  }
+
+  .websiteLogoInFooter {
+    width: 100px;
+    height: 100px;
+    justify-content: start;
+    display: flex;
+    flex-direction: row;
+  }
+  .websiteInfo {
+    flex-direction: column;
+    gap: 5px;
+    font-size: 16px;
+    display: flex;
+    position: relative;
+    top: 0vh;
+  }
+
+  .emailInFooter,
+  .phoneNumber,
+  .copyRight {
+    flex-direction: row;
+    gap: 0.5vw;
+    display: flex;
+   
+  }
+
+  .websiteLogo {
+    display: flex;
+    flex-direction: row;
+    font-size: 3em;
+    align-self: center;
+    align-items: center;
+    position: static;
+    top: 0;
+  }
+
+  .websiteInfoAndContactDetails {
+    flex-direction: row-reverse;
+    justify-content: start;
+    align-items: start;
+    gap: 15vw;
+    margin-top: 0;
+    margin-bottom: 25px;
+    display: flex;
+  }
+
+  .contactDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 0px;
+  }
+
+  .contactsIcons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5vw;
+    margin-top: 1px;
+  }
+
+  .copyRightIcon {
+    width: 25px;
+    height: 25px;
+    margin-right: 3px;
+    position: relative;
+    bottom: 5px;
+  }
 }
