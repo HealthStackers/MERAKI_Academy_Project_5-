@@ -255,22 +255,20 @@ console.log("in axois ffffff");
                 geographical preference and medical needs.
               </p>
             </div>
-            <Image
+            <img
               className="imageInSearchSection"
               src="/images/imageinsearchforadoctorsector.PNG"
               alt="Doctor Image"
-              width={500}
-              height={300}
+             
             />
           </div>
 
           <div className="searchDectionSection">
-            <Image
-              className="imageInSearchSection"
+            <img
+              className="imageInBecomeADoctorSection"
               src="/images/becomeADoctor.PNG"
               alt="become A Doctor Image"
-              width={600}
-              height={300}
+              
             />
             <div className="textAndHeadInSearchSection">
               <h5 className="headInserchDectionSection">
@@ -304,12 +302,11 @@ console.log("in axois ffffff");
                 personal details, and book an appointment.{" "}
               </p>
             </div>
-            <Image
-              className="imageInSearchSection"
+            <img
+              className="imageInBookAppointmentSection"
               src="/images/bookAnApointment.PNG"
               alt="book An Apointment Image"
-              width={500}
-              height={300}
+              
             />
           </div>
         </div>
