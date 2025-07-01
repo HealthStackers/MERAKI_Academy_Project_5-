@@ -87,3 +87,66 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       z-index: 1000; 
 }
+
+
+@media (max-width: 500px) {
+  .renderAllDoctors {
+    grid-template-columns: 1fr;
+    justify-content: center;
+    justify-items: center;
+    margin-bottom: 600px;
+    display: grid;
+  }
+
+  .bookAnAppointmentInDoctorBox {
+    color: #fff;
+    float: right;
+    background-color: #216ecf;
+    border: none;
+    border-radius: 10px;
+    justify-content: center;
+    place-self: center right;
+    align-items: center;
+    width: 110px;
+    height: 50px;
+    font-weight: bold;
+    display: flex;
+  }
+  .imageInSearchSectionss {
+    border-radius: 10px;
+    width: 97px;
+    height: 111px;
+  }
+
+  .doctorBox {
+    background-color: #fff;
+    border: none;
+    border-radius: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+    width: 95%;
+    margin: 5px;
+    margin-top: 25px;
+    padding: 10px;
+    display: flex;
+    box-shadow: 5px 5px 10px #9b9595;
+    font-size: small;
+  }
+
+  .bookAnAppointmentInDoctorBox {
+    color: #fff;
+    float: right;
+    background-color: #216ecf;
+    border: none;
+    border-radius: 10px;
+    justify-content: center;
+    place-self: center right;
+    align-items: center;
+    width: 90px;
+    height: 50px;
+    font-weight: bold;
+    display: flex;
+    font-size: small;
+  }
+}

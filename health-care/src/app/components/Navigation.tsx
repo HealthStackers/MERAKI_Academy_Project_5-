@@ -60,22 +60,20 @@ const Navigation = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div className="container-fluid d-flex align-items-center">
-          <div className="d-flex align-items-center">
-            <button
-              className="btn btn-outline-secondary d-lg-none me-4"
-              type="button"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#mobileDrawer"
-            >
-              ☰
-            </button>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navBarSection">
+        <div className="container-fluid">
+          <button
+            className="btn btn-outline-secondary d-lg-none"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#mobileDrawer"
+          >
+            ☰
+          </button>
 
-            <a className="navbar-brand logo" href="/home">
-              <span id="letter">M</span>ed<span id="letter">i</span>vo
-            </a>
-          </div>
+          <a className="navbar-brand logo" href="/home">
+            <span id="letter">M</span>ed<span id="letter">i</span>vo
+          </a>
 
           <div className="collapse navbar-collapse desktop-menu">
             <ul className="navbar-nav">
@@ -88,7 +86,7 @@ const Navigation = () => {
                 <li className="nav-item">
                   <a
                     className={`nav-link ${token ? "" : "disabled"}`}
-                    href={token ? "/symptomChecker" : undefined}
+                    href={token ? "symptomChecker" : undefined}
                     aria-disabled={!token}
                     onClick={token ? undefined : (e) => e.preventDefault()}
                   >
@@ -137,7 +135,7 @@ const Navigation = () => {
                   </li>
                 )}
                 <li className="nav-item">
-                  <a className="nav-link" href="/allDoctors">
+                  <a className="nav-link" href="allDoctors">
                     All Doctors
                   </a>
                 </li>
@@ -157,84 +155,125 @@ const Navigation = () => {
               </div>
             </ul>
           </div>
-          <div className="d-flex align-items-center">
-            <button className="btn btn-link p-0" onClick={profile}>
-              <FaUserCircle
-                size={30}
-                style={{ marginRight: "20px" }}
-                color="#216ecf"
-              />
-            </button>
-            {token ? (
+          {token ? (
+            <>
               <button
+                
+                className="profileIconInNav"
+                onClick={(e) => {
+                  profile();
+                }}
+              >
+                <FaUserCircle
+                  size={30}
+                  color="#216ecf"
+                  style={{ marginRight: "8px" }}
+                />
+              </button>
+              <button
+                type="button"
+                data-mdb-button-init
+                data-mdb-ripple-init
                 className="btn btn-primary btn-m logout"
                 onClick={handleLogout}
               >
                 Logout
               </button>
-            ) : (
-              <a className="btn btn-primary btn-m login" href="/login">
+            </>
+          ) : (
+            <button
+              type="button"
+              data-mdb-button-init
+              data-mdb-ripple-init
+              className="btn btn-primary btn-m login"
+            >
+              <a className="nav-link" href="login">
                 Login
               </a>
-            )}
-          </div>
+            </button>
+          )}
         </div>
       </nav>
-
-      <div className="offcanvas offcanvas-start" id="mobileDrawer">
+ 
+      <div className="offcanvas offcanvas-start" id="mobileDrawer"  >
         <div className="offcanvas-header">
-          <h5 className="offcanvas-title">Menu</h5>
+          <h5 className="offcanvas-title"><strong>Menu</strong></h5>
           <button
             type="button"
             className="btn-close"
             data-bs-dismiss="offcanvas"
           ></button>
         </div>
-        <div className="offcanvas-body">
-          <ul className="navbar-nav">
+        <div className="offcanvas-body" >
+          <ul className="navbar-nav" style={{ display: "flex", flexDirection: "column", justifyContent:"start" }}>
             <li className="nav-item active">
-              <a className="nav-link" href="/home">
+              <a className="nav-link" href="home">
                 Home
               </a>
             </li>
-
             <li className="nav-item">
-              <a
-                className="nav-link"
-                href={token ? "/symptomChecker" : undefined}
-              >
-                Symptom Checker
+                  <a
+                    className={`nav-link ${token ? "" : "disabled"}`}
+                    href={token ? "symptomChecker" : undefined}
+                    aria-disabled={!token}
+                    onClick={token ? undefined : (e) => e.preventDefault()}
+                  >
+                    Symptom Checker
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/bmiCalculator">
+                    BMI
+                  </a>
+                </li>
+                 {roleId === "1" && (
+                  <li className="nav-item">
+                    <a className="nav-link" href="/adminPanel">
+                      Admin Panel
+                    </a>
+                  </li>
+                )}
+            <li className="nav-item">
+              <a className="nav-link" href="/allDoctors">
+                All Doctors
               </a>
             </li>
+            {roleId === "2" && (
+                  <li className="nav-item">
+                    <a className="nav-link" href="/joinRequest">
+                      Join Request
+                    </a>
+                  </li>
+                )}
             <li className="nav-item">
-              <a className="nav-link" href="/bmiCalculator">
-                BMI
+              <a className="nav-link" href="/contact">
+                Contact
               </a>
             </li>
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
                 href="#"
-                id="servicesDropdown"
                 role="button"
                 data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
               >
                 Services
               </a>
-              <ul className="dropdown-menu" aria-labelledby="servicesDropdown">
-                {services.map((ele) => (
-                  <li key={ele.service_id}>
-                    <a
-                      className="dropdown-item"
-                      href={`/blogs/${ele.service_id}`}
-                    >
-                      {ele.service_title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <ul
+                    className="dropdown-menu"
+                    aria-labelledby="servicesDropdown"
+                  >
+                    {services.map((ele) => (
+                      <li key={ele.service_id}>
+                        <a
+                          className="dropdown-item"
+                          href={`/blogs/${ele.service_id}`}
+                        >
+                          {ele.service_title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
             </li>
           </ul>
         </div>
