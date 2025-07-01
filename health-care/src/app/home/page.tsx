@@ -182,7 +182,7 @@ console.log("in axois ffffff");
           Access doctors’ profiles and qualifications.
         </p>
       </div>
-      <div className="appointmentSectionHome">
+      <div className="appointmentSectionHome_">
         <div className="FeaturedServiceBannerModule-content">
           <small className="FeaturedServiceBannerModule-badge">New</small>
           <h2 className="FeaturedServiceBannerModule-title">
@@ -203,7 +203,7 @@ console.log("in axois ffffff");
         </div>
         <div className="FeaturedServiceBannerModule-image">
           <img
-            src="/images/Book appointment image.jpg"
+            src="/images/Book appointment image.png"
             alt=""
             loading="lazy"
           />
