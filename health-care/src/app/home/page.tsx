@@ -121,7 +121,7 @@ console.log("in axois ffffff");
             router.push("/bookAppointment");
           }}
         >
-          Book Appointment
+          Book
         </button>
       </div>
       <div className="searchSection">

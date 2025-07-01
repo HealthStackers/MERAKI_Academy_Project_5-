@@ -17,7 +17,6 @@ const Blogs = () => {
     service_id: 0,
     doctor_id: Number(userId),
   });
-  console.log(blogs);
   const [success, setSuccess] = useState<boolean>(false);
   useContext(AuthContext);
   const [msg, setMsg] = useState<string>("");
