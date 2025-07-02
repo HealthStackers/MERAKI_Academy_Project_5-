@@ -66,7 +66,8 @@ const Register = () => {
   };
 
   useEffect(() => {
-    if (session) router.push("/home");
+    if (session) 
+      router.push("/home");
   }, [session, router]);
 
   return (
