@@ -417,8 +417,9 @@ body {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    margin-top: 0px;
+    margin-top: 0;
     font-family: Poppins, sans-serif;
     display: flex;
+    margin-bottom: 40px;
   }
 }
