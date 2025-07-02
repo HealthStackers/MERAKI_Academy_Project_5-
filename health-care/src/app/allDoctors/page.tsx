@@ -4,10 +4,23 @@ import axios from "axios";
 import "./allDoctors.css";
 import { AuthContext } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
-import Footer from "../components/footer"
+import Footer from "../components/footer";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
 function allDoctors() {
-  const { allDoctors, setAllDoctors,doctorIdInBookBtn,setDoctorIdInBookBtn } = useContext(AuthContext);
-  const router= useRouter()
+  const handleAction = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      router.push("/bookAppointment");
+    } else {
+      toast.error("Please log in or register to access this feature");
+    }
+  };
+  const { allDoctors, setAllDoctors, doctorIdInBookBtn, setDoctorIdInBookBtn } =
+    useContext(AuthContext);
+  const router = useRouter();
   useEffect(() => {
     axios
       .get("http://localhost:3000/api/users/allDoctors")
@@ -25,6 +38,7 @@ function allDoctors() {
       <div className="renderAllDoctors">
         {allDoctors.map((ele, i) => {
           return (
+            // eslint-disable-next-line react/jsx-key
             <div className="doctorBox">
               <div className="doctorDetailsAndImage">
                 <img
@@ -120,18 +134,21 @@ function allDoctors() {
                   </div>
                 </div>
               </div>
-              <button className="bookAnAppointmentInDoctorBox" onClick={()=>{
-                console.log("doctor_id: ",ele.doctor_id);
-                
-                setDoctorIdInBookBtn({
-                  doctor_id:ele.doctor_id,
-                  firstname:ele.firstname,
-                  lastname:ele.lastname,
-                  specialization:ele.specialization,
-                  clinicname:ele.clinicname
-                })
-                router.push("/bookAppointment")
-              }}>
+              <button
+                className="bookAnAppointmentInDoctorBox"
+                onClick={() => {
+                  console.log("doctor_id: ", ele.doctor_id);
+
+                  setDoctorIdInBookBtn({
+                    doctor_id: ele.doctor_id,
+                    firstname: ele.firstname,
+                    lastname: ele.lastname,
+                    specialization: ele.specialization,
+                    clinicname: ele.clinicname,
+                  });
+                  handleAction()
+                }}
+              >
                 {" "}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -151,7 +168,7 @@ function allDoctors() {
           );
         })}
       </div>
-      <Footer/>
+      <ToastContainer />
     </div>
   );
 }

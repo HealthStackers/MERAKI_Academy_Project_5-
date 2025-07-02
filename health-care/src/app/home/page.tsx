@@ -7,7 +7,6 @@ import Navigation from "@/app/components/Navigation";
 import "./home.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Footer from "../components/footer";
 import { AuthContext } from "../context/AuthContext";
 
 import axios from "axios";
@@ -106,9 +105,7 @@ const Home = () => {
           type="button"
           id="buttonInHomePage"
           className="btn btn-outline-primary BlogsButton"
-          onClick={(e) => {
-            router.push("/bookAppointment");
-          }}
+          onClick={handleAction}
         >
           Book
         </button>
@@ -183,9 +180,7 @@ const Home = () => {
           <button
             type="button"
             className="btn btn-outline-primary"
-            onClick={(e) => {
-              router.push("/bookAppointment");
-            }}
+            onClick={handleAction}
           >
             Find an Appointment
           </button>
