@@ -2,29 +2,40 @@
   position: relative;
   top: 130px;
   margin-left: 60px;
-   margin-right: 60px;
-   margin-bottom: 150px;
-padding-bottom: 80px;
+  margin-right: 60px;
+  margin-bottom: 150px;
+  padding-bottom: 80px;
   font-family: "Poppins", sans-serif;
-
 }
 
 .BlogDiv img {
   width: 100%;
-  height: 400px;         
-  object-fit: cover;     
+  height: 400px;
+  object-fit: cover;
   object-position: center;
 }
 
-.title , .name , .country{
-    text-transform: capitalize;
+.title,
+.name,
+.country {
+  text-transform: capitalize;
 }
 
+.divider {
+  margin-top: 90px; /* vertical spacing */
+}
+
+.BlogNum {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;                       
+  color: #222;       
+}
 
 /* Responsive media query code for mobile devices */
 
-@media(max-width: 459px) {
- .BlogDiv {
+@media (max-width: 459px) {
+  .BlogDiv {
     width: 100vw !important;
   }
 }

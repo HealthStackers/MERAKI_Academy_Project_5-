@@ -238,7 +238,6 @@ function joinRequest() {
           </div>
         </section>
       </div>
-      <Footer/>
     </div>
   );
 }

@@ -100,6 +100,7 @@ function allDoctorAfterSearch() {
         <div className="renderAllDoctors">
           {allDoctors.map((ele, i) => {
             return (
+              // eslint-disable-next-line react/jsx-key
               <div className="doctorBox">
                 <div className="doctorDetailsAndImage">
                   <img
@@ -231,7 +232,7 @@ function allDoctorAfterSearch() {
       <div>
         {showErrorMessage && <div className="errorMessage">{errorMessage}</div>}
       </div>
-       <Footer/>
+       
     </div>
   );
 }

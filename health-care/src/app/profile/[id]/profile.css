@@ -24,11 +24,17 @@
   flex-wrap: wrap;
 }
 
+
+
 .bookAppointmentbtn,
 .adminPanel,
 .viewSchedulebtn {
   margin-top: 20px;
   align-self: center;
+}
+
+.addBlog{
+
 }
 
 .edit {
