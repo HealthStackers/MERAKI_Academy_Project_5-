@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<p align="center">
+<a href="https://www.meraki-academy.org" target="_blank" rel="noopener noreferrer">
+ <img width="250px" height="150px" src="https://res.cloudinary.com/dcq4kfehy/image/upload/v1751431926/websiteLogoCircle_mrid3v.png" alt="Project logo">
+ </a>
+</p>
 
-## Getting Started
+<h3 align="center">MEDIVO
+</h3>
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+
+## 📝 Table of Contents
+
+- [About](#about)
+- [Getting Started](#getting_started)
+- [Usage](#usage)
+- [Built Using](#built_using)
+- [User Story](#user_story)
+- [Data Flow](#data_flow)
+- [Guided By](#guided_by)
+
+## 🧐 About <a name = "about"></a>
+
+The Medivo project is designed to create a modern, user‑friendly healthcare portal that connects patients with qualified medical professionals across multiple specialties and locations. By offering a comprehensive doctor directory—including profiles with specializations, clinic details, and patient reviews—Medivo makes it easy for users to discover the right provider for their needs. Integrated appointment booking streamlines the scheduling process, allowing patients to choose convenient time slots.
+
+To ensure that Medivo remains a trusted network of qualified professionals, we’ve implemented a “Join Request” workflow for new doctors. Prospective practitioners can submit their credentials—information, specialty details, and clinic name—through a secure online form.
+
+## 🏁 Getting Started <a name = "getting_started"></a>
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+- Visual Studio Code follow this <a href='https://code.visualstudio.com/download'>link</a> to install.
+- Git Bash follow this <a href='https://git-scm.com/downloads'>link</a> to install.
+- Neon Console follow this <a href='https://console.neon.tech/app/projects'>link</a>.
+- Node.js follow this <a href='https://nodejs.org/en/download'>link</a> to install.
+
+### Installing:
+
+1. Clone the repo to your local machine using git bash.
+
+```
+git clone https://github.com/HealthStackers/MERAKI_Academy_Project_5-
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install packeges repeat this step in backend and frontend folder
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npm i
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Run server using git bash inside backend folder
 
-## Learn More
+```
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Run application using git bash inside frontend folder
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+npm run start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Now app ready to use
 
-## Deploy on Vercel
+## 🎈 Usage <a name="usage"></a>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- You can create an account on MEDIVO.
+- You can find nearby doctors, do symptom checking, book appointments with doctors, do a BMI test, and read informative articles.
+- If you are a doctor, you can perform a join request, and become a doctor in MEDIVO.
+
+## ⛏️ Built Using <a name = "built_using"></a>
+
+- [Noen Console](https://console.neon.tech/app/projects) - Database
+- [Express JS](https://expressjs.com/) - Server Framework
+- [Next JS](https://nextjs.org/) - Web Framework
+- [Node JS](https://nodejs.org/en/) - Server Environment
+
+## User Story <a name = "#user_story"></a>
+
+
+<a href='https://trello.com/b/zFwhalSP/healthstackers'>Trello</a>
+
+## Data Flow <a name = "#data_flow"></a>
+
+<img width=800px height=200px src="https://res.cloudinary.com/dcq4kfehy/image/upload/v1751431977/Project_Flow_Chart_qp7kkb.png" alt="Diagram"></a>
+
+## ⚠️ Guided By <a name = "guided_by"></a>
+
+This project is guided by ©️ **[MERAKI Academy](https://www.meraki-academy.org)**
