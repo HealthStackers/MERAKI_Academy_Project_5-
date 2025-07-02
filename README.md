@@ -71,11 +71,13 @@ Now app ready to use
 - You can create an account on MEDIVO.
 - Login
 - Login Via Google
+- Logout
 - You can find nearby doctors, 
 - Symptom checking and giving the most disease that maybe you injured with it
 - Book appointments with doctors
 - BMI test
 - read informative articles.
+- See all the Services in nav or in home page and click on each of them to see the blog 
 - Join request as Doctors, and become a doctor in MEDIVO.
 - Add blog if you are a doctor
 - Profile 
