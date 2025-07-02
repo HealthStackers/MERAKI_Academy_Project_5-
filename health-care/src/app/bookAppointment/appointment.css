@@ -11,10 +11,8 @@
 .AppointmentPanel {
   position: relative;
   top: 150px;
- 
- 
-   
   font-family: "Poppins", sans-serif;
+  margin-bottom: 200px;
 }
 
 .appointmentInfoDiv{

@@ -32,10 +32,3 @@
   color: #222;       
 }
 
-/* Responsive media query code for mobile devices */
-
-@media (max-width: 459px) {
-  .BlogDiv {
-    width: 100vw !important;
-  }
-}

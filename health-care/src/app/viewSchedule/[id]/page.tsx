@@ -3,17 +3,19 @@ import React, { useContext, useEffect, useState } from "react";
 import "./viewSchedule.css";
 import axios from "axios";
 import { AuthContext } from "@/app/context/AuthContext";
-import Footer from "../../components/footer" 
+import Footer from "../../components/footer";
 
 const ViewSchedule = () => {
   const UID = localStorage.getItem("userId");
   const roleId = localStorage.getItem("roleId");
   const [appointments, SetAppointments] = useState([]);
+  const [appointmentsDoc, SetAppointmentsDoc] = useState([]);
+
   const role = localStorage.getItem("role");
   console.log(appointments);
   const GetAppointments = async () => {
     try {
-      const res = await axios.get(` http://localhost:3000/api/appointments`, {
+      const res = await axios.get(`http://localhost:3000/api/appointments`, {
         params: {
           role: role,
           id: UID,
@@ -25,8 +27,25 @@ const ViewSchedule = () => {
     }
   };
 
+  const GetAppointmentsDoctors = async () => {
+    try {
+      const res = await axios.get(
+        `http://localhost:3000/api/appointments/getDoctorAppointments`,
+        {
+          params: {
+            id: UID,
+          },
+        }
+      );
+      SetAppointmentsDoc(res.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   useEffect(() => {
     GetAppointments();
+    GetAppointmentsDoctors();
   });
 
   return (
@@ -34,9 +53,11 @@ const ViewSchedule = () => {
       <div className="appointmentsCards">
         <h3 className="currentAppointment">Current Appointments »</h3>
         <div className="row">
-            {appointments.length === 0 && <p>No appointments</p>}
+          {appointments.length === 0 && !appointmentsDoc && <p>No appointments</p>}
+          {appointmentsDoc.length === 0 && !appointments && <p>No appointments</p>}
+
           {roleId === "3" &&
-            appointments?.map((e, idx) => (
+            appointmentsDoc?.map((e, idx) => (
               <div key={idx} className="col-md-6 col-lg-4 mb-4">
                 <div className="card h-100">
                   <div className="card-header text-bg-primary">
@@ -111,9 +132,7 @@ const ViewSchedule = () => {
               </div>
             ))}
         </div>
-        
       </div>
-      <Footer/>
     </div>
   );
 };

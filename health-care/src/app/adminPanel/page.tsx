@@ -22,6 +22,7 @@ import Disease from "../components/Disease";
 import Blogs from "../components/Blogs";
 import HandleJoinRequest from "../components/handleJoinRequest";
 import Service from "../components/service";
+import DeleteUser from "../components/DeleteUser";
 
 const AdminPanel = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -179,7 +180,10 @@ const AdminPanel = () => {
           >
             Delete a appointment
           </button>
-          <button type="button" className="btn btn-outline-primary">
+          <button 
+           onClick={() => toggleVisibility(3)}
+           type="button" 
+           className="btn btn-outline-primary">
             Delete a user
           </button>
           <button
@@ -454,6 +458,7 @@ const AdminPanel = () => {
       )}
 
       {activeIndex === 1 && <Disease />}
+      {activeIndex === 3 && <DeleteUser />}
 
       {activeIndex === 7 &&
         doctors?.map((ele) => {
