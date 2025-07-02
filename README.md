@@ -73,6 +73,7 @@ Now app ready to use
 - Login Via Google
 - Logout
 - You can find nearby doctors, 
+- Handle when the user not has a session to not allow to book an appointment
 - Symptom checking and giving the most disease that maybe you injured with it
 - Book appointments with doctors
 - BMI test
