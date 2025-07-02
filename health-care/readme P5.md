@@ -87,7 +87,7 @@ Now app ready to use
 
 ## Data Flow <a name = "#data_flow"></a>
 
-<img width=200px height=200px src="https://res.cloudinary.com/dcq4kfehy/image/upload/v1751431977/Project_Flow_Chart_qp7kkb.png" alt="Diagram"></a>
+<img width=450px height=200px src="https://res.cloudinary.com/dcq4kfehy/image/upload/v1751431977/Project_Flow_Chart_qp7kkb.png" alt="Diagram"></a>
 
 ## ⚠️ Guided By <a name = "guided_by"></a>
 
