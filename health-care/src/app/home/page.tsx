@@ -74,11 +74,6 @@ const Home = () => {
     const isReload = sessionStorage.getItem("isReload");
 
     if (session) {
-      console.log("in axois ffffff");
-
-      console.log("sessionvvvvvvvvvvvvvvv: ", session);
-      console.log("session.user.id: ", session.user.id);
-
       localStorage.setItem("roleId", session.user.role_id.toString());
       localStorage.setItem("email", session.user.email);
       localStorage.setItem("userId", session.user.id.toString());
