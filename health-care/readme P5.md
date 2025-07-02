@@ -1,6 +1,6 @@
 <p align="center">
 <a href="https://www.meraki-academy.org" target="_blank" rel="noopener noreferrer">
- <img width="400px" height="100px" src="https://res.cloudinary.com/dcq4kfehy/image/upload/v1751431926/websiteLogoCircle_mrid3v.png" alt="Project logo">
+ <img width="250px" height="150px" src="https://res.cloudinary.com/dcq4kfehy/image/upload/v1751431926/websiteLogoCircle_mrid3v.png" alt="Project logo">
  </a>
 </p>
 
