@@ -21,7 +21,7 @@ const Profile = () => {
   const [bloodType, setBloodType] = useState([]);
   const [diseaseName, setDiseaseName] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [blog , SetBlog] = useState(false)
+  const [blog, SetBlog] = useState(false);
   const [image, setImage] = useState("");
 
   console.log(profile);
@@ -127,142 +127,153 @@ const Profile = () => {
   }, [UID]);
 
   return (
-    <><div className="profilePage">
-      {profile.map((e, idx) => (
-        <div
-          key={idx}
-          className="card profile-card mx-auto my-4"
-          style={{ maxWidth: "400px", marginBottom: "200px" }}
-        >
-          <div className="card-body text-center">
-            <div className="ProfileImg">
-              {" "}
-              <img
-                src={e.userprofilepic}
-                alt="Avatar"
-                className="rounded-circle mb-3"
-                style={{ width: "120px", height: "120px", objectFit: "cover" }} />
-              <label
-                className="btn btn-sm btn-light edit"
-                title="Edit profile picture"
-              >
-                Edit
-                <input
-                  type="file"
-                  accept="image/*"
-                  className="visually-hidden"
-                  onClick={(e) => {
-                    e.target.value = "";
-                  } }
-                  onChange={(e) => {
-                    setImage(e.target.files[0]);
-                    uploadImage();
-                  } } />
-              </label>
-            </div>
-
-            <h4 className="card-title">{e.firstname}</h4>
-            <p className="text-muted mb-3">{e.email}</p>
-            <p>
-              <strong>Phone:</strong> {e.phonenumber}
-            </p>
-            <p>
-              <strong>Address:</strong> {e.country}
-            </p>
-
-            {token && roleId === "3" ? (
-              <div className="doctor-fields text-start">
-                <p>
-                  <strong>Specialization:</strong> {e.specialization}
-                </p>
-                <p>
-                  <strong>Clinic:</strong> {e.clinicname}
-                </p>
-                <p>
-                  <strong>CV:</strong>{" "}
-                  {e.cvurl ? (
-                    <a href={e.cvurl} target="_blank	" rel="noopener noreferrer">
-                      View
-                    </a>
-                  ) : (
-                    "N/A"
-                  )}
-                </p>
-                <Link href={`/viewSchedule/${UID}`} className="viewSchedulebtn">
-                  {" "}
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={(e) => {
-                      SetRole("doctor");
-                    } }
-                  >
-                    View Schedule
-                  </button>
-                </Link>
-                <button
-                  type="button"
-                  className="btn btn-primary AddBlog"
-                  onClick={() => {
-                    SetRole("doctor");
-                    SetBlog(true);
-
-                  } }
+    <>
+      <div className="profilePage">
+        {profile.map((e, idx) => (
+          <div
+            key={idx}
+            className="card profile-card mx-auto my-4"
+            style={{ maxWidth: "400px", marginBottom: "200px" }}
+          >
+            <div className="card-body text-center">
+              <div className="ProfileImg">
+                {" "}
+                <img
+                  src={e.userprofilepic}
+                  alt="Avatar"
+                  className="rounded-circle mb-3"
+                  style={{
+                    width: "120px",
+                    height: "120px",
+                    objectFit: "cover",
+                  }}
+                />
+                <label
+                  className="btn btn-sm btn-light edit"
+                  title="Edit profile picture"
                 >
-                  Add a Blog
-                </button>
+                  Edit
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="visually-hidden"
+                    onClick={(e) => {
+                      e.target.value = "";
+                    }}
+                    onChange={(e) => {
+                      setImage(e.target.files[0]);
+                      uploadImage();
+                    }}
+                  />
+                </label>
               </div>
-            ) : token && roleId === "2" ? (
-              <div className="patient-fields text-start">
-                <div className="patient-fields">
+
+              <h4 className="card-title">{e.firstname}</h4>
+              <p className="text-muted mb-3">{e.email}</p>
+              <p>
+                <strong>Phone:</strong> {e.phonenumber}
+              </p>
+              <p>
+                <strong>Address:</strong> {e.country}
+              </p>
+
+              {token && roleId === "3" ? (
+                <div className="doctor-fields text-start">
                   <p>
-                    <strong>Age:</strong> {e.age}
+                    <strong>Specialization:</strong> {e.specialization}
                   </p>
-                  {bloodType?.map((e, idx) => (
-                    <p key={idx}>
-                      <strong>Blood Type:</strong> {e.bloodtype}
-                    </p>
-                  ))}
-                  <strong>Allergies:</strong>
-                  <ul>
-                    {diseaseName?.map((e, idx) => (
-                      <li key={idx}>{e.name}</li>
-                    ))}
-                  </ul>
-                  <div className="btns justify-content-center d-flex gap-2">
-                    <Link href={`/viewSchedule/${UID}`}>
+                  <p>
+                    <strong>Clinic:</strong> {e.clinicname}
+                  </p>
+                  <p>
+                    <strong>CV:</strong>{" "}
+                    {e.cvurl ? (
+                      <a
+                        href={e.cvurl}
+                        target="_blank	"
+                        rel="noopener noreferrer"
+                      >
+                        View
+                      </a>
+                    ) : (
+                      "N/A"
+                    )}
+                  </p>
+                  <div className="DoctorBtns d-flex gap-2">
+                    <Link href={`/viewSchedule/${UID}`} className="flex-fill">
                       <button
                         type="button"
-                        className="btn btn-primary"
-                        onClick={(e) => {
-                          SetRole("patient");
-                        } }
+                        className="btn btn-primary w-100"
+                        onClick={() => SetRole("doctor")}
                       >
                         View Schedule
                       </button>
                     </Link>
-                    <Link href="/bookAppointment">
-                      <button type="button" className="btn btn-primary">
-                        Book Appointment
-                      </button>
-                    </Link>
+
+                    <button
+                      type="button"
+                      className="btn btn-primary flex-fill"
+                      onClick={() => {
+                        SetRole("doctor");
+                        SetBlog(true);
+                      }}
+                    >
+                      Add a Blog
+                    </button>
                   </div>
                 </div>
-              </div>
-            ) : (
-              <div className="head-office-fields text-start">
-                <Link href="/adminPanel" className="adminPanel">
-                  <button type="button" className="btn btn-primary">
-                    Admin Panel
-                  </button>
-                </Link>
-              </div>
-            )}
+              ) : token && roleId === "2" ? (
+                <div className="patient-fields text-start">
+                  <div className="patient-fields">
+                    <p>
+                      <strong>Age:</strong> {e.age}
+                    </p>
+                    {bloodType?.map((e, idx) => (
+                      <p key={idx}>
+                        <strong>Blood Type:</strong> {e.bloodtype}
+                      </p>
+                    ))}
+                    <strong>Allergies:</strong>
+                    <ul>
+                      {diseaseName?.map((e, idx) => (
+                        <li key={idx}>{e.name}</li>
+                      ))}
+                    </ul>
+                    <div className="btns justify-content-center d-flex gap-2">
+                      <Link href={`/viewSchedule/${UID}`}>
+                        <button
+                          type="button"
+                          className="btn btn-primary"
+                          onClick={(e) => {
+                            SetRole("patient");
+                          }}
+                        >
+                          View Schedule
+                        </button>
+                      </Link>
+                      <Link href="/bookAppointment">
+                        <button type="button" className="btn btn-primary">
+                          Book Appointment
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="head-office-fields text-start">
+                  <Link href="/adminPanel" className="adminPanel">
+                    <button type="button" className="btn btn-primary">
+                      Admin Panel
+                    </button>
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      ))}
-
-    </div><div className="AddBlogs">  {blog && <Blogs />}</div></>
+        ))}
+      </div>
+      <div className="AddBlogs"> {blog && <Blogs />}</div>
+    </>
   );
 };
 

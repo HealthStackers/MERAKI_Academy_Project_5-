@@ -1,19 +1,21 @@
 "use client";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import React from "react";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import "./login.css";
 import { Button } from "react-bootstrap";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
+  const { data: session } = useSession();
+  const router = useRouter();
+
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [showErrorMessage, seteshowErrorMessage] = useState(false);
-  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -58,6 +60,10 @@ const Login = () => {
         console.log("error sssss: ", error);
       });
   };
+
+  useEffect(() => {
+    if (session) router.push("/home");
+  }, [session, router]);
 
   return (
     <section className="loginPage">

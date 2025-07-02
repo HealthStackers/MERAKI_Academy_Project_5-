@@ -7,7 +7,6 @@ import Navigation from "@/app/components/Navigation";
 import "./home.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Footer from "../components/footer"
 import { AuthContext } from "../context/AuthContext";
 
 import axios from "axios";
@@ -32,8 +31,7 @@ const Home = () => {
   const { data: session } = useSession();
   const router = useRouter();
 
-  console.log("session   vvv:",session?.user);
-  
+  console.log("session   vvv:", session?.user);
 
   const {
     searchByLocation,
@@ -73,28 +71,18 @@ const Home = () => {
   useEffect(() => {
     GetServices();
     const isReload = sessionStorage.getItem("isReload");
-   
-    
-    if (session) {
-console.log("in axois ffffff");
 
-      
-   console.log("sessionvvvvvvvvvvvvvvv: ",session);
-      console.log("session.user.id: ",session.user.id);
-      
+    if (session) {
       localStorage.setItem("roleId", session.user.role_id.toString());
       localStorage.setItem("email", session.user.email);
       localStorage.setItem("userId", session.user.id.toString());
       localStorage.setItem("token", session.user.token);
-      
-   
     }
     if (!isReload) {
       sessionStorage.setItem("isReload", "true");
       window.location.reload();
     }
   }, [session]);
-
 
   return (
     <div>
@@ -117,9 +105,7 @@ console.log("in axois ffffff");
           type="button"
           id="buttonInHomePage"
           className="btn btn-outline-primary BlogsButton"
-          onClick={(e) => {
-            router.push("/bookAppointment");
-          }}
+          onClick={handleAction}
         >
           Book
         </button>
@@ -194,19 +180,13 @@ console.log("in axois ffffff");
           <button
             type="button"
             className="btn btn-outline-primary"
-            onClick={(e) => {
-              router.push("/bookAppointment");
-            }}
+            onClick={handleAction}
           >
             Find an Appointment
           </button>
         </div>
         <div className="FeaturedServiceBannerModule-image">
-          <img
-            src="/images/Book appointment image.png"
-            alt=""
-            loading="lazy"
-          />
+          <img src="/images/Book appointment image.png" alt="" loading="lazy" />
         </div>
       </div>
 
@@ -226,12 +206,14 @@ console.log("in axois ffffff");
                 <div className="card-body d-flex flex-column">
                   <h5 className="card-title">{ele.service_title}</h5>
                   <p className="card-text">{ele.description}</p>
-                  <a
-                    href={`/blogs/${ele.service_id}`}
-                    className="btn btn-primary"
-                  >
-                    Learn more
-                  </a>
+                  <div className="mt-auto">
+                    <a
+                      href={`/blogs/${ele.service_id}`}
+                      className="btn btn-primary w-100"
+                    >
+                      Learn more
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -241,7 +223,6 @@ console.log("in axois ffffff");
 
       <div className="howToUseSection">
         <p className="introHowToUseSection">How to use the webSite</p>
-
 
         <div className="howToUseSection">
           <div className="searchDectionSection">
@@ -259,7 +240,6 @@ console.log("in axois ffffff");
               className="imageInSearchSection"
               src="/images/imageinsearchforadoctorsector.PNG"
               alt="Doctor Image"
-             
             />
           </div>
 
@@ -268,7 +248,6 @@ console.log("in axois ffffff");
               className="imageInBecomeADoctorSection"
               src="/images/becomeADoctor.PNG"
               alt="become A Doctor Image"
-              
             />
             <div className="textAndHeadInSearchSection">
               <h5 className="headInserchDectionSection">
@@ -306,7 +285,6 @@ console.log("in axois ffffff");
               className="imageInBookAppointmentSection"
               src="/images/bookAnApointment.PNG"
               alt="book An Apointment Image"
-              
             />
           </div>
         </div>
