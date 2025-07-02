@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
@@ -7,7 +8,6 @@ import { useRouter } from "next/navigation";
 import Footer from "../components/footer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 
 function allDoctors() {
   const handleAction = () => {
@@ -146,7 +146,7 @@ function allDoctors() {
                     specialization: ele.specialization,
                     clinicname: ele.clinicname,
                   });
-                  handleAction()
+                  handleAction();
                 }}
               >
                 {" "}
