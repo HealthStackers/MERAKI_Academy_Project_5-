@@ -114,7 +114,6 @@ const InfoComponent = () => {
         setActiveIdx(1)
       }}> Next</button>
       </form>
-     <Footer/>
     </div>
     
   );

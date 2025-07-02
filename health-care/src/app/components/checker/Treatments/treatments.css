@@ -1,10 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
+
+
+
 .TreatmentsDiv {
   position: relative;
   top: 200px;
   bottom: 100px;
-  
 }
 
 .Treatments {
@@ -260,7 +262,6 @@
   background: #e8f0fa;
   width: 100%;
   padding: 60px 30px;
-  margin-bottom: 175px;
 }
 
 .FeaturedServiceBannerModule-content {

@@ -147,7 +147,6 @@ function bmiCalculator() {
             </div>
           </div>
         </div>
-        <Footer/>
       </div>
     </>
   );

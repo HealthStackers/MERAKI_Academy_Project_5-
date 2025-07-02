@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import "./profile.css";
@@ -6,9 +5,12 @@ import axios from "axios";
 import Link from "next/link";
 import { AuthContext } from "@/app/context/AuthContext";
 import Swal from "sweetalert2";
-import Footer from "../../components/footer"
+import Footer from "../../components/footer";
+import Blogs from "@/app/components/Blogs";
+import { useRouter } from "next/navigation";
 
 const Profile = () => {
+  const router = useRouter();
   const token = localStorage.getItem("token");
   const UID = localStorage.getItem("userId");
   const roleId = localStorage.getItem("roleId");
@@ -19,6 +21,7 @@ const Profile = () => {
   const [bloodType, setBloodType] = useState([]);
   const [diseaseName, setDiseaseName] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [blog , SetBlog] = useState(false)
   const [image, setImage] = useState("");
 
   console.log(profile);
@@ -124,13 +127,12 @@ const Profile = () => {
   }, [UID]);
 
   return (
-    <div className="profilePage">
+    <><div className="profilePage">
       {profile.map((e, idx) => (
         <div
           key={idx}
           className="card profile-card mx-auto my-4"
-          style={{ maxWidth: "400px", marginBottom:"200px"}}
-
+          style={{ maxWidth: "400px", marginBottom: "200px" }}
         >
           <div className="card-body text-center">
             <div className="ProfileImg">
@@ -139,8 +141,7 @@ const Profile = () => {
                 src={e.userprofilepic}
                 alt="Avatar"
                 className="rounded-circle mb-3"
-                style={{ width: "120px", height: "120px", objectFit: "cover" }}
-              />
+                style={{ width: "120px", height: "120px", objectFit: "cover" }} />
               <label
                 className="btn btn-sm btn-light edit"
                 title="Edit profile picture"
@@ -152,12 +153,11 @@ const Profile = () => {
                   className="visually-hidden"
                   onClick={(e) => {
                     e.target.value = "";
-                  }}
+                  } }
                   onChange={(e) => {
                     setImage(e.target.files[0]);
                     uploadImage();
-                  }}
-                />
+                  } } />
               </label>
             </div>
 
@@ -195,11 +195,22 @@ const Profile = () => {
                     className="btn btn-primary"
                     onClick={(e) => {
                       SetRole("doctor");
-                    }}
+                    } }
                   >
                     View Schedule
                   </button>
                 </Link>
+                <button
+                  type="button"
+                  className="btn btn-primary AddBlog"
+                  onClick={() => {
+                    SetRole("doctor");
+                    SetBlog(true);
+
+                  } }
+                >
+                  Add a Blog
+                </button>
               </div>
             ) : token && roleId === "2" ? (
               <div className="patient-fields text-start">
@@ -225,7 +236,7 @@ const Profile = () => {
                         className="btn btn-primary"
                         onClick={(e) => {
                           SetRole("patient");
-                        }}
+                        } }
                       >
                         View Schedule
                       </button>
@@ -248,11 +259,10 @@ const Profile = () => {
               </div>
             )}
           </div>
-          
         </div>
       ))}
-      <Footer/>
-    </div>
+
+    </div><div className="AddBlogs">  {blog && <Blogs />}</div></>
   );
 };
 

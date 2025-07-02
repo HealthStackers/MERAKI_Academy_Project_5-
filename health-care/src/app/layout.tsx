@@ -46,6 +46,7 @@ export default function RootLayout({
           <Providers>
             <Navigation />
             {children}
+            <Footer/>
           </Providers>
         </AuthProvider>
       </body>
