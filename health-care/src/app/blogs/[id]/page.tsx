@@ -2,11 +2,9 @@
 import axios from "axios";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import Footer from "../../components/footer"
 import "./blog.css";
 
 export default function BlogDetailsClient() {
-
   const params = useParams();
   const id = params?.id;
   const [blog, setBlog] = useState([]);
@@ -37,8 +35,9 @@ export default function BlogDetailsClient() {
   return (
     <>
       <div className="BlogDiv">
-        {blog.map((ele) => (
+        {blog.map((ele, indx) => (
           <>
+            <p className="BlogNum">Blog {indx + 1} »</p>
             <img
               src={ele.imageurl}
               alt="Featured"
@@ -54,10 +53,10 @@ export default function BlogDetailsClient() {
             </div>
             <div className="post-content">
               <p>{ele.body}</p>
+              <div className="divider"></div>
             </div>
           </>
         ))}
-       
       </div>
     </>
   );
