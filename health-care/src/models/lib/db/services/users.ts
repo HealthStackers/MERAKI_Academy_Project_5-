@@ -144,13 +144,6 @@ export const UpdateUser = async (id: number, UpdatedUser: UpdateUser) => {
   return result.rows;
 };
 
-export const DeleteUser = async (id: number) => {
-  const result = await pool.query(
-    `DELETE FROM USERS WHERE id = $1 RETURNING *`,
-    [id]
-  );
-  return result.rows;
-};
 
 export const GetAllDoctors = async () => {
   const result = await pool.query(
@@ -199,6 +192,21 @@ WHERE users.id = $1`,
   return result.rows;
 };
 
+export const deleteUser = async (id: number) => {
+  const result = await pool.query(
+    `DELETE FROM users WHERE id = $1 RETURNING * `,
+    [id]
+  );
+  return result.rows;
+};
+
+export const getAllUsers = async () => {
+  const result = await pool.query(
+    `SELECT * FROM users `,
+   
+  );
+  return result.rows;
+};
 
 //  SELECT
 //   a.user_id,
