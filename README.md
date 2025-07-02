@@ -4,8 +4,7 @@
  </a>
 </p>
 
-<h3 align="center">MEDIVO
-</h3>
+<h3 align="center">MEDIVO</h3>
 
 ---
 
@@ -23,9 +22,9 @@
 
 ## 🧐 About <a name = "about"></a>
 
-The Medivo project is designed to create a modern, user‑friendly healthcare portal that connects patients with qualified medical professionals across multiple specialties and locations. By offering a comprehensive doctor directory—including profiles with specializations, clinic details, and patient reviews—Medivo makes it easy for users to discover the right provider for their needs. Integrated appointment booking streamlines the scheduling process, allowing patients to choose convenient time slots.
+The **Medivo**’s project is designed to create a modern, user‑friendly healthcare portal that connects patients with qualified medical professionals across multiple specialties and locations. By offering a comprehensive doctor directory—including profiles with specializations, clinic details, and patient reviews—Medivo makes it easy for users to discover the right provider for their needs. Integrated appointment booking streamlines the scheduling process, allowing patients to choose convenient time slots.
 
-To ensure that Medivo remains a trusted network of qualified professionals, we’ve implemented a “Join Request” workflow for new doctors. Prospective practitioners can submit their credentials—information, specialty details, and clinic name—through a secure online form.
+To ensure that **Medivo** remains a trusted network of qualified professionals, we’ve implemented a “Join Request” workflow for new doctors. Prospective practitioners can submit their credentials—information, specialty details, and clinic name—through a secure online form.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -70,8 +69,30 @@ Now app ready to use
 
 
 - You can create an account on MEDIVO.
-- You can find nearby doctors, do symptom checking, book appointments with doctors, do a BMI test, and read informative articles.
-- If you are a doctor, you can perform a join request, and become a doctor in MEDIVO.
+- Login
+- Login Via Google
+- You can find nearby doctors, 
+- Symptom checking and giving the most disease that maybe you injured with it
+- Book appointments with doctors
+- BMI test
+- read informative articles.
+- Join request as Doctors, and become a doctor in MEDIVO.
+- Add blog if you are a doctor
+- Profile 
+- View your Schedule by getting the current appointment based on the day and time(whether Doctor or Patient )
+- Admin Panel 
+- Admin see all requested and approve or rejected based on criteria
+- Add services
+- Add blog
+- Edit User' Appointment
+- Delete Appointment
+- See All Doctors 
+- Add a disease 
+- Get All appointments
+- Get All Patients
+- Get All Doctors
+
+
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
