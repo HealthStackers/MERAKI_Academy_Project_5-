@@ -3,9 +3,12 @@ import React, { useEffect, useState } from "react";
 import "./register.css";
 import axios from "axios";
 import { redirect, useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const Register = () => {
+  const { data: session } = useSession();
   const router = useRouter();
+
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -62,8 +65,11 @@ const Register = () => {
     setSuccess(false);
   };
 
+  useEffect(() => {
+    if (session) router.push("/home");
+  }, [session, router]);
+
   return (
-    
     <section className="registerPage">
       <div className="containerInRegister">
         <div className="titleInRegister">Registration</div>
@@ -84,7 +90,7 @@ const Register = () => {
               <div className="input-box">
                 <span className="details">Last Name</span>
                 <input
-                className="inputInRegister"
+                  className="inputInRegister"
                   name="lastName"
                   type="text"
                   placeholder="Enter your Last Name"
@@ -95,7 +101,7 @@ const Register = () => {
               <div className="input-box">
                 <span className="details">Age</span>
                 <input
-                className="inputInRegister"
+                  className="inputInRegister"
                   name="age"
                   type="text"
                   placeholder="Enter your Age"
@@ -106,7 +112,7 @@ const Register = () => {
               <div className="input-box">
                 <span className="details">Country</span>
                 <input
-                className="inputInRegister"
+                  className="inputInRegister"
                   name="country"
                   type="text"
                   placeholder="Enter your Country"
@@ -117,7 +123,7 @@ const Register = () => {
               <div className="input-box">
                 <span className="details">Phone Number</span>
                 <input
-                className="inputInRegister"
+                  className="inputInRegister"
                   name="phoneNumber"
                   type="text"
                   placeholder="Enter your number"
@@ -128,7 +134,7 @@ const Register = () => {
               <div className="input-box">
                 <span className="details">Email</span>
                 <input
-                className="inputInRegister"
+                  className="inputInRegister"
                   name="email"
                   type="email"
                   placeholder="Enter your email"
@@ -139,7 +145,7 @@ const Register = () => {
               <div className="input-box">
                 <span className="details">Password</span>
                 <input
-                className="inputInRegister"
+                  className="inputInRegister"
                   name="password"
                   type="password"
                   placeholder="Enter your password"
