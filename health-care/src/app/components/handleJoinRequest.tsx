@@ -4,6 +4,8 @@ import axios, { all } from "axios";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import "./handleJoinRequests.css";
+import Swal from "sweetalert2";
+
 
 function HandleJoinRequest() {
   interface allRequestsType {
@@ -68,13 +70,29 @@ function HandleJoinRequest() {
       .then((result) => {
         if (newStatus === "rejected") {
           setshowAlertMessage(1);
-          setAlertMessage("The Reqest has been rejected");
+          setAlertMessage("The Request has been rejected");
+            Swal.fire({
+                    title: "the request rejected!",
+                    text: "The request has been rejected successfully.",
+                    icon: "success",
+                    confirmButtonText: "Okay",
+                  }).then(() => {
+                    location.reload();
+                  });
           setTimeout(() => {
             setshowAlertMessage(0);
           }, 2000);
         } else {
           setshowAlertMessage(2);
-          setAlertMessage("The Reqest has been approved");
+          setAlertMessage("The request has been approved");
+             Swal.fire({
+                    title: "the request approved!",
+                    text: "The request has been approved successfully.",
+                    icon: "success",
+                    confirmButtonText: "Okay",
+                  }).then(() => {
+                    location.reload();
+                  });
           setTimeout(() => {
             setshowAlertMessage(0);
           }, 2000);
