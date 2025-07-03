@@ -11,11 +11,10 @@ export default function BlogDetailsClient() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (!id) return;
+
     const fetchBlog = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/service/` + id);
+        const res = await axios.get(`http://localhost:3000/api/service/${id}`);
         setBlog(res.data);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (err: any) {
@@ -23,17 +22,17 @@ export default function BlogDetailsClient() {
       } finally {
         setLoading(false);
       }
-    };
-
+  }
+  useEffect(() => {
     fetchBlog();
-  }, [id]);
+  }, []);
 
-  if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
   if (!blog) return <div>No data found.</div>;
 
   return (
     <>
+    {loading ?  <div style={{ width: '4rem', height: '4rem',position:"relative", top:"100px" , marginBottom:"200px" , marginLeft:"60px" ,fontSize:"20px"}}>Loading...</div>: 
       <div className="BlogDiv">
         {blog.map((ele, indx) => (
           <>
@@ -57,7 +56,7 @@ export default function BlogDetailsClient() {
             </div>
           </>
         ))}
-      </div>
+      </div>}
     </>
   );
 }
