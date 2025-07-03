@@ -43,9 +43,9 @@ export const getAllServicesWithBlogs = async () => {
   u.country,
   u.email
 FROM services AS s
-LEFT JOIN blogs AS b
+INNER JOIN blogs AS b
   ON b.service_id = s.id
-JOIN users AS u
+INNER JOIN users AS u
   ON s.doctor_id = u.id
 GROUP BY
   s.id, s.title, s.description, s.imageurl,
