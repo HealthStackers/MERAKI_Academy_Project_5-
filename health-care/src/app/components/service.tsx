@@ -49,6 +49,7 @@ const Service = () => {
     axios
       .post("http://localhost:3000/api/service", services)
       .then((res) => {
+        setSuccess(true)
         setMsg("The Service has been Added");
         setTimeout(() => {
           setMsg("");

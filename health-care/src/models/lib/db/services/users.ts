@@ -194,7 +194,7 @@ WHERE users.id = $1`,
 
 export const deleteUser = async (id: number) => {
   const result = await pool.query(
-    `DELETE FROM users WHERE id = $1 RETURNING * `,
+    `DELETE FROM users WHERE id = $1 ON DELETE CASCADE RETURNING * `,
     [id]
   );
   return result.rows;

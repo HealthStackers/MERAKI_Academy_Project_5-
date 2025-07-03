@@ -10,7 +10,6 @@ const DeleteUser = () => {
   const [msg, setMsg] = useState("");
   const [success, setSuccess] = useState(false);
   const [users, setUsers] = useState([]);
-  console.log(users);
   const router = useRouter();
   const { token, setToken } = useContext(AuthContext);
 
@@ -36,7 +35,7 @@ const DeleteUser = () => {
         // console.log([...posts, res.data.jobs])
       })
       .catch((err) => {
-        setMsg("The ID is not correct");
+        setMsg("Can't Delete a User");
         setSuccess(false);
         setTimeout(() => {
           setMsg("");
@@ -44,6 +43,7 @@ const DeleteUser = () => {
         console.log(err);
       });
   };
+  console.log(id);
 
   const getUsers = () => {
     axios
