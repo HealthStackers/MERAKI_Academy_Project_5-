@@ -48,7 +48,7 @@ function allDoctorAfterSearch() {
           const filterByLocation = (
             result.data as allDoctorAfterFiltration
           ).filter((ele, i) => {
-            return ele.city === searchLocationValue.toLocaleLowerCase();
+            return ele.city.toLocaleLowerCase() === searchLocationValue.toLocaleLowerCase();
           });
           if (filterByLocation.length === 0) {
             seteshowErrorMessage(true);
@@ -65,7 +65,7 @@ function allDoctorAfterSearch() {
             result.data as allDoctorAfterFiltration
           ).filter((ele, i) => {
             return (
-              ele.specialization ===
+              ele.specialization.toLocaleLowerCase() ===
               searchSpecializationValue.toLocaleLowerCase()
             );
           });
