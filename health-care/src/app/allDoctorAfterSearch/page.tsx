@@ -1,12 +1,24 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import "./allDoctorAfterSearch.css";
 import { useRouter } from "next/navigation";
-import Footer from "../components/footer"
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function allDoctorAfterSearch() {
-   const router= useRouter()
+  const handleAction = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      router.push("/bookAppointment");
+    } else {
+      toast.error("Please log in or register to access this feature");
+    }
+  };
+
+  const router = useRouter();
   type allDoctorAfterFiltration = {
     firstname: string;
     lastname: string;
@@ -48,7 +60,10 @@ function allDoctorAfterSearch() {
           const filterByLocation = (
             result.data as allDoctorAfterFiltration
           ).filter((ele, i) => {
-            return ele.city.toLocaleLowerCase() === searchLocationValue.toLocaleLowerCase();
+            return (
+              ele.city.toLocaleLowerCase() ===
+              searchLocationValue.toLocaleLowerCase()
+            );
           });
           if (filterByLocation.length === 0) {
             seteshowErrorMessage(true);
@@ -95,7 +110,7 @@ function allDoctorAfterSearch() {
 
   console.log("allDoctors: ", allDoctors);
   return (
-    <div className="allDoctorsPageAndFooter" >
+    <div className="allDoctorsPageAndFooter">
       <div className="allDoctorsPage">
         <div className="renderAllDoctors">
           {allDoctors.map((ele, i) => {
@@ -206,7 +221,7 @@ function allDoctorAfterSearch() {
                       specialization: ele.specialization,
                       clinicname: ele.clinicname,
                     });
-                    router.push("/bookAppointment");
+                   handleAction()
                   }}
                 >
                   {" "}
@@ -232,7 +247,7 @@ function allDoctorAfterSearch() {
       <div>
         {showErrorMessage && <div className="errorMessage">{errorMessage}</div>}
       </div>
-       
+      <ToastContainer />
     </div>
   );
 }
