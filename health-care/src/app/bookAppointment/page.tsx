@@ -14,7 +14,6 @@ import {
 import { AuthContext } from "../context/AuthContext";
 import { clockSystem } from "@/models/lib/db/services/appointment";
 import { ToastContainer, toast } from "react-toastify";
-import Footer from "../components/footer";
 import "react-toastify/dist/ReactToastify.css";
 
 // id ?:number
@@ -33,16 +32,23 @@ import "react-toastify/dist/ReactToastify.css";
 // user_id: number;
 // Disease_id: number;
 const BookAppointment = () => {
+  const [finalSpecializing, SetfinalSpecializing] = useState<string>("");
+  const [finalDoctorName, SetfinalDoctorName] = useState<string>("");
   const { doctorIdInBookBtn, setDoctorIdInBookBtn } = useContext(AuthContext);
-  console.log("doctorIdInBookBtn: ", doctorIdInBookBtn);
-const [doctorId, setDoctorId] = useState<number>(0)
+  const [doctorId, setDoctorId] = useState<number>(0);
   const UID = localStorage.getItem("userId");
   const roleId = localStorage.getItem("roleId");
   const [AppointmentType, setAppointmentType] =
     useState<AppointmentType>("Check-ups");
   const [diseases, setDiseases] = useState([]);
   const [doctors, setDoctors] = useState([]);
-  console.log(AppointmentType);
+  console.log(doctorIdInBookBtn);
+  console.log("finalSpecializing ", finalSpecializing);
+  console.log("finalDoctorName ", finalDoctorName);
+  console.log(doctorIdInBookBtn.firstname + doctorIdInBookBtn.lastname);
+
+  console.log("doctorId ", doctorId);
+  console.log("doctorId ", doctorIdInBookBtn.doctor_id);
   const [appointments, setAppointments] = useState<Appointment>({
     BloodType: "",
     MedicalHistory: "",
@@ -50,17 +56,17 @@ const [doctorId, setDoctorId] = useState<number>(0)
     AppointmentType: AppointmentType,
     description: "",
     Gender: "",
-    DoctorName: "",
-    Specializing: "",
+    DoctorName: doctorIdInBookBtn.firstname + doctorIdInBookBtn.lastname,
+    Specializing: doctorIdInBookBtn.specialization,
     is_deleted: 0,
     user_id: Number(UID),
-    doctor_id: Number(doctorId),
+    doctor_id: Number(doctorIdInBookBtn.doctor_id),
     Disease_id: 0,
     role_id: 2,
   });
 
   console.log(appointments);
-    console.log("doctorId" , doctorId);
+  console.log("doctorId", doctorId);
 
   console.log(doctors);
   //
@@ -262,14 +268,21 @@ const [doctorId, setDoctorId] = useState<number>(0)
               onChange={(e) => {
                 const selectedName =
                   e.target.options[e.target.selectedIndex].text;
-                const id = e.target.value; // Gets the selected doctor's ID
-console.log("id ,id" , id)
+
+               
+
+                const id = e.target.value;
+                console.log("id ,id", id);
+                setDoctorId(Number(id));
+
+             
+
+                // setDoctorId(finalDoctorId)
                 setAppointments((prev) => ({
                   ...prev,
-                  doctor_id:Number(id),
+                 doctor_id: Number(id),
                   DoctorName: selectedName,
                 }));
-                setDoctorId(Number(id))
               }}
             >
               <option value="" disabled>
@@ -294,12 +307,11 @@ console.log("id ,id" , id)
               defaultValue={doctorIdInBookBtn.specialization}
               aria-label="Select a Specializing"
               onChange={(e) => {
-                console.log("doctorIdInBookBtn.specialization: ");
-
-                setAppointments({
-                  ...appointments,
+                
+                setAppointments((prev) => ({
+                  ...prev,
                   Specializing: e.target.value,
-                });
+                }));
               }}
             >
               <option value="" disabled>

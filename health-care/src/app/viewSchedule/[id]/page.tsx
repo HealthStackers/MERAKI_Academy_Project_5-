@@ -53,8 +53,7 @@ const ViewSchedule = () => {
       <div className="appointmentsCards">
         <h3 className="currentAppointment">Current Appointments »</h3>
         <div className="row">
-          {appointments.length === 0 && !appointmentsDoc && <p>No appointments</p>}
-          {appointmentsDoc.length === 0 && !appointments && <p>No appointments</p>}
+          {appointments.length === 0 || appointmentsDoc.length === 0 && <p>No appointments</p>}
 
           {roleId === "3" &&
             appointmentsDoc?.map((e, idx) => (
