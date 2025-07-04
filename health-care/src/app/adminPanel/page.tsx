@@ -35,15 +35,14 @@ const AdminPanel = () => {
   const [UserId, setUserId] = useState<number | string>("");
   const [doctors, setDoctors] = useState([]);
   const [patients, setPatients] = useState([]);
-  const [DoctorsAppointment, setDoctorsAppointment] = useState([]);
-  const [PatientsAppointment, setPatientsAppointment] = useState([]);
+  const [def, setDefulatComponet] = useState(true);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const toggleVisibility = (index: any) => {
     setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
   };
-  console.log(doctors);
 
+  console.log(doctors);
 
   const getAppointments = () => {
     axios
@@ -160,69 +159,100 @@ const AdminPanel = () => {
       <div className="AdminPanelContainer">
         <div className="ButtonsAdmin">
           <button
-            onClick={() => toggleVisibility(0)}
+            onClick={() => {
+              toggleVisibility(0);
+              setDefulatComponet(true);
+            }}
             type="button"
             className="btn btn-outline-primary"
           >
             Add a service
           </button>
           <button
-            onClick={() => toggleVisibility(1)}
+            onClick={() => {
+              toggleVisibility(1);
+              setDefulatComponet(false);
+            }}
             type="button"
             className="btn btn-outline-primary"
           >
             Add a disease
           </button>
           <button
-            onClick={() => toggleVisibility(2)}
+            onClick={() => {
+              toggleVisibility(2);
+              setDefulatComponet(false);
+            }}
             type="button"
             className="btn btn-outline-primary"
           >
             Delete a appointment
           </button>
-          <button 
-           onClick={() => toggleVisibility(3)}
-           type="button" 
-           className="btn btn-outline-primary">
+          <button
+            onClick={() => {
+              toggleVisibility(3);
+              setDefulatComponet(false);
+            }}
+            type="button"
+            className="btn btn-outline-primary"
+          >
             Delete a user
           </button>
           <button
-            onClick={() => toggleVisibility(4)}
+            onClick={() => {
+              toggleVisibility(4);
+              setDefulatComponet(false);
+            }}
             type="button"
             className="btn btn-outline-primary"
           >
             Edit Appointment&apos; info
           </button>
           <button
-            onClick={() => toggleVisibility(5)}
+            onClick={() => {
+              toggleVisibility(5);
+              setDefulatComponet(false);
+            }}
             type="button"
             className="btn btn-outline-primary"
           >
             Get All Appointments
           </button>
           <button
-            onClick={() => toggleVisibility(6)}
+            onClick={() => {
+              toggleVisibility(6);
+              setDefulatComponet(false);
+            }}
             type="button"
             className="btn btn-outline-primary"
           >
             Get All Patients
           </button>
           <button
-            onClick={() => toggleVisibility(7)}
+            onClick={() => {
+              toggleVisibility(7);
+              setDefulatComponet(false);
+            }}
             type="button"
             className="btn btn-outline-primary"
           >
             Get All Doctors
           </button>
           <button
-            onClick={() => toggleVisibility(8)}
+            onClick={() => {
+              toggleVisibility(8);
+              setDefulatComponet(false);
+            }}
             type="button"
             className="btn btn-outline-primary"
           >
             Add a blog
           </button>
           <button
-            onClick={() => toggleVisibility(9)}
+            onClick={() => {
+              toggleVisibility(9);
+              setDefulatComponet(false);
+            }}
             type="button"
             className="btn btn-outline-primary"
           >
@@ -230,8 +260,7 @@ const AdminPanel = () => {
           </button>
         </div>
       </div>
-
-      {activeIndex === 0 && <Service />}
+      {(activeIndex === 0 || def) && <Service />}
       {activeIndex === 4 && (
         <div className="UpdateDiv">
           <div className="appointments">
