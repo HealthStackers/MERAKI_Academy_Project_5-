@@ -3,14 +3,19 @@ import React, { useContext, useEffect, useState } from "react";
 import "./viewSchedule.css";
 import axios from "axios";
 import { AuthContext } from "@/app/context/AuthContext";
-import Footer from "../../components/footer" 
+import Footer from "../../components/footer";
+import { error } from "console";
 
 const ViewSchedule = () => {
   const UID = localStorage.getItem("userId");
   const roleId = localStorage.getItem("roleId");
   const [appointments, SetAppointments] = useState([]);
   const role = localStorage.getItem("role");
+  const { doctorName, setDoctorName } = useContext(AuthContext);
+  const [doctorAppointmentArray, setDoctorAppointmentArray] = useState([]);
   console.log(appointments);
+  console.log("doctorName: ", doctorName);
+
   const GetAppointments = async () => {
     try {
       const res = await axios.get(` http://localhost:3000/api/appointments`, {
@@ -20,6 +25,7 @@ const ViewSchedule = () => {
         },
       });
       SetAppointments(res.data);
+      console.log("res.data: ", res.data);
     } catch (err) {
       console.error(err);
     }
@@ -29,14 +35,35 @@ const ViewSchedule = () => {
     GetAppointments();
   });
 
+  if (roleId) {
+    if (+roleId === 3) {
+      useEffect(() => {
+        axios
+          .get("http://localhost:3000/api/appointments/all")
+          .then((result) => {
+            console.log("result.data: ", result.data);
+
+            const arrayOfAppointments = result.data.filter((ele, i) => {
+              return ele.doctorname === doctorName;
+            });
+            console.log("arraykk: ", arrayOfAppointments);
+            setDoctorAppointmentArray(arrayOfAppointments);
+          })
+          .catch((error) => {
+            console.log();
+          });
+      }, []);
+    }
+  }
+
   return (
     <div className="appointmentsPage">
       <div className="appointmentsCards">
         <h3 className="currentAppointment">Current Appointments »</h3>
         <div className="row">
-            {appointments.length === 0 && <p>No appointments</p>}
+          {doctorAppointmentArray.length === 0 && <p>No appointments</p>}
           {roleId === "3" &&
-            appointments?.map((e, idx) => (
+            doctorAppointmentArray?.map((e, idx) => (
               <div key={idx} className="col-md-6 col-lg-4 mb-4">
                 <div className="card h-100">
                   <div className="card-header text-bg-primary">
@@ -49,24 +76,25 @@ const ViewSchedule = () => {
                     <h5 className="card-title">
                       Patient: {e.firstname} {e.lastname}
                     </h5>
-
-                    <p className="card-subtitle mb-2 text-muted">
+                    <p className="card-subtitle mb-2">
+                      <strong>Appointment Type:</strong> {e.appointmenttype}
+                    </p>
+                    <p className="card-subtitle mb-2 ">
                       <strong>Date:</strong> {e.dateappointment.split("T")[0]}{" "}
                       at {e.timeappointment}
                     </p>
-                    <p className="card-subtitle mb-2 text-muted">
-                      <strong>End Time:</strong> {e.Endtime}
+                    <p className="card-subtitle mb-2">
+                      <strong>Duration:</strong> {e.durationtime}
                     </p>
+
                     <p className="card-subtitle mb-2">
                       <strong>Description:</strong> {e.description}
                     </p>
                     <p className="card-subtitle mb-2">
-                      <strong>Blood Type:</strong> {e.bloodtype}
+                      <strong>Disease:</strong> {e.disease_name}
                     </p>
-                    <p className="card-subtitle mb-2">
-                      <strong>Country:</strong> {e.country}
-                    </p>
-                    <strong>Allergies:</strong>
+
+                    {/* <strong>Allergies:</strong>
                     <ul>
                       {e.symptoms?.map((symptom, i) => (
                         <li key={i}>{symptom}</li>
@@ -78,7 +106,7 @@ const ViewSchedule = () => {
                       {e.effectedbodypart?.map((part, j) => (
                         <li key={j}>{part}</li>
                       ))}
-                    </ul>
+                    </ul> */}
                   </div>
                 </div>
               </div>
@@ -111,9 +139,8 @@ const ViewSchedule = () => {
               </div>
             ))}
         </div>
-        
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
