@@ -43,6 +43,7 @@ export type Appointment = {
   Specializing: string;
   is_deleted: 0;
   user_id: number;
+  doctor_id?: number;
   Disease_id: number;
   role_id: number;
 };
@@ -65,9 +66,9 @@ export type UpdateAppointment = {
 };
 export const bookAppointment = async (appointment: Appointment) => {
   const result = await pool.query<Appointment>(
-    `INSERT INTO Appointments (DateAppointment, BloodType, MedicalHistory, TimeAppointment,  clockSystem,DurationTime, AppointmentType, description, Gender, DoctorName, Specializing, user_id, Disease_id , role_id) 
-SELECT $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 , $13 ,$14 
-WHERE  $14 = 2   AND NOT EXISTS (
+    `INSERT INTO Appointments (DateAppointment, BloodType, MedicalHistory, TimeAppointment,  clockSystem,DurationTime, AppointmentType, description, Gender, DoctorName, Specializing, user_id, doctor_id,  Disease_id , role_id) 
+SELECT $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 , $13 ,$14 ,$15
+WHERE  $15 = 2   AND NOT EXISTS (
     SELECT 1
     FROM Appointments 
     WHERE DateAppointment = $1 AND user_id = $12
@@ -102,6 +103,7 @@ WHERE  $14 = 2   AND NOT EXISTS (
       appointment.DoctorName.trim(),
       appointment.Specializing.trim(),
       appointment.user_id,
+      appointment.doctor_id,
       appointment.Disease_id,
       appointment.role_id,
     ]
@@ -169,6 +171,28 @@ export const getAppointmentsByUserId = async (role: string, id: number) => {
   }
 
   return result?.rows;
+};
+
+export const GetDoctorAppoitments = async ( doctorId: number) => {
+  const result = await pool.query(
+    `SELECT  DateAppointment , BloodType  , MedicalHistory , TimeAppointment , DurationTime ,  
+      
+       TimeAppointment + 
+        CASE
+            WHEN AppointmentType = 'Check-ups' THEN INTERVAL '20 minutes'
+            WHEN AppointmentType = 'Evaluations' THEN INTERVAL '30 minutes'
+            WHEN AppointmentType = 'Follow-up' THEN INTERVAL '15 minutes'
+            ELSE INTERVAL '0 minutes'
+        END AS "Endtime",
+         Appointments.AppointmentType , Appointments.description , Appointments.Gender , diseases.name , diseases.effectedBodyPart ,
+     diseases.symptoms , diseases.symptoms, users.id ,users.firstName , users.lastName , users.age , users.country , users.email  FROM Appointments FULL OUTER JOIN users ON users.id = Appointments.user_id 
+    FULL OUTER JOIN role ON role.id = users.role_id 
+    FULL OUTER JOIN diseases ON diseases.id = Appointments.disease_id
+    WHERE  Appointments.doctor_id = $1 AND DateAppointment = CURRENT_DATE AND TimeAppointment >= CURRENT_TIME`,
+    [ doctorId]
+  );
+    return result?.rows;
+
 };
 
 export const UpdateAppointment = async (
@@ -255,8 +279,10 @@ export const getAllAppointments = async () => {
   }
 };
 
-
-export const GetAllBloodTypeByID = async (id : number) => {
-  const result = await pool.query("SELECT BloodType FROM Appointments WHERE user_id = $1 LIMIT 1" , [id]);
+export const GetAllBloodTypeByID = async (id: number) => {
+  const result = await pool.query(
+    "SELECT BloodType FROM Appointments WHERE user_id = $1 LIMIT 1",
+    [id]
+  );
   return result.rows;
 };

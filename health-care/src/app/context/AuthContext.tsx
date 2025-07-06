@@ -15,6 +15,8 @@ interface AuthContextType {
   setRoleId: (rId: string | null) => void;
   userId: string | null;
   setUserId: (uId: string | null) => void;
+  doctorId: string | null;
+  setDoctorId: (dId: string | null) => void;
   info: { age: string; gender: string };
   setInfo: Dispatch<SetStateAction<{ age: string; gender: string }>>;
   symptoms: string[];
@@ -82,8 +84,10 @@ interface AuthContextType {
     }>
   >;
 
+
   doctorName: string;
   setDoctorName: Dispatch<SetStateAction<string>>;
+
 }
 
 export const AuthContext = createContext<AuthContextType>({
@@ -93,6 +97,8 @@ export const AuthContext = createContext<AuthContextType>({
   setRoleId: () => {},
   userId: null,
   setUserId: () => {},
+  doctorId: null,
+  setDoctorId: () => {},
   info: {
     age: "",
     gender: "",
@@ -106,7 +112,6 @@ export const AuthContext = createContext<AuthContextType>({
   SetRole: () => {},
   allDoctors: [],
   setAllDoctors: () => [],
-
   searchByLocation: false,
   setSearchByLocation: () => {},
   searchBySpecialization: false,
@@ -134,6 +139,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [roleId, setRoleId] = useState<string | null>(null);
   const [role, SetRole] = useState<string | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
+  const [doctorId, setDoctorId] = useState<string | null>(null);
 
   const [info, setInfo] = useState({
     age: "",
@@ -177,7 +183,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     specialization: "",
     clinicname: "",
   });
+
   const [doctorName, setDoctorName] = useState("");
+
 
   useEffect(() => {
     const t =
@@ -203,6 +211,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setRoleId,
         userId,
         setUserId,
+        doctorId, 
+        setDoctorId,
         info,
         setInfo,
         symptoms,

@@ -14,7 +14,7 @@ import {
 import { AuthContext } from "../context/AuthContext";
 import { clockSystem } from "@/models/lib/db/services/appointment";
 import { ToastContainer, toast } from "react-toastify";
-import Footer from "../components/footer"
+import Footer from "../components/footer";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 
@@ -36,14 +36,13 @@ import { useRouter } from "next/navigation";
 const BookAppointment = () => {
   const router= useRouter()
   const { doctorIdInBookBtn, setDoctorIdInBookBtn } = useContext(AuthContext);
-  console.log("doctorIdInBookBtn: ",doctorIdInBookBtn);
-  
+  console.log("doctorIdInBookBtn: ", doctorIdInBookBtn);
+const [doctorId, setDoctorId] = useState<number>(0)
   const UID = localStorage.getItem("userId");
   const roleId = localStorage.getItem("roleId");
   const [AppointmentType, setAppointmentType] =
     useState<AppointmentType>("Check-ups");
   const [diseases, setDiseases] = useState([]);
-  const [doctorID, SetDoctorID] = useState<string>("");
   const [doctors, setDoctors] = useState([]);
   console.log(AppointmentType);
   const [appointments, setAppointments] = useState<Appointment>({
@@ -57,12 +56,14 @@ const BookAppointment = () => {
     Specializing: "",
     is_deleted: 0,
     user_id: Number(UID),
+    doctor_id: Number(doctorId),
     Disease_id: 0,
     role_id: 2,
   });
 
   console.log(appointments);
-  console.log(doctorID);
+    console.log("doctorId" , doctorId);
+
   console.log(doctors);
   //
   const AddAppointment = () => {
@@ -148,10 +149,7 @@ const BookAppointment = () => {
       </div>
       <div className="AddDiv">
         <div className="appointments">
-          <p className="introAppointment">
-           
-          </p>
-         
+          <p className="introAppointment"></p>
         </div>
 
         <div className="appointmentInfoDiv">
@@ -261,28 +259,35 @@ const BookAppointment = () => {
             />
             <select
               className="form-select"
-              defaultValue={doctorIdInBookBtn.firstname +  doctorIdInBookBtn.lastname }
+              defaultValue={
+                doctorIdInBookBtn.firstname + doctorIdInBookBtn.lastname
+              }
               aria-label="Default select example"
               onChange={(e) => {
                 const selectedName =
                   e.target.options[e.target.selectedIndex].text;
-
+                const id = e.target.value; // Gets the selected doctor's ID
+console.log("id ,id" , id)
                 setAppointments((prev) => ({
                   ...prev,
+                  doctor_id:Number(id),
                   DoctorName: selectedName,
                 }));
+                setDoctorId(Number(id))
               }}
             >
               <option value="" disabled>
                 Select a Doctor
-              </option> 
+              </option>
 
-              {doctorIdInBookBtn.firstname!=="" && <option >
-               {doctorIdInBookBtn.firstname}  {doctorIdInBookBtn.lastname }
-              </option>}
+              {doctorIdInBookBtn.firstname !== "" && (
+                <option>
+                  {doctorIdInBookBtn.firstname} {doctorIdInBookBtn.lastname}
+                </option>
+              )}
 
-              {doctors?.map((ele) => (
-                <option key={ele.id}>
+              {doctors?.map((ele, i) => (
+                <option key={ele.id} value={ele.doctor_id}>
                   {ele.firstname} {ele.lastname}
                 </option>
               ))}
@@ -293,8 +298,8 @@ const BookAppointment = () => {
               defaultValue={doctorIdInBookBtn.specialization}
               aria-label="Select a Specializing"
               onChange={(e) => {
-   console.log("doctorIdInBookBtn.specialization: ",);
-   
+                console.log("doctorIdInBookBtn.specialization: ");
+
                 setAppointments({
                   ...appointments,
                   Specializing: e.target.value,
@@ -305,12 +310,12 @@ const BookAppointment = () => {
                 Select a Specializing
               </option>
 
-              {doctorIdInBookBtn.specialization!=="" && <option >
-                {doctorIdInBookBtn.specialization}
-              </option>}
+              {doctorIdInBookBtn.specialization !== "" && (
+                <option>{doctorIdInBookBtn.specialization}</option>
+              )}
 
               {doctors?.map((ele) => (
-                <option  key={ele.id}>{ele.specialization}</option>
+                <option key={ele.id}>{ele.specialization}</option>
               ))}
             </select>
 
@@ -335,7 +340,6 @@ const BookAppointment = () => {
                 </option>
               ))}
             </select>
-           
           </div>
           <button
             type="button"
@@ -347,7 +351,6 @@ const BookAppointment = () => {
         </div>
       </div>
       <ToastContainer />
-      <Footer/>
     </div>
   );
 };

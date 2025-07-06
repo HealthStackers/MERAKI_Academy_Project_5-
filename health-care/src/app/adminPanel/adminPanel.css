@@ -1,7 +1,6 @@
 .AdminPanelContainer{
 margin-left:  60px;
 margin-top: 10px;
-
 }
 
 .AdminPanelContainer .Buttons{
@@ -76,6 +75,10 @@ textarea {
 }
 
 
+.deletePostDiv{
+  margin-top: 100px;
+  margin-bottom: 200px;
+}
 
 .form-select option {
     color: black;
