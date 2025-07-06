@@ -83,6 +83,11 @@ interface AuthContextType {
       clinicname: string;
     }>
   >;
+
+
+  doctorName: string;
+  setDoctorName: Dispatch<SetStateAction<string>>;
+
 }
 
 export const AuthContext = createContext<AuthContextType>({
@@ -125,6 +130,8 @@ export const AuthContext = createContext<AuthContextType>({
     clinicname: "",
   },
   setDoctorIdInBookBtn: () => {},
+  doctorName: "",
+  setDoctorName: () => {},
 });
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -177,6 +184,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     clinicname: "",
   });
 
+  const [doctorName, setDoctorName] = useState("");
+
+
   useEffect(() => {
     const t =
       typeof window !== "undefined" ? localStorage.getItem("token") : null;
@@ -225,6 +235,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setActiveIdx,
         doctorIdInBookBtn,
         setDoctorIdInBookBtn,
+        doctorName,
+        setDoctorName,
       }}
     >
       {children}

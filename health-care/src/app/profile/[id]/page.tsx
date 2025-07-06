@@ -14,7 +14,7 @@ const Profile = () => {
   const token = localStorage.getItem("token");
   const UID = localStorage.getItem("userId");
   const roleId = localStorage.getItem("roleId");
-  const { role, SetRole } = useContext(AuthContext);
+  const { role, SetRole,doctorName, setDoctorName } = useContext(AuthContext);
   localStorage.setItem("role", role);
   const [profile, setProfile] = useState([]);
   const [ProfilePic, SetProfilePic] = useState("");
@@ -88,6 +88,13 @@ const Profile = () => {
           `http://localhost:3000/api/users/profile/${UID}`
         );
         setProfile(res.data);
+        console.log("res.data45689: ",res.data 
+        );
+        console.log("res.data4568sssss9: ",res.data[0].firstname + " " + res.data[0].lastname
+        );
+        setDoctorName(res.data[0].firstname + " " + res.data[0].lastname)
+
+        
       } catch (err) {
         console.error(err);
       } finally {
@@ -170,22 +177,22 @@ const Profile = () => {
 
               <h4 className="card-title">{e.firstname}</h4>
               <p className="text-muted mb-3">{e.email}</p>
-              <p>
+              <p style={{alignSelf:"center"}}>
                 <strong>Phone:</strong> {e.phonenumber}
               </p>
-              <p>
+              <p style={{alignSelf:"center"}}>
                 <strong>Address:</strong> {e.country}
               </p>
 
               {token && roleId === "3" ? (
                 <div className="doctor-fields text-start">
-                  <p>
+                  <p style={{alignSelf:"center"}}>
                     <strong>Specialization:</strong> {e.specialization}
                   </p>
-                  <p>
+                  <p style={{alignSelf:"center"}}>
                     <strong>Clinic:</strong> {e.clinicname}
                   </p>
-                  <p>
+                  <p style={{alignSelf:"center"}}>
                     <strong>CV:</strong>{" "}
                     {e.cvurl ? (
                       <a
@@ -225,16 +232,16 @@ const Profile = () => {
               ) : token && roleId === "2" ? (
                 <div className="patient-fields text-start">
                   <div className="patient-fields">
-                    <p>
+                    <p style={{alignSelf:"center"}}>
                       <strong>Age:</strong> {e.age}
                     </p>
                     {bloodType?.map((e, idx) => (
-                      <p key={idx}>
+                      <p key={idx} style={{alignSelf:"center"}}>
                         <strong>Blood Type:</strong> {e.bloodtype}
                       </p>
                     ))}
-                    <strong>Allergies:</strong>
-                    <ul>
+                    <strong style={{alignSelf:"center"}}>Allergies:</strong>
+                    <ul style={{alignSelf:"center"}}>
                       {diseaseName?.map((e, idx) => (
                         <li key={idx}>{e.name}</li>
                       ))}

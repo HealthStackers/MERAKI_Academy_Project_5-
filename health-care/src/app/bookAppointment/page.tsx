@@ -16,6 +16,7 @@ import { clockSystem } from "@/models/lib/db/services/appointment";
 import { ToastContainer, toast } from "react-toastify";
 import Footer from "../components/footer";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
 
 // id ?:number
 // DateAppointment: Date;
@@ -33,6 +34,7 @@ import "react-toastify/dist/ReactToastify.css";
 // user_id: number;
 // Disease_id: number;
 const BookAppointment = () => {
+  const router= useRouter()
   const { doctorIdInBookBtn, setDoctorIdInBookBtn } = useContext(AuthContext);
   console.log("doctorIdInBookBtn: ", doctorIdInBookBtn);
 const [doctorId, setDoctorId] = useState<number>(0)
@@ -79,8 +81,10 @@ const [doctorId, setDoctorId] = useState<number>(0)
           text: "Your appointment has been Added successfully.",
           icon: "success",
           confirmButtonText: "Okay",
+          
         }).then(() => {
-          window.location.reload();
+          router.push("/home")
+          //window.location.reload();
         });
         // console.log([...posts, res.data.jobs])
       })
